@@ -9,8 +9,7 @@ import { useGetAnalyticsQuery } from '../__data__/api'
 const AnalyticsPage = () => {
   const {
     error, data, isLoading
-  } = useGetAnalyticsQuery(undefined, {
-  })
+  } = useGetAnalyticsQuery(undefined, {})
   
   if (isLoading) {
     return <Loader/>

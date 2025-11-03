@@ -1,8 +1,12 @@
+require('dotenv').config({
+  path: '../../.env'
+})
 const { GigaChat, GigaChatEmbeddings } = require('langchain-gigachat');
-const { GigaChat: GigaChatClient } = require('gigachat');
-const { ChatDeepSeek } = require('@langchain/deepseek');
 const { Agent } = require('node:https');
-const { Ollama } = require("@langchain/ollama");
+const { createReactAgent } = require('@langchain/langgraph/prebuilt')
+const { HumanMessage } = require('@langchain/core/messages')
+const { tool } = require('@langchain/core/tools')
+const z = require('zod');
 
 
 const httpsAgent = new Agent({
@@ -10,60 +14,31 @@ const httpsAgent = new Agent({
 });
 
 const llm = new GigaChat({
-    model: 'GigaChat-2-Max',
-    temperature: 0.2,
-    scope: 'GIGACHAT_API_PERS',
-    streaming: true,
-    credentials: process.env.GIGA_AUTH,
-    httpsAgent,
-});
-
-const gigachat = new GigaChatClient({
+    model: 'GigaChat-2',
     scope: 'GIGACHAT_API_PERS',
     credentials: process.env.GIGA_AUTH,
     httpsAgent,
-    model: 'GigaChat-2-Max',
-})
-
-const deepSeekEndpoint = "https://models.github.ai/inference"
-const token = process.env["GITHUB_TOKEN"]
-process.env["DEEPSEEK_API_KEY"] = token
-
-const llm2 = new ChatDeepSeek({
-    model: "deepseek/DeepSeek-V3-0324",
-    temperature: 0,
-    streaming: false,
-    configuration: {
-        baseURL: deepSeekEndpoint,
-    }
 });
 
-llm2.defaultModel = "deepseek/DeepSeek-V3-0324"
+const sum = tool(
+  (input) => input.a + input.b,
+  {
+    name: "sum",
+    description: "Складывает 2 числа друг с другом (математическое сложение)",
+    schema: z.object({
+      a: z.string().describe("Первый параметр сложения"),
+      b: z.string().describe("Второй параметр сложения"),
+    }),
+  }
+);
 
-const ollamallm = new Ollama({
-    model: "qwen2.5:72b",
-    temperature: 0,
-    maxRetries: 2,
-});
+const agent = createReactAgent({ llm, tools: [sum] });
 
-ollamallm.defaultModel = 'qwen2.5:72b'
-
-const llmProviders = {
-    deepseek: llm2,
-    gigachat: llm,
-    ollama: ollamallm
+const ask = async (message) => {
+  const answer = await agent.invoke({
+    messages: [new HumanMessage(message)]
+  })
+  console.log(answer)
 }
 
-module.exports.getModel = ({
-    model = 'GigaChat-2-Max',
-    streaming = true,
-    provider = 'gigachat'
-}) => {
-    const llm = llmProviders[provider]
-    llm.model = model;
-    llm.streaming = streaming;
-
-    return llm;
-}
-
-module.exports.gigachat = gigachat
+ask('Сколько будет 5+1?')

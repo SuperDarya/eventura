@@ -2,10 +2,10 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/', (req, res) => {
-//     res.status(400).send({
-//         ok: false,
-//         message: 'Сервис недоступен временно'
-//     })
+    // res.status(400).send({
+    //     ok: false,
+    //     message: 'Сервис недоступен временно'
+    // })
     res.send([
         { label: 'Лиды', value: 128, help: '+14% за 7д' },
         { label: 'Заказы', value: 42, help: '+8% за 7д' },
@@ -16,3 +16,4 @@ router.get('/', (req, res) => {
 })
 
 module.exports = router
+Ты преподаватель по React. Отвечай только на вопросы про React. Если вопрос не касается React, то направь пользователя в поддержку по номеру +79999999991
