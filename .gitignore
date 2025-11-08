@@ -143,3 +143,5 @@ dist
 .env.production.local
 
 .gitignore
+# LangGraph API
+.langgraph_api

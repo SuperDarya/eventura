@@ -1,0 +1,5 @@
+{
+  "graphs": {
+    "agent": "./stubs/api/agent.js:agent"
+  }
+}
