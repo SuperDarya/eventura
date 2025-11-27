@@ -1,0 +1,902 @@
+[
+  {
+    "id": 1,
+    "clientId": 20,
+    "vendorId": 43,
+    "bookingId": 68,
+    "rating": 4,
+    "comment": "Отличная работа!",
+    "createdAt": "2024-03-26T21:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "clientId": 4,
+    "vendorId": 75,
+    "bookingId": 13,
+    "rating": 5,
+    "comment": "Все прошло замечательно",
+    "createdAt": "2024-03-04T21:00:00.000Z"
+  },
+  {
+    "id": 3,
+    "clientId": 24,
+    "vendorId": 95,
+    "bookingId": 14,
+    "rating": 5,
+    "comment": "Рекомендую",
+    "createdAt": "2024-01-22T21:00:00.000Z"
+  },
+  {
+    "id": 4,
+    "clientId": 5,
+    "vendorId": 61,
+    "bookingId": 29,
+    "rating": 4,
+    "comment": "Рекомендую",
+    "createdAt": "2024-03-17T21:00:00.000Z"
+  },
+  {
+    "id": 5,
+    "clientId": 19,
+    "vendorId": 77,
+    "bookingId": 56,
+    "rating": 4,
+    "comment": "Отличная работа!",
+    "createdAt": "2024-12-25T21:00:00.000Z"
+  },
+  {
+    "id": 6,
+    "clientId": 14,
+    "vendorId": 54,
+    "bookingId": 47,
+    "rating": 4,
+    "comment": "Все прошло замечательно",
+    "createdAt": "2024-04-08T21:00:00.000Z"
+  },
+  {
+    "id": 7,
+    "clientId": 30,
+    "vendorId": 57,
+    "bookingId": 23,
+    "rating": 4,
+    "comment": "Отличная работа!",
+    "createdAt": "2024-12-24T21:00:00.000Z"
+  },
+  {
+    "id": 8,
+    "clientId": 29,
+    "vendorId": 31,
+    "bookingId": 31,
+    "rating": 4,
+    "comment": "Остались довольны",
+    "createdAt": "2024-02-11T21:00:00.000Z"
+  },
+  {
+    "id": 9,
+    "clientId": 14,
+    "vendorId": 91,
+    "bookingId": 83,
+    "rating": 4,
+    "comment": "Отличная работа!",
+    "createdAt": "2024-02-16T21:00:00.000Z"
+  },
+  {
+    "id": 10,
+    "clientId": 4,
+    "vendorId": 82,
+    "bookingId": 30,
+    "rating": 5,
+    "comment": "Рекомендую",
+    "createdAt": "2024-11-02T21:00:00.000Z"
+  },
+  {
+    "id": 11,
+    "clientId": 19,
+    "vendorId": 89,
+    "bookingId": 13,
+    "rating": 5,
+    "comment": "Все прошло замечательно",
+    "createdAt": "2024-09-16T21:00:00.000Z"
+  },
+  {
+    "id": 12,
+    "clientId": 4,
+    "vendorId": 97,
+    "bookingId": 13,
+    "rating": 4,
+    "comment": "Остались довольны",
+    "createdAt": "2024-02-26T21:00:00.000Z"
+  },
+  {
+    "id": 13,
+    "clientId": 13,
+    "vendorId": 77,
+    "bookingId": 85,
+    "rating": 5,
+    "comment": "Остались довольны",
+    "createdAt": "2024-10-25T21:00:00.000Z"
+  },
+  {
+    "id": 14,
+    "clientId": 28,
+    "vendorId": 52,
+    "bookingId": 20,
+    "rating": 4,
+    "comment": "Профессионалы своего дела",
+    "createdAt": "2024-12-15T21:00:00.000Z"
+  },
+  {
+    "id": 15,
+    "clientId": 19,
+    "vendorId": 86,
+    "bookingId": 91,
+    "rating": 5,
+    "comment": "Остались довольны",
+    "createdAt": "2024-09-06T21:00:00.000Z"
+  },
+  {
+    "id": 16,
+    "clientId": 22,
+    "vendorId": 64,
+    "bookingId": 83,
+    "rating": 5,
+    "comment": "Отличная работа!",
+    "createdAt": "2024-02-25T21:00:00.000Z"
+  },
+  {
+    "id": 17,
+    "clientId": 26,
+    "vendorId": 97,
+    "bookingId": 60,
+    "rating": 4,
+    "comment": "Профессионалы своего дела",
+    "createdAt": "2024-07-07T21:00:00.000Z"
+  },
+  {
+    "id": 18,
+    "clientId": 8,
+    "vendorId": 44,
+    "bookingId": 32,
+    "rating": 5,
+    "comment": "Рекомендую",
+    "createdAt": "2024-11-30T21:00:00.000Z"
+  },
+  {
+    "id": 19,
+    "clientId": 9,
+    "vendorId": 96,
+    "bookingId": 23,
+    "rating": 5,
+    "comment": "Рекомендую",
+    "createdAt": "2024-06-30T21:00:00.000Z"
+  },
+  {
+    "id": 20,
+    "clientId": 30,
+    "vendorId": 49,
+    "bookingId": 47,
+    "rating": 5,
+    "comment": "Отличная работа!",
+    "createdAt": "2024-06-06T21:00:00.000Z"
+  },
+  {
+    "id": 21,
+    "clientId": 26,
+    "vendorId": 46,
+    "bookingId": 89,
+    "rating": 4,
+    "comment": "Все прошло замечательно",
+    "createdAt": "2024-07-20T21:00:00.000Z"
+  },
+  {
+    "id": 22,
+    "clientId": 8,
+    "vendorId": 47,
+    "bookingId": 66,
+    "rating": 5,
+    "comment": "Остались довольны",
+    "createdAt": "2024-03-01T21:00:00.000Z"
+  },
+  {
+    "id": 23,
+    "clientId": 18,
+    "vendorId": 32,
+    "bookingId": 51,
+    "rating": 4,
+    "comment": "Профессионалы своего дела",
+    "createdAt": "2024-09-04T21:00:00.000Z"
+  },
+  {
+    "id": 24,
+    "clientId": 12,
+    "vendorId": 57,
+    "bookingId": 40,
+    "rating": 5,
+    "comment": "Рекомендую",
+    "createdAt": "2024-06-25T21:00:00.000Z"
+  },
+  {
+    "id": 25,
+    "clientId": 2,
+    "vendorId": 44,
+    "bookingId": 27,
+    "rating": 4,
+    "comment": "Рекомендую",
+    "createdAt": "2024-10-05T21:00:00.000Z"
+  },
+  {
+    "id": 26,
+    "clientId": 26,
+    "vendorId": 73,
+    "bookingId": 85,
+    "rating": 4,
+    "comment": "Рекомендую",
+    "createdAt": "2024-03-26T21:00:00.000Z"
+  },
+  {
+    "id": 27,
+    "clientId": 1,
+    "vendorId": 88,
+    "bookingId": 36,
+    "rating": 5,
+    "comment": "Все прошло замечательно",
+    "createdAt": "2024-03-06T21:00:00.000Z"
+  },
+  {
+    "id": 28,
+    "clientId": 13,
+    "vendorId": 34,
+    "bookingId": 29,
+    "rating": 5,
+    "comment": "Все прошло замечательно",
+    "createdAt": "2024-10-22T21:00:00.000Z"
+  },
+  {
+    "id": 29,
+    "clientId": 19,
+    "vendorId": 85,
+    "bookingId": 45,
+    "rating": 5,
+    "comment": "Рекомендую",
+    "createdAt": "2024-11-17T21:00:00.000Z"
+  },
+  {
+    "id": 30,
+    "clientId": 23,
+    "vendorId": 82,
+    "bookingId": 27,
+    "rating": 4,
+    "comment": "Профессионалы своего дела",
+    "createdAt": "2024-12-10T21:00:00.000Z"
+  },
+  {
+    "id": 31,
+    "clientId": 11,
+    "vendorId": 93,
+    "bookingId": 63,
+    "rating": 4,
+    "comment": "Рекомендую",
+    "createdAt": "2024-05-10T21:00:00.000Z"
+  },
+  {
+    "id": 32,
+    "clientId": 7,
+    "vendorId": 44,
+    "bookingId": 14,
+    "rating": 4,
+    "comment": "Все прошло замечательно",
+    "createdAt": "2024-08-19T21:00:00.000Z"
+  },
+  {
+    "id": 33,
+    "clientId": 15,
+    "vendorId": 31,
+    "bookingId": 19,
+    "rating": 4,
+    "comment": "Остались довольны",
+    "createdAt": "2024-10-10T21:00:00.000Z"
+  },
+  {
+    "id": 34,
+    "clientId": 27,
+    "vendorId": 88,
+    "bookingId": 74,
+    "rating": 4,
+    "comment": "Остались довольны",
+    "createdAt": "2024-10-11T21:00:00.000Z"
+  },
+  {
+    "id": 35,
+    "clientId": 26,
+    "vendorId": 89,
+    "bookingId": 12,
+    "rating": 5,
+    "comment": "Рекомендую",
+    "createdAt": "2024-07-19T21:00:00.000Z"
+  },
+  {
+    "id": 36,
+    "clientId": 16,
+    "vendorId": 95,
+    "bookingId": 59,
+    "rating": 5,
+    "comment": "Остались довольны",
+    "createdAt": "2024-09-07T21:00:00.000Z"
+  },
+  {
+    "id": 37,
+    "clientId": 5,
+    "vendorId": 78,
+    "bookingId": 33,
+    "rating": 5,
+    "comment": "Остались довольны",
+    "createdAt": "2024-11-21T21:00:00.000Z"
+  },
+  {
+    "id": 38,
+    "clientId": 11,
+    "vendorId": 87,
+    "bookingId": 42,
+    "rating": 4,
+    "comment": "Профессионалы своего дела",
+    "createdAt": "2024-02-01T21:00:00.000Z"
+  },
+  {
+    "id": 39,
+    "clientId": 3,
+    "vendorId": 55,
+    "bookingId": 40,
+    "rating": 5,
+    "comment": "Все прошло замечательно",
+    "createdAt": "2024-04-15T21:00:00.000Z"
+  },
+  {
+    "id": 40,
+    "clientId": 19,
+    "vendorId": 34,
+    "bookingId": 99,
+    "rating": 5,
+    "comment": "Остались довольны",
+    "createdAt": "2024-05-03T21:00:00.000Z"
+  },
+  {
+    "id": 41,
+    "clientId": 18,
+    "vendorId": 74,
+    "bookingId": 76,
+    "rating": 4,
+    "comment": "Профессионалы своего дела",
+    "createdAt": "2024-08-24T21:00:00.000Z"
+  },
+  {
+    "id": 42,
+    "clientId": 11,
+    "vendorId": 41,
+    "bookingId": 47,
+    "rating": 5,
+    "comment": "Профессионалы своего дела",
+    "createdAt": "2024-01-02T21:00:00.000Z"
+  },
+  {
+    "id": 43,
+    "clientId": 18,
+    "vendorId": 98,
+    "bookingId": 81,
+    "rating": 4,
+    "comment": "Профессионалы своего дела",
+    "createdAt": "2024-04-16T21:00:00.000Z"
+  },
+  {
+    "id": 44,
+    "clientId": 13,
+    "vendorId": 94,
+    "bookingId": 12,
+    "rating": 5,
+    "comment": "Рекомендую",
+    "createdAt": "2024-03-10T21:00:00.000Z"
+  },
+  {
+    "id": 45,
+    "clientId": 29,
+    "vendorId": 61,
+    "bookingId": 33,
+    "rating": 4,
+    "comment": "Профессионалы своего дела",
+    "createdAt": "2024-10-22T21:00:00.000Z"
+  },
+  {
+    "id": 46,
+    "clientId": 30,
+    "vendorId": 90,
+    "bookingId": 35,
+    "rating": 5,
+    "comment": "Отличная работа!",
+    "createdAt": "2024-12-25T21:00:00.000Z"
+  },
+  {
+    "id": 47,
+    "clientId": 24,
+    "vendorId": 85,
+    "bookingId": 63,
+    "rating": 4,
+    "comment": "Остались довольны",
+    "createdAt": "2024-05-14T21:00:00.000Z"
+  },
+  {
+    "id": 48,
+    "clientId": 19,
+    "vendorId": 65,
+    "bookingId": 94,
+    "rating": 5,
+    "comment": "Отличная работа!",
+    "createdAt": "2024-09-21T21:00:00.000Z"
+  },
+  {
+    "id": 49,
+    "clientId": 24,
+    "vendorId": 83,
+    "bookingId": 81,
+    "rating": 5,
+    "comment": "Рекомендую",
+    "createdAt": "2024-05-12T21:00:00.000Z"
+  },
+  {
+    "id": 50,
+    "clientId": 25,
+    "vendorId": 81,
+    "bookingId": 91,
+    "rating": 5,
+    "comment": "Профессионалы своего дела",
+    "createdAt": "2024-01-27T21:00:00.000Z"
+  },
+  {
+    "id": 51,
+    "clientId": 2,
+    "vendorId": 76,
+    "bookingId": 3,
+    "rating": 5,
+    "comment": "Рекомендую",
+    "createdAt": "2024-05-18T21:00:00.000Z"
+  },
+  {
+    "id": 52,
+    "clientId": 1,
+    "vendorId": 88,
+    "bookingId": 34,
+    "rating": 5,
+    "comment": "Все прошло замечательно",
+    "createdAt": "2024-10-01T21:00:00.000Z"
+  },
+  {
+    "id": 53,
+    "clientId": 21,
+    "vendorId": 53,
+    "bookingId": 85,
+    "rating": 4,
+    "comment": "Профессионалы своего дела",
+    "createdAt": "2024-01-15T21:00:00.000Z"
+  },
+  {
+    "id": 54,
+    "clientId": 23,
+    "vendorId": 39,
+    "bookingId": 72,
+    "rating": 4,
+    "comment": "Отличная работа!",
+    "createdAt": "2024-05-20T21:00:00.000Z"
+  },
+  {
+    "id": 55,
+    "clientId": 30,
+    "vendorId": 52,
+    "bookingId": 59,
+    "rating": 5,
+    "comment": "Профессионалы своего дела",
+    "createdAt": "2024-06-03T21:00:00.000Z"
+  },
+  {
+    "id": 56,
+    "clientId": 19,
+    "vendorId": 88,
+    "bookingId": 15,
+    "rating": 4,
+    "comment": "Профессионалы своего дела",
+    "createdAt": "2024-12-20T21:00:00.000Z"
+  },
+  {
+    "id": 57,
+    "clientId": 30,
+    "vendorId": 52,
+    "bookingId": 13,
+    "rating": 4,
+    "comment": "Рекомендую",
+    "createdAt": "2024-03-15T21:00:00.000Z"
+  },
+  {
+    "id": 58,
+    "clientId": 8,
+    "vendorId": 56,
+    "bookingId": 16,
+    "rating": 4,
+    "comment": "Все прошло замечательно",
+    "createdAt": "2024-08-01T21:00:00.000Z"
+  },
+  {
+    "id": 59,
+    "clientId": 6,
+    "vendorId": 70,
+    "bookingId": 15,
+    "rating": 4,
+    "comment": "Отличная работа!",
+    "createdAt": "2024-09-27T21:00:00.000Z"
+  },
+  {
+    "id": 60,
+    "clientId": 19,
+    "vendorId": 63,
+    "bookingId": 63,
+    "rating": 4,
+    "comment": "Остались довольны",
+    "createdAt": "2024-01-10T21:00:00.000Z"
+  },
+  {
+    "id": 61,
+    "clientId": 1,
+    "vendorId": 65,
+    "bookingId": 15,
+    "rating": 4,
+    "comment": "Профессионалы своего дела",
+    "createdAt": "2024-08-04T21:00:00.000Z"
+  },
+  {
+    "id": 62,
+    "clientId": 1,
+    "vendorId": 62,
+    "bookingId": 19,
+    "rating": 4,
+    "comment": "Профессионалы своего дела",
+    "createdAt": "2024-05-14T21:00:00.000Z"
+  },
+  {
+    "id": 63,
+    "clientId": 22,
+    "vendorId": 62,
+    "bookingId": 58,
+    "rating": 4,
+    "comment": "Все прошло замечательно",
+    "createdAt": "2024-07-06T21:00:00.000Z"
+  },
+  {
+    "id": 64,
+    "clientId": 17,
+    "vendorId": 78,
+    "bookingId": 39,
+    "rating": 4,
+    "comment": "Рекомендую",
+    "createdAt": "2024-08-07T21:00:00.000Z"
+  },
+  {
+    "id": 65,
+    "clientId": 12,
+    "vendorId": 72,
+    "bookingId": 28,
+    "rating": 4,
+    "comment": "Все прошло замечательно",
+    "createdAt": "2024-11-14T21:00:00.000Z"
+  },
+  {
+    "id": 66,
+    "clientId": 18,
+    "vendorId": 91,
+    "bookingId": 89,
+    "rating": 5,
+    "comment": "Отличная работа!",
+    "createdAt": "2024-10-17T21:00:00.000Z"
+  },
+  {
+    "id": 67,
+    "clientId": 20,
+    "vendorId": 55,
+    "bookingId": 13,
+    "rating": 5,
+    "comment": "Остались довольны",
+    "createdAt": "2023-12-31T21:00:00.000Z"
+  },
+  {
+    "id": 68,
+    "clientId": 23,
+    "vendorId": 72,
+    "bookingId": 17,
+    "rating": 4,
+    "comment": "Остались довольны",
+    "createdAt": "2024-06-14T21:00:00.000Z"
+  },
+  {
+    "id": 69,
+    "clientId": 11,
+    "vendorId": 89,
+    "bookingId": 16,
+    "rating": 5,
+    "comment": "Остались довольны",
+    "createdAt": "2024-11-02T21:00:00.000Z"
+  },
+  {
+    "id": 70,
+    "clientId": 27,
+    "vendorId": 85,
+    "bookingId": 76,
+    "rating": 4,
+    "comment": "Все прошло замечательно",
+    "createdAt": "2024-05-04T21:00:00.000Z"
+  },
+  {
+    "id": 71,
+    "clientId": 24,
+    "vendorId": 90,
+    "bookingId": 45,
+    "rating": 4,
+    "comment": "Отличная работа!",
+    "createdAt": "2024-10-10T21:00:00.000Z"
+  },
+  {
+    "id": 72,
+    "clientId": 13,
+    "vendorId": 61,
+    "bookingId": 14,
+    "rating": 5,
+    "comment": "Рекомендую",
+    "createdAt": "2024-06-03T21:00:00.000Z"
+  },
+  {
+    "id": 73,
+    "clientId": 13,
+    "vendorId": 43,
+    "bookingId": 12,
+    "rating": 5,
+    "comment": "Остались довольны",
+    "createdAt": "2024-05-21T21:00:00.000Z"
+  },
+  {
+    "id": 74,
+    "clientId": 25,
+    "vendorId": 83,
+    "bookingId": 54,
+    "rating": 4,
+    "comment": "Профессионалы своего дела",
+    "createdAt": "2024-06-05T21:00:00.000Z"
+  },
+  {
+    "id": 75,
+    "clientId": 24,
+    "vendorId": 59,
+    "bookingId": 34,
+    "rating": 4,
+    "comment": "Отличная работа!",
+    "createdAt": "2024-11-12T21:00:00.000Z"
+  },
+  {
+    "id": 76,
+    "clientId": 27,
+    "vendorId": 99,
+    "bookingId": 43,
+    "rating": 5,
+    "comment": "Рекомендую",
+    "createdAt": "2024-01-15T21:00:00.000Z"
+  },
+  {
+    "id": 77,
+    "clientId": 15,
+    "vendorId": 78,
+    "bookingId": 61,
+    "rating": 4,
+    "comment": "Остались довольны",
+    "createdAt": "2024-01-22T21:00:00.000Z"
+  },
+  {
+    "id": 78,
+    "clientId": 27,
+    "vendorId": 74,
+    "bookingId": 59,
+    "rating": 4,
+    "comment": "Профессионалы своего дела",
+    "createdAt": "2024-08-10T21:00:00.000Z"
+  },
+  {
+    "id": 79,
+    "clientId": 7,
+    "vendorId": 32,
+    "bookingId": 7,
+    "rating": 5,
+    "comment": "Отличная работа!",
+    "createdAt": "2024-10-17T21:00:00.000Z"
+  },
+  {
+    "id": 80,
+    "clientId": 14,
+    "vendorId": 82,
+    "bookingId": 72,
+    "rating": 4,
+    "comment": "Все прошло замечательно",
+    "createdAt": "2024-02-20T21:00:00.000Z"
+  },
+  {
+    "id": 81,
+    "clientId": 10,
+    "vendorId": 86,
+    "bookingId": 5,
+    "rating": 5,
+    "comment": "Профессионалы своего дела",
+    "createdAt": "2024-12-21T21:00:00.000Z"
+  },
+  {
+    "id": 82,
+    "clientId": 14,
+    "vendorId": 72,
+    "bookingId": 88,
+    "rating": 5,
+    "comment": "Остались довольны",
+    "createdAt": "2024-03-20T21:00:00.000Z"
+  },
+  {
+    "id": 83,
+    "clientId": 24,
+    "vendorId": 69,
+    "bookingId": 14,
+    "rating": 5,
+    "comment": "Остались довольны",
+    "createdAt": "2024-10-09T21:00:00.000Z"
+  },
+  {
+    "id": 84,
+    "clientId": 5,
+    "vendorId": 97,
+    "bookingId": 94,
+    "rating": 5,
+    "comment": "Все прошло замечательно",
+    "createdAt": "2024-11-02T21:00:00.000Z"
+  },
+  {
+    "id": 85,
+    "clientId": 21,
+    "vendorId": 92,
+    "bookingId": 10,
+    "rating": 5,
+    "comment": "Отличная работа!",
+    "createdAt": "2024-11-18T21:00:00.000Z"
+  },
+  {
+    "id": 86,
+    "clientId": 22,
+    "vendorId": 31,
+    "bookingId": 29,
+    "rating": 4,
+    "comment": "Все прошло замечательно",
+    "createdAt": "2024-06-25T21:00:00.000Z"
+  },
+  {
+    "id": 87,
+    "clientId": 27,
+    "vendorId": 87,
+    "bookingId": 25,
+    "rating": 4,
+    "comment": "Все прошло замечательно",
+    "createdAt": "2024-11-23T21:00:00.000Z"
+  },
+  {
+    "id": 88,
+    "clientId": 16,
+    "vendorId": 70,
+    "bookingId": 18,
+    "rating": 4,
+    "comment": "Отличная работа!",
+    "createdAt": "2024-09-26T21:00:00.000Z"
+  },
+  {
+    "id": 89,
+    "clientId": 28,
+    "vendorId": 65,
+    "bookingId": 12,
+    "rating": 4,
+    "comment": "Отличная работа!",
+    "createdAt": "2024-06-21T21:00:00.000Z"
+  },
+  {
+    "id": 90,
+    "clientId": 28,
+    "vendorId": 63,
+    "bookingId": 74,
+    "rating": 4,
+    "comment": "Профессионалы своего дела",
+    "createdAt": "2024-02-14T21:00:00.000Z"
+  },
+  {
+    "id": 91,
+    "clientId": 11,
+    "vendorId": 47,
+    "bookingId": 68,
+    "rating": 4,
+    "comment": "Профессионалы своего дела",
+    "createdAt": "2024-11-25T21:00:00.000Z"
+  },
+  {
+    "id": 92,
+    "clientId": 9,
+    "vendorId": 77,
+    "bookingId": 27,
+    "rating": 5,
+    "comment": "Профессионалы своего дела",
+    "createdAt": "2024-09-13T21:00:00.000Z"
+  },
+  {
+    "id": 93,
+    "clientId": 2,
+    "vendorId": 70,
+    "bookingId": 65,
+    "rating": 5,
+    "comment": "Рекомендую",
+    "createdAt": "2024-07-11T21:00:00.000Z"
+  },
+  {
+    "id": 94,
+    "clientId": 29,
+    "vendorId": 88,
+    "bookingId": 95,
+    "rating": 4,
+    "comment": "Остались довольны",
+    "createdAt": "2024-06-25T21:00:00.000Z"
+  },
+  {
+    "id": 95,
+    "clientId": 11,
+    "vendorId": 68,
+    "bookingId": 27,
+    "rating": 4,
+    "comment": "Остались довольны",
+    "createdAt": "2024-07-18T21:00:00.000Z"
+  },
+  {
+    "id": 96,
+    "clientId": 29,
+    "vendorId": 41,
+    "bookingId": 60,
+    "rating": 4,
+    "comment": "Профессионалы своего дела",
+    "createdAt": "2024-07-20T21:00:00.000Z"
+  },
+  {
+    "id": 97,
+    "clientId": 28,
+    "vendorId": 85,
+    "bookingId": 45,
+    "rating": 4,
+    "comment": "Остались довольны",
+    "createdAt": "2024-10-19T21:00:00.000Z"
+  },
+  {
+    "id": 98,
+    "clientId": 15,
+    "vendorId": 81,
+    "bookingId": 23,
+    "rating": 4,
+    "comment": "Все прошло замечательно",
+    "createdAt": "2024-08-24T21:00:00.000Z"
+  },
+  {
+    "id": 99,
+    "clientId": 7,
+    "vendorId": 52,
+    "bookingId": 70,
+    "rating": 4,
+    "comment": "Все прошло замечательно",
+    "createdAt": "2024-01-04T21:00:00.000Z"
+  },
+  {
+    "id": 100,
+    "clientId": 15,
+    "vendorId": 98,
+    "bookingId": 26,
+    "rating": 5,
+    "comment": "Отличная работа!",
+    "createdAt": "2024-07-08T21:00:00.000Z"
+  }
+]

@@ -1,0 +1,1515 @@
+[
+  {
+    "id": 31,
+    "vendorId": 31,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/31_9.jpg",
+      "/images/portfolio/31_5.jpg",
+      "/images/portfolio/31_1.jpg",
+      "/images/portfolio/31_3.jpg",
+      "/images/portfolio/31_9.jpg"
+    ],
+    "specialties": [
+      "Площадки"
+    ],
+    "yearsExperience": 12,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-02-19T21:00:00.000Z"
+  },
+  {
+    "id": 32,
+    "vendorId": 32,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/32_5.jpg",
+      "/images/portfolio/32_1.jpg",
+      "/images/portfolio/32_2.jpg",
+      "/images/portfolio/32_5.jpg",
+      "/images/portfolio/32_5.jpg"
+    ],
+    "specialties": [
+      "Кейтеринг",
+      "Декор",
+      "Развлечения"
+    ],
+    "yearsExperience": 8,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2024-03-01T21:00:00.000Z"
+  },
+  {
+    "id": 33,
+    "vendorId": 33,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/33_9.jpg",
+      "/images/portfolio/33_8.jpg",
+      "/images/portfolio/33_1.jpg",
+      "/images/portfolio/33_8.jpg",
+      "/images/portfolio/33_8.jpg"
+    ],
+    "specialties": [
+      "Фото и видео",
+      "Декор",
+      "Развлечения"
+    ],
+    "yearsExperience": 14,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2024-04-22T21:00:00.000Z"
+  },
+  {
+    "id": 34,
+    "vendorId": 34,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/34_8.jpg",
+      "/images/portfolio/34_7.jpg",
+      "/images/portfolio/34_5.jpg",
+      "/images/portfolio/34_0.jpg",
+      "/images/portfolio/34_1.jpg"
+    ],
+    "specialties": [
+      "Фото и видео",
+      "Развлечения",
+      "Транспорт"
+    ],
+    "yearsExperience": 7,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-09-13T21:00:00.000Z"
+  },
+  {
+    "id": 35,
+    "vendorId": 35,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/35_5.jpg",
+      "/images/portfolio/35_3.jpg",
+      "/images/portfolio/35_4.jpg",
+      "/images/portfolio/35_2.jpg",
+      "/images/portfolio/35_1.jpg"
+    ],
+    "specialties": [
+      "Декор",
+      "Развлечения"
+    ],
+    "yearsExperience": 4,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2024-05-31T21:00:00.000Z"
+  },
+  {
+    "id": 36,
+    "vendorId": 36,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/36_2.jpg",
+      "/images/portfolio/36_1.jpg",
+      "/images/portfolio/36_5.jpg",
+      "/images/portfolio/36_3.jpg",
+      "/images/portfolio/36_0.jpg"
+    ],
+    "specialties": [
+      "Кейтеринг",
+      "Декор",
+      "Транспорт"
+    ],
+    "yearsExperience": 14,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2024-04-26T21:00:00.000Z"
+  },
+  {
+    "id": 37,
+    "vendorId": 37,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/37_4.jpg",
+      "/images/portfolio/37_9.jpg",
+      "/images/portfolio/37_2.jpg",
+      "/images/portfolio/37_0.jpg",
+      "/images/portfolio/37_3.jpg"
+    ],
+    "specialties": [
+      "Кейтеринг",
+      "Декор",
+      "Развлечения"
+    ],
+    "yearsExperience": 10,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-03-03T21:00:00.000Z"
+  },
+  {
+    "id": 38,
+    "vendorId": 38,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/38_1.jpg",
+      "/images/portfolio/38_5.jpg",
+      "/images/portfolio/38_5.jpg",
+      "/images/portfolio/38_7.jpg",
+      "/images/portfolio/38_3.jpg"
+    ],
+    "specialties": [
+      "Фото и видео",
+      "Площадки",
+      "Транспорт"
+    ],
+    "yearsExperience": 5,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2024-01-26T21:00:00.000Z"
+  },
+  {
+    "id": 39,
+    "vendorId": 39,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/39_1.jpg",
+      "/images/portfolio/39_9.jpg",
+      "/images/portfolio/39_0.jpg",
+      "/images/portfolio/39_6.jpg",
+      "/images/portfolio/39_8.jpg"
+    ],
+    "specialties": [
+      "Декор",
+      "Площадки"
+    ],
+    "yearsExperience": 6,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2024-02-16T21:00:00.000Z"
+  },
+  {
+    "id": 40,
+    "vendorId": 40,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/40_0.jpg",
+      "/images/portfolio/40_3.jpg",
+      "/images/portfolio/40_8.jpg",
+      "/images/portfolio/40_4.jpg",
+      "/images/portfolio/40_5.jpg"
+    ],
+    "specialties": [
+      "Кейтеринг",
+      "Декор",
+      "Развлечения"
+    ],
+    "yearsExperience": 13,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-09-20T21:00:00.000Z"
+  },
+  {
+    "id": 41,
+    "vendorId": 41,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/41_3.jpg",
+      "/images/portfolio/41_4.jpg",
+      "/images/portfolio/41_0.jpg",
+      "/images/portfolio/41_9.jpg",
+      "/images/portfolio/41_9.jpg"
+    ],
+    "specialties": [
+      "Кейтеринг",
+      "Площадки",
+      "Транспорт"
+    ],
+    "yearsExperience": 14,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2024-07-25T21:00:00.000Z"
+  },
+  {
+    "id": 42,
+    "vendorId": 42,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/42_8.jpg",
+      "/images/portfolio/42_8.jpg",
+      "/images/portfolio/42_1.jpg",
+      "/images/portfolio/42_3.jpg",
+      "/images/portfolio/42_2.jpg"
+    ],
+    "specialties": [
+      "Кейтеринг",
+      "Фото и видео",
+      "Декор"
+    ],
+    "yearsExperience": 12,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2024-12-20T21:00:00.000Z"
+  },
+  {
+    "id": 43,
+    "vendorId": 43,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/43_6.jpg",
+      "/images/portfolio/43_1.jpg",
+      "/images/portfolio/43_3.jpg",
+      "/images/portfolio/43_8.jpg",
+      "/images/portfolio/43_6.jpg"
+    ],
+    "specialties": [
+      "Кейтеринг",
+      "Фото и видео",
+      "Декор"
+    ],
+    "yearsExperience": 2,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2024-06-20T21:00:00.000Z"
+  },
+  {
+    "id": 44,
+    "vendorId": 44,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/44_5.jpg",
+      "/images/portfolio/44_6.jpg",
+      "/images/portfolio/44_6.jpg",
+      "/images/portfolio/44_1.jpg",
+      "/images/portfolio/44_2.jpg"
+    ],
+    "specialties": [
+      "Кейтеринг",
+      "Фото и видео",
+      "Декор"
+    ],
+    "yearsExperience": 2,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-09-27T21:00:00.000Z"
+  },
+  {
+    "id": 45,
+    "vendorId": 45,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/45_3.jpg",
+      "/images/portfolio/45_9.jpg",
+      "/images/portfolio/45_5.jpg",
+      "/images/portfolio/45_3.jpg",
+      "/images/portfolio/45_7.jpg"
+    ],
+    "specialties": [
+      "Фото и видео",
+      "Развлечения"
+    ],
+    "yearsExperience": 7,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-09-15T21:00:00.000Z"
+  },
+  {
+    "id": 46,
+    "vendorId": 46,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/46_1.jpg",
+      "/images/portfolio/46_9.jpg",
+      "/images/portfolio/46_3.jpg",
+      "/images/portfolio/46_9.jpg",
+      "/images/portfolio/46_5.jpg"
+    ],
+    "specialties": [
+      "Декор"
+    ],
+    "yearsExperience": 13,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2024-09-06T21:00:00.000Z"
+  },
+  {
+    "id": 47,
+    "vendorId": 47,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/47_8.jpg",
+      "/images/portfolio/47_0.jpg",
+      "/images/portfolio/47_9.jpg",
+      "/images/portfolio/47_0.jpg",
+      "/images/portfolio/47_1.jpg"
+    ],
+    "specialties": [
+      "Фото и видео"
+    ],
+    "yearsExperience": 6,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2024-10-16T21:00:00.000Z"
+  },
+  {
+    "id": 48,
+    "vendorId": 48,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/48_6.jpg",
+      "/images/portfolio/48_0.jpg",
+      "/images/portfolio/48_0.jpg",
+      "/images/portfolio/48_7.jpg",
+      "/images/portfolio/48_5.jpg"
+    ],
+    "specialties": [],
+    "yearsExperience": 2,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-12-07T21:00:00.000Z"
+  },
+  {
+    "id": 49,
+    "vendorId": 49,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/49_7.jpg",
+      "/images/portfolio/49_2.jpg",
+      "/images/portfolio/49_3.jpg",
+      "/images/portfolio/49_9.jpg",
+      "/images/portfolio/49_6.jpg"
+    ],
+    "specialties": [
+      "Фото и видео",
+      "Декор",
+      "Развлечения"
+    ],
+    "yearsExperience": 11,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-09-27T21:00:00.000Z"
+  },
+  {
+    "id": 50,
+    "vendorId": 50,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/50_3.jpg",
+      "/images/portfolio/50_4.jpg",
+      "/images/portfolio/50_0.jpg",
+      "/images/portfolio/50_6.jpg",
+      "/images/portfolio/50_3.jpg"
+    ],
+    "specialties": [
+      "Кейтеринг",
+      "Фото и видео",
+      "Декор"
+    ],
+    "yearsExperience": 10,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-09-30T21:00:00.000Z"
+  },
+  {
+    "id": 51,
+    "vendorId": 51,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/51_0.jpg",
+      "/images/portfolio/51_0.jpg",
+      "/images/portfolio/51_5.jpg",
+      "/images/portfolio/51_6.jpg",
+      "/images/portfolio/51_7.jpg"
+    ],
+    "specialties": [
+      "Фото и видео",
+      "Декор",
+      "Развлечения"
+    ],
+    "yearsExperience": 6,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-10-23T21:00:00.000Z"
+  },
+  {
+    "id": 52,
+    "vendorId": 52,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/52_4.jpg",
+      "/images/portfolio/52_5.jpg",
+      "/images/portfolio/52_7.jpg",
+      "/images/portfolio/52_9.jpg",
+      "/images/portfolio/52_1.jpg"
+    ],
+    "specialties": [
+      "Развлечения"
+    ],
+    "yearsExperience": 14,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2024-01-14T21:00:00.000Z"
+  },
+  {
+    "id": 53,
+    "vendorId": 53,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/53_3.jpg",
+      "/images/portfolio/53_9.jpg",
+      "/images/portfolio/53_3.jpg",
+      "/images/portfolio/53_1.jpg",
+      "/images/portfolio/53_9.jpg"
+    ],
+    "specialties": [
+      "Кейтеринг",
+      "Фото и видео",
+      "Развлечения"
+    ],
+    "yearsExperience": 12,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2024-12-21T21:00:00.000Z"
+  },
+  {
+    "id": 54,
+    "vendorId": 54,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/54_8.jpg",
+      "/images/portfolio/54_3.jpg",
+      "/images/portfolio/54_9.jpg",
+      "/images/portfolio/54_6.jpg",
+      "/images/portfolio/54_4.jpg"
+    ],
+    "specialties": [
+      "Развлечения",
+      "Площадки"
+    ],
+    "yearsExperience": 14,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2024-05-14T21:00:00.000Z"
+  },
+  {
+    "id": 55,
+    "vendorId": 55,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/55_7.jpg",
+      "/images/portfolio/55_1.jpg",
+      "/images/portfolio/55_3.jpg",
+      "/images/portfolio/55_4.jpg",
+      "/images/portfolio/55_4.jpg"
+    ],
+    "specialties": [
+      "Кейтеринг",
+      "Фото и видео",
+      "Транспорт"
+    ],
+    "yearsExperience": 12,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-04-05T21:00:00.000Z"
+  },
+  {
+    "id": 56,
+    "vendorId": 56,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/56_3.jpg",
+      "/images/portfolio/56_2.jpg",
+      "/images/portfolio/56_7.jpg",
+      "/images/portfolio/56_8.jpg",
+      "/images/portfolio/56_5.jpg"
+    ],
+    "specialties": [
+      "Развлечения",
+      "Транспорт"
+    ],
+    "yearsExperience": 1,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-01-14T21:00:00.000Z"
+  },
+  {
+    "id": 57,
+    "vendorId": 57,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/57_9.jpg",
+      "/images/portfolio/57_3.jpg",
+      "/images/portfolio/57_7.jpg",
+      "/images/portfolio/57_0.jpg",
+      "/images/portfolio/57_6.jpg"
+    ],
+    "specialties": [
+      "Кейтеринг"
+    ],
+    "yearsExperience": 12,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-08-23T21:00:00.000Z"
+  },
+  {
+    "id": 58,
+    "vendorId": 58,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/58_6.jpg",
+      "/images/portfolio/58_6.jpg",
+      "/images/portfolio/58_9.jpg",
+      "/images/portfolio/58_1.jpg",
+      "/images/portfolio/58_6.jpg"
+    ],
+    "specialties": [
+      "Кейтеринг",
+      "Декор",
+      "Транспорт"
+    ],
+    "yearsExperience": 8,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-07-23T21:00:00.000Z"
+  },
+  {
+    "id": 59,
+    "vendorId": 59,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/59_0.jpg",
+      "/images/portfolio/59_8.jpg",
+      "/images/portfolio/59_8.jpg",
+      "/images/portfolio/59_3.jpg",
+      "/images/portfolio/59_3.jpg"
+    ],
+    "specialties": [
+      "Фото и видео",
+      "Развлечения"
+    ],
+    "yearsExperience": 3,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2024-12-20T21:00:00.000Z"
+  },
+  {
+    "id": 60,
+    "vendorId": 60,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/60_4.jpg",
+      "/images/portfolio/60_1.jpg",
+      "/images/portfolio/60_7.jpg",
+      "/images/portfolio/60_2.jpg",
+      "/images/portfolio/60_2.jpg"
+    ],
+    "specialties": [
+      "Кейтеринг"
+    ],
+    "yearsExperience": 8,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-10-24T21:00:00.000Z"
+  },
+  {
+    "id": 61,
+    "vendorId": 61,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/61_3.jpg",
+      "/images/portfolio/61_0.jpg",
+      "/images/portfolio/61_3.jpg",
+      "/images/portfolio/61_4.jpg",
+      "/images/portfolio/61_5.jpg"
+    ],
+    "specialties": [
+      "Фото и видео"
+    ],
+    "yearsExperience": 4,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-05-06T21:00:00.000Z"
+  },
+  {
+    "id": 62,
+    "vendorId": 62,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/62_3.jpg",
+      "/images/portfolio/62_4.jpg",
+      "/images/portfolio/62_5.jpg",
+      "/images/portfolio/62_4.jpg",
+      "/images/portfolio/62_9.jpg"
+    ],
+    "specialties": [
+      "Фото и видео",
+      "Транспорт"
+    ],
+    "yearsExperience": 13,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-11-25T21:00:00.000Z"
+  },
+  {
+    "id": 63,
+    "vendorId": 63,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/63_3.jpg",
+      "/images/portfolio/63_3.jpg",
+      "/images/portfolio/63_6.jpg",
+      "/images/portfolio/63_1.jpg",
+      "/images/portfolio/63_2.jpg"
+    ],
+    "specialties": [
+      "Фото и видео"
+    ],
+    "yearsExperience": 6,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-06-09T21:00:00.000Z"
+  },
+  {
+    "id": 64,
+    "vendorId": 64,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/64_9.jpg",
+      "/images/portfolio/64_2.jpg",
+      "/images/portfolio/64_0.jpg",
+      "/images/portfolio/64_6.jpg",
+      "/images/portfolio/64_5.jpg"
+    ],
+    "specialties": [
+      "Фото и видео",
+      "Декор",
+      "Развлечения"
+    ],
+    "yearsExperience": 15,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-06-16T21:00:00.000Z"
+  },
+  {
+    "id": 65,
+    "vendorId": 65,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/65_5.jpg",
+      "/images/portfolio/65_8.jpg",
+      "/images/portfolio/65_0.jpg",
+      "/images/portfolio/65_7.jpg",
+      "/images/portfolio/65_0.jpg"
+    ],
+    "specialties": [
+      "Кейтеринг",
+      "Развлечения"
+    ],
+    "yearsExperience": 3,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-03-02T21:00:00.000Z"
+  },
+  {
+    "id": 66,
+    "vendorId": 66,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/66_4.jpg",
+      "/images/portfolio/66_2.jpg",
+      "/images/portfolio/66_6.jpg",
+      "/images/portfolio/66_0.jpg",
+      "/images/portfolio/66_1.jpg"
+    ],
+    "specialties": [
+      "Кейтеринг",
+      "Декор"
+    ],
+    "yearsExperience": 3,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-11-12T21:00:00.000Z"
+  },
+  {
+    "id": 67,
+    "vendorId": 67,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/67_0.jpg",
+      "/images/portfolio/67_3.jpg",
+      "/images/portfolio/67_8.jpg",
+      "/images/portfolio/67_2.jpg",
+      "/images/portfolio/67_6.jpg"
+    ],
+    "specialties": [
+      "Кейтеринг",
+      "Фото и видео",
+      "Декор"
+    ],
+    "yearsExperience": 6,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-02-29T21:00:00.000Z"
+  },
+  {
+    "id": 68,
+    "vendorId": 68,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/68_5.jpg",
+      "/images/portfolio/68_4.jpg",
+      "/images/portfolio/68_1.jpg",
+      "/images/portfolio/68_8.jpg",
+      "/images/portfolio/68_9.jpg"
+    ],
+    "specialties": [
+      "Кейтеринг",
+      "Декор",
+      "Развлечения"
+    ],
+    "yearsExperience": 11,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2024-10-17T21:00:00.000Z"
+  },
+  {
+    "id": 69,
+    "vendorId": 69,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/69_9.jpg",
+      "/images/portfolio/69_9.jpg",
+      "/images/portfolio/69_3.jpg",
+      "/images/portfolio/69_3.jpg",
+      "/images/portfolio/69_1.jpg"
+    ],
+    "specialties": [
+      "Фото и видео",
+      "Развлечения",
+      "Площадки"
+    ],
+    "yearsExperience": 15,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-04-06T21:00:00.000Z"
+  },
+  {
+    "id": 70,
+    "vendorId": 70,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/70_3.jpg",
+      "/images/portfolio/70_0.jpg",
+      "/images/portfolio/70_1.jpg",
+      "/images/portfolio/70_8.jpg",
+      "/images/portfolio/70_3.jpg"
+    ],
+    "specialties": [],
+    "yearsExperience": 11,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-09-06T21:00:00.000Z"
+  },
+  {
+    "id": 71,
+    "vendorId": 71,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/71_1.jpg",
+      "/images/portfolio/71_7.jpg",
+      "/images/portfolio/71_4.jpg",
+      "/images/portfolio/71_8.jpg",
+      "/images/portfolio/71_3.jpg"
+    ],
+    "specialties": [
+      "Развлечения"
+    ],
+    "yearsExperience": 11,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-10-03T21:00:00.000Z"
+  },
+  {
+    "id": 72,
+    "vendorId": 72,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/72_8.jpg",
+      "/images/portfolio/72_0.jpg",
+      "/images/portfolio/72_6.jpg",
+      "/images/portfolio/72_6.jpg",
+      "/images/portfolio/72_8.jpg"
+    ],
+    "specialties": [
+      "Кейтеринг",
+      "Развлечения",
+      "Транспорт"
+    ],
+    "yearsExperience": 14,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-12-10T21:00:00.000Z"
+  },
+  {
+    "id": 73,
+    "vendorId": 73,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/73_3.jpg",
+      "/images/portfolio/73_0.jpg",
+      "/images/portfolio/73_2.jpg",
+      "/images/portfolio/73_2.jpg",
+      "/images/portfolio/73_4.jpg"
+    ],
+    "specialties": [
+      "Кейтеринг",
+      "Фото и видео",
+      "Транспорт"
+    ],
+    "yearsExperience": 3,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2024-12-21T21:00:00.000Z"
+  },
+  {
+    "id": 74,
+    "vendorId": 74,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/74_6.jpg",
+      "/images/portfolio/74_1.jpg",
+      "/images/portfolio/74_4.jpg",
+      "/images/portfolio/74_4.jpg",
+      "/images/portfolio/74_2.jpg"
+    ],
+    "specialties": [
+      "Площадки"
+    ],
+    "yearsExperience": 15,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-12-20T21:00:00.000Z"
+  },
+  {
+    "id": 75,
+    "vendorId": 75,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/75_6.jpg",
+      "/images/portfolio/75_3.jpg",
+      "/images/portfolio/75_4.jpg",
+      "/images/portfolio/75_2.jpg",
+      "/images/portfolio/75_4.jpg"
+    ],
+    "specialties": [
+      "Кейтеринг",
+      "Декор",
+      "Развлечения"
+    ],
+    "yearsExperience": 10,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-02-05T21:00:00.000Z"
+  },
+  {
+    "id": 76,
+    "vendorId": 76,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/76_7.jpg",
+      "/images/portfolio/76_8.jpg",
+      "/images/portfolio/76_8.jpg",
+      "/images/portfolio/76_3.jpg",
+      "/images/portfolio/76_1.jpg"
+    ],
+    "specialties": [],
+    "yearsExperience": 13,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2024-01-22T21:00:00.000Z"
+  },
+  {
+    "id": 77,
+    "vendorId": 77,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/77_3.jpg",
+      "/images/portfolio/77_4.jpg",
+      "/images/portfolio/77_2.jpg",
+      "/images/portfolio/77_8.jpg",
+      "/images/portfolio/77_5.jpg"
+    ],
+    "specialties": [
+      "Развлечения",
+      "Транспорт"
+    ],
+    "yearsExperience": 5,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-06-27T21:00:00.000Z"
+  },
+  {
+    "id": 78,
+    "vendorId": 78,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/78_9.jpg",
+      "/images/portfolio/78_0.jpg",
+      "/images/portfolio/78_7.jpg",
+      "/images/portfolio/78_0.jpg",
+      "/images/portfolio/78_3.jpg"
+    ],
+    "specialties": [],
+    "yearsExperience": 10,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2024-05-06T21:00:00.000Z"
+  },
+  {
+    "id": 79,
+    "vendorId": 79,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/79_7.jpg",
+      "/images/portfolio/79_4.jpg",
+      "/images/portfolio/79_0.jpg",
+      "/images/portfolio/79_8.jpg",
+      "/images/portfolio/79_8.jpg"
+    ],
+    "specialties": [
+      "Декор",
+      "Развлечения",
+      "Транспорт"
+    ],
+    "yearsExperience": 10,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-06-01T21:00:00.000Z"
+  },
+  {
+    "id": 80,
+    "vendorId": 80,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/80_1.jpg",
+      "/images/portfolio/80_7.jpg",
+      "/images/portfolio/80_0.jpg",
+      "/images/portfolio/80_1.jpg",
+      "/images/portfolio/80_6.jpg"
+    ],
+    "specialties": [
+      "Развлечения"
+    ],
+    "yearsExperience": 1,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2024-08-25T21:00:00.000Z"
+  },
+  {
+    "id": 81,
+    "vendorId": 81,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/81_8.jpg",
+      "/images/portfolio/81_3.jpg",
+      "/images/portfolio/81_7.jpg",
+      "/images/portfolio/81_4.jpg",
+      "/images/portfolio/81_8.jpg"
+    ],
+    "specialties": [
+      "Кейтеринг",
+      "Транспорт"
+    ],
+    "yearsExperience": 6,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2024-08-25T21:00:00.000Z"
+  },
+  {
+    "id": 82,
+    "vendorId": 82,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/82_6.jpg",
+      "/images/portfolio/82_4.jpg",
+      "/images/portfolio/82_4.jpg",
+      "/images/portfolio/82_7.jpg",
+      "/images/portfolio/82_7.jpg"
+    ],
+    "specialties": [
+      "Кейтеринг",
+      "Транспорт"
+    ],
+    "yearsExperience": 5,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2024-10-05T21:00:00.000Z"
+  },
+  {
+    "id": 83,
+    "vendorId": 83,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/83_8.jpg",
+      "/images/portfolio/83_6.jpg",
+      "/images/portfolio/83_2.jpg",
+      "/images/portfolio/83_1.jpg",
+      "/images/portfolio/83_0.jpg"
+    ],
+    "specialties": [
+      "Площадки"
+    ],
+    "yearsExperience": 2,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-04-22T21:00:00.000Z"
+  },
+  {
+    "id": 84,
+    "vendorId": 84,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/84_9.jpg",
+      "/images/portfolio/84_4.jpg",
+      "/images/portfolio/84_8.jpg",
+      "/images/portfolio/84_0.jpg",
+      "/images/portfolio/84_1.jpg"
+    ],
+    "specialties": [
+      "Декор",
+      "Развлечения",
+      "Площадки"
+    ],
+    "yearsExperience": 13,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-08-24T21:00:00.000Z"
+  },
+  {
+    "id": 85,
+    "vendorId": 85,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/85_1.jpg",
+      "/images/portfolio/85_8.jpg",
+      "/images/portfolio/85_0.jpg",
+      "/images/portfolio/85_7.jpg",
+      "/images/portfolio/85_0.jpg"
+    ],
+    "specialties": [
+      "Кейтеринг",
+      "Транспорт"
+    ],
+    "yearsExperience": 10,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-04-17T21:00:00.000Z"
+  },
+  {
+    "id": 86,
+    "vendorId": 86,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/86_1.jpg",
+      "/images/portfolio/86_7.jpg",
+      "/images/portfolio/86_0.jpg",
+      "/images/portfolio/86_2.jpg",
+      "/images/portfolio/86_4.jpg"
+    ],
+    "specialties": [
+      "Кейтеринг",
+      "Развлечения",
+      "Площадки"
+    ],
+    "yearsExperience": 13,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-07-14T21:00:00.000Z"
+  },
+  {
+    "id": 87,
+    "vendorId": 87,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/87_4.jpg",
+      "/images/portfolio/87_1.jpg",
+      "/images/portfolio/87_1.jpg",
+      "/images/portfolio/87_2.jpg",
+      "/images/portfolio/87_1.jpg"
+    ],
+    "specialties": [
+      "Площадки"
+    ],
+    "yearsExperience": 10,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2024-02-04T21:00:00.000Z"
+  },
+  {
+    "id": 88,
+    "vendorId": 88,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/88_7.jpg",
+      "/images/portfolio/88_3.jpg",
+      "/images/portfolio/88_6.jpg",
+      "/images/portfolio/88_2.jpg",
+      "/images/portfolio/88_6.jpg"
+    ],
+    "specialties": [
+      "Фото и видео",
+      "Развлечения",
+      "Транспорт"
+    ],
+    "yearsExperience": 1,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-09-14T21:00:00.000Z"
+  },
+  {
+    "id": 89,
+    "vendorId": 89,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/89_3.jpg",
+      "/images/portfolio/89_7.jpg",
+      "/images/portfolio/89_7.jpg",
+      "/images/portfolio/89_9.jpg",
+      "/images/portfolio/89_8.jpg"
+    ],
+    "specialties": [
+      "Кейтеринг",
+      "Декор"
+    ],
+    "yearsExperience": 11,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2024-08-25T21:00:00.000Z"
+  },
+  {
+    "id": 90,
+    "vendorId": 90,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/90_8.jpg",
+      "/images/portfolio/90_5.jpg",
+      "/images/portfolio/90_2.jpg",
+      "/images/portfolio/90_4.jpg",
+      "/images/portfolio/90_8.jpg"
+    ],
+    "specialties": [
+      "Кейтеринг",
+      "Развлечения"
+    ],
+    "yearsExperience": 8,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2024-12-12T21:00:00.000Z"
+  },
+  {
+    "id": 91,
+    "vendorId": 91,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/91_5.jpg",
+      "/images/portfolio/91_7.jpg",
+      "/images/portfolio/91_5.jpg",
+      "/images/portfolio/91_6.jpg",
+      "/images/portfolio/91_8.jpg"
+    ],
+    "specialties": [
+      "Декор",
+      "Развлечения"
+    ],
+    "yearsExperience": 4,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2024-11-16T21:00:00.000Z"
+  },
+  {
+    "id": 92,
+    "vendorId": 92,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/92_6.jpg",
+      "/images/portfolio/92_5.jpg",
+      "/images/portfolio/92_5.jpg",
+      "/images/portfolio/92_9.jpg",
+      "/images/portfolio/92_6.jpg"
+    ],
+    "specialties": [
+      "Фото и видео",
+      "Площадки"
+    ],
+    "yearsExperience": 13,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2024-10-10T21:00:00.000Z"
+  },
+  {
+    "id": 93,
+    "vendorId": 93,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/93_1.jpg",
+      "/images/portfolio/93_3.jpg",
+      "/images/portfolio/93_1.jpg",
+      "/images/portfolio/93_8.jpg",
+      "/images/portfolio/93_0.jpg"
+    ],
+    "specialties": [],
+    "yearsExperience": 6,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2024-09-08T21:00:00.000Z"
+  },
+  {
+    "id": 94,
+    "vendorId": 94,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/94_7.jpg",
+      "/images/portfolio/94_1.jpg",
+      "/images/portfolio/94_7.jpg",
+      "/images/portfolio/94_9.jpg",
+      "/images/portfolio/94_6.jpg"
+    ],
+    "specialties": [
+      "Фото и видео",
+      "Развлечения",
+      "Площадки"
+    ],
+    "yearsExperience": 3,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2024-05-22T21:00:00.000Z"
+  },
+  {
+    "id": 95,
+    "vendorId": 95,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/95_7.jpg",
+      "/images/portfolio/95_3.jpg",
+      "/images/portfolio/95_7.jpg",
+      "/images/portfolio/95_5.jpg",
+      "/images/portfolio/95_0.jpg"
+    ],
+    "specialties": [
+      "Кейтеринг",
+      "Фото и видео",
+      "Декор"
+    ],
+    "yearsExperience": 8,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-07-04T21:00:00.000Z"
+  },
+  {
+    "id": 96,
+    "vendorId": 96,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/96_5.jpg",
+      "/images/portfolio/96_2.jpg",
+      "/images/portfolio/96_7.jpg",
+      "/images/portfolio/96_5.jpg",
+      "/images/portfolio/96_0.jpg"
+    ],
+    "specialties": [
+      "Фото и видео",
+      "Развлечения",
+      "Транспорт"
+    ],
+    "yearsExperience": 4,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2024-03-11T21:00:00.000Z"
+  },
+  {
+    "id": 97,
+    "vendorId": 97,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/97_0.jpg",
+      "/images/portfolio/97_2.jpg",
+      "/images/portfolio/97_6.jpg",
+      "/images/portfolio/97_4.jpg",
+      "/images/portfolio/97_6.jpg"
+    ],
+    "specialties": [
+      "Кейтеринг",
+      "Развлечения"
+    ],
+    "yearsExperience": 13,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2024-04-14T21:00:00.000Z"
+  },
+  {
+    "id": 98,
+    "vendorId": 98,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/98_7.jpg",
+      "/images/portfolio/98_8.jpg",
+      "/images/portfolio/98_6.jpg",
+      "/images/portfolio/98_9.jpg",
+      "/images/portfolio/98_4.jpg"
+    ],
+    "specialties": [
+      "Фото и видео",
+      "Декор",
+      "Транспорт"
+    ],
+    "yearsExperience": 12,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2024-02-17T21:00:00.000Z"
+  },
+  {
+    "id": 99,
+    "vendorId": 99,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/99_2.jpg",
+      "/images/portfolio/99_1.jpg",
+      "/images/portfolio/99_1.jpg",
+      "/images/portfolio/99_2.jpg",
+      "/images/portfolio/99_0.jpg"
+    ],
+    "specialties": [
+      "Кейтеринг",
+      "Декор",
+      "Площадки"
+    ],
+    "yearsExperience": 13,
+    "languages": [
+      "Русский"
+    ],
+    "updatedAt": "2023-12-31T21:00:00.000Z"
+  },
+  {
+    "id": 100,
+    "vendorId": 100,
+    "bio": "Профессиональная команда с многолетним опытом организации мероприятий. Мы создаем незабываемые моменты для наших клиентов.",
+    "portfolio": [
+      "/images/portfolio/100_9.jpg",
+      "/images/portfolio/100_5.jpg",
+      "/images/portfolio/100_7.jpg",
+      "/images/portfolio/100_7.jpg",
+      "/images/portfolio/100_1.jpg"
+    ],
+    "specialties": [
+      "Кейтеринг",
+      "Декор",
+      "Транспорт"
+    ],
+    "yearsExperience": 13,
+    "languages": [
+      "Русский",
+      "English"
+    ],
+    "updatedAt": "2024-03-07T21:00:00.000Z"
+  }
+]
