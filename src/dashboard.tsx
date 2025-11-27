@@ -2,7 +2,7 @@ import React, { Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
 
 import { URLs } from './__data__/urls'
-import { MainPage, ChatPage, CatalogPage, OrdersPage, AnalyticsPage } from './pages'
+import { HomePage, ChatPage, CatalogPage, BookingPage, BookingDetailPage, ProfilePage, VendorProfilePage } from './pages'
 
 const PageWrapper = ({ children }: React.PropsWithChildren) => (
   <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
@@ -15,7 +15,7 @@ export const Dashboard = () => {
         path={URLs.baseUrl}
         element={
           <PageWrapper>
-            <MainPage />
+            <HomePage />
           </PageWrapper>
         }
       />
@@ -36,18 +36,34 @@ export const Dashboard = () => {
         }
       />
       <Route
-        path={URLs.orders.url}
+        path={URLs.booking.url}
         element={
           <PageWrapper>
-            <OrdersPage />
+            <BookingPage />
           </PageWrapper>
         }
       />
       <Route
-        path={URLs.analytics.url}
+        path="/eventura/booking/:id"
         element={
           <PageWrapper>
-            <AnalyticsPage />
+            <BookingDetailPage />
+          </PageWrapper>
+        }
+      />
+      <Route
+        path={URLs.profile.url}
+        element={
+          <PageWrapper>
+            <ProfilePage />
+          </PageWrapper>
+        }
+      />
+      <Route
+        path={URLs.vendorProfile.url}
+        element={
+          <PageWrapper>
+            <VendorProfilePage />
           </PageWrapper>
         }
       />

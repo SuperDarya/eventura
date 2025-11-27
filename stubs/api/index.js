@@ -12,8 +12,15 @@ const { getModel, gigachat } = require('./llm')
 const authRouter = require('./auth')
 const booksRouter = require('./books')
 const analyticsRouter = require('./analytics')
-const agentRouter = require('./agent')
+const { agentRouter } = require('./agent')
 
+// Eventura API routes
+const vendorsRouter = require('./eventura/vendors')
+const servicesRouter = require('./eventura/services')
+const eventsRouter = require('./eventura/events')
+const bookingsRouter = require('./eventura/bookings')
+const aiSearchRouter = require('./eventura/ai-search')
+const favoritesRouter = require('./eventura/favorites')
 
 const router = Router()
 
@@ -24,6 +31,14 @@ router.use('/analytics', analyticsRouter)
 router.use('/auth', authRouter)
 router.use('/books', booksRouter)
 router.use('/agent', agentRouter)
+
+// Eventura routes
+router.use('/eventura/vendors', vendorsRouter)
+router.use('/eventura/services', servicesRouter)
+router.use('/eventura/events', eventsRouter)
+router.use('/eventura/bookings', bookingsRouter)
+router.use('/eventura/ai-search', aiSearchRouter)
+router.use('/eventura/favorites', favoritesRouter)
 
 
 // const slideDataSchema = z.object({

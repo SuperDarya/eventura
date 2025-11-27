@@ -7,6 +7,7 @@ import { Header } from './layout/header'
 import { Dashboard } from './dashboard'
 
 import { store } from './__data__/store'
+import './styles/global.css'
 
 const App = () => {
   return (

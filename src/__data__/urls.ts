@@ -16,12 +16,21 @@ export const URLs = {
     url: makeUrl('/catalog'),
     isOn: true,
   },
-  orders: {
-    url: makeUrl('/orders'),
+  booking: {
+    url: makeUrl('/booking'),
     isOn: true,
   },
-  analytics: {
-    url: makeUrl('/analytics'),
+  profile: {
+    url: makeUrl('/profile'),
+    isOn: true,
+  },
+  vendorProfile: {
+    url: makeUrl('/vendor-profile'),
+    isOn: true,
+  },
+  bookingDetail: {
+    url: makeUrl('/booking/:id'),
+    makeUrl: (id: number) => makeUrl(`/booking/${id}`),
     isOn: true,
   },
   auth: {

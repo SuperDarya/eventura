@@ -11,17 +11,21 @@ module.exports = {
   },
   /* use https://admin.bro-js.ru/ to create config, navigations and features */
   navigations: {
-    'ui-sample-project.main': '/ui-sample-project',
-    'ui-sample-project.analytics': '/ui-sample-project/analytics',
-    'link.ui-sample-project.auth': '/auth'
+    'eventura.main': '/eventura',
+    'eventura.catalog': '/eventura/catalog',
+    'eventura.booking': '/eventura/booking',
+    'eventura.chat': '/eventura/chat',
+    'eventura.profile': '/eventura/profile',
+    'eventura.vendor-profile': '/eventura/vendor-profile',
+    'link.eventura.auth': '/auth'
   },
   features: {
-    'ui-sample-project': {
+    'eventura': {
       // add your features here in the format [featureName]: { value: string }
     },
   },
   config: {
-    'ui-sample-project.api': '/api',
-    'ui-sample-project.analytic-api': '/api/analytics'
+    'eventura.api': '/api',
+    'eventura.ai-api': '/api/eventura/ai-search'
   }
 }
