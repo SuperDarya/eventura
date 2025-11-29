@@ -153,7 +153,7 @@ const CatalogPage = () => {
       console.error('Error toggling favorite:', error)
     }
   }
-  
+
   const filtered = useMemo(() => {
     let filtered = [...vendors]
     
@@ -193,7 +193,7 @@ const CatalogPage = () => {
       </Container>
     )
   }
-  
+
   return (
     <Container maxW="container.xl" py={8}>
       <Heading size="lg" mb={6}>Каталог подрядчиков</Heading>
@@ -270,17 +270,17 @@ const CatalogPage = () => {
         </GridItem>
         <GridItem>
           {isLoading ? (
-            <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={4}>
+          <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={4}>
               {[1, 2, 3, 4, 5, 6].map(i => (
                 <Box key={i} borderWidth="1px" borderRadius="md" overflow="hidden">
                   <Skeleton height="200px" />
-                  <Box p={4}>
+                <Box p={4}>
                     <Skeleton height="20px" mb={2} />
                     <SkeletonText mt={4} noOfLines={2} spacing={2} />
-                  </Box>
                 </Box>
-              ))}
-            </SimpleGrid>
+              </Box>
+            ))}
+          </SimpleGrid>
           ) : (
             <>
               <Text mb={4} color="gray.600">

@@ -18,7 +18,7 @@ const httpsAgent = new Agent({
 
 // Инициализация GigaChat
 const gigaChat = new GigaChat({
-  model: 'GigaChat-Pro',
+  model: 'GigaChat', // Используем базовую модель GigaChat (Lite) для GIGACHAT_API_PERS
   scope: 'GIGACHAT_API_PERS',
   credentials: process.env.GIGA_AUTH || 'MDE5YTFhYzUtMTdhYy03MGIyLTk1MmQtN2Y5ZGI0YzFjODZhOmZjZTI2NjVlLThmZWUtNDU5Ni04YTVhLTQxOTE0MjE1OGY4OQ==',
   httpsAgent,
@@ -110,14 +110,17 @@ router.post('/', async (req, res) => {
 7. Если данных недостаточно для точной оценки, можешь задать один уточняющий вопрос (но не более 2 вопросов на весь запрос)
 
 ВАЖНО:
-- Возвращай ТОЛЬКО JSON в формате, указанном в format_instructions
-- НЕ добавляй никаких markdown блоков, только чистый JSON
-- НЕ добавляй пояснений до или после JSON
+- Возвращай ТОЛЬКО валидный JSON объект без каких-либо пояснений, схем или markdown блоков
+- НЕ возвращай описание схемы JSON Schema
+- НЕ используй markdown блоки с обратными кавычками (не используй форматирование кода)
+- НЕ добавляй текст до или после JSON
+- Просто верни чистый JSON объект, начинающийся с открывающей фигурной скобки и заканчивающийся закрывающей фигурной скобкой
 - Если нужно задать уточняющий вопрос, установи needsClarification = true и укажи вопрос
 - Оценивай стоимость реалистично на основе данных подрядчиков
 - Если данных для оценки недостаточно, укажи это в notes
 - ВСЕГДА проверяй доступность подрядчика на дату {date}. Подрядчики с isAvailable = false не должны быть в результатах
 
+Формат ответа (только JSON, без пояснений):
 {format_instructions}
     `);
     
@@ -127,34 +130,51 @@ router.post('/', async (req, res) => {
       
       let cleaned = text.trim();
       
-      // Убираем markdown блоки ```json ... ```
-      cleaned = cleaned.replace(/^```json\s*/i, '').replace(/```\s*$/g, '');
-      
-      // Убираем markdown блоки ``` ... ```
-      cleaned = cleaned.replace(/^```\s*/g, '').replace(/```\s*$/g, '');
-      
-      // Ищем первый JSON объект в тексте (от { до соответствующей })
-      const startIdx = cleaned.indexOf('{');
-      if (startIdx === -1) {
-        return cleaned.trim();
+      // Сначала ищем markdown блоки с JSON - ИИ часто возвращает схему + пример
+      // Ищем последний блок ```json ... ``` (это обычно реальный ответ)
+      const jsonBlockRegex = /```json\s*([\s\S]*?)\s*```/gi;
+      const jsonBlocks = [];
+      let match;
+      while ((match = jsonBlockRegex.exec(cleaned)) !== null) {
+        jsonBlocks.push(match[1]);
       }
       
-      let braceCount = 0;
-      let endIdx = -1;
+      // Если нашли markdown блоки, берем последний (это обычно реальный ответ)
+      if (jsonBlocks.length > 0) {
+        cleaned = jsonBlocks[jsonBlocks.length - 1].trim();
+      } else {
+        // Если нет markdown блоков, убираем их обертки
+        cleaned = cleaned.replace(/^```json\s*/i, '').replace(/```\s*$/g, '');
+        cleaned = cleaned.replace(/^```\s*/g, '').replace(/```\s*$/g, '');
+      }
       
-      for (let i = startIdx; i < cleaned.length; i++) {
-        if (cleaned[i] === '{') braceCount++;
-        if (cleaned[i] === '}') {
-          braceCount--;
+      // Ищем все JSON объекты в тексте и берем последний (самый большой/полный)
+      const jsonObjects = [];
+      let startIdx = -1;
+      let braceCount = 0;
+      
+      for (let i = 0; i < cleaned.length; i++) {
+        if (cleaned[i] === '{') {
           if (braceCount === 0) {
-            endIdx = i;
-            break;
+            startIdx = i;
+          }
+          braceCount++;
+        } else if (cleaned[i] === '}') {
+          braceCount--;
+          if (braceCount === 0 && startIdx !== -1) {
+            jsonObjects.push(cleaned.substring(startIdx, i + 1));
+            startIdx = -1;
           }
         }
       }
       
-      if (endIdx !== -1) {
-        cleaned = cleaned.substring(startIdx, endIdx + 1);
+      // Берем последний JSON объект (обычно это реальный ответ, а не схема)
+      if (jsonObjects.length > 0) {
+        // Выбираем самый большой объект (обычно это ответ, а не схема)
+        cleaned = jsonObjects.reduce((a, b) => a.length > b.length ? a : b);
+      } else if (startIdx !== -1) {
+        // Если не нашли закрывающую скобку, берем от начала до конца
+        cleaned = cleaned.substring(startIdx);
       }
       
       // Исправляем частые ошибки в JSON от ИИ
@@ -254,35 +274,78 @@ router.post('/', async (req, res) => {
       }
     ]);
     
-    const result = await chain.invoke({
-      eventType,
-      budget,
-      guestsCount,
-      date,
-      city,
-      description: description || 'Не указано',
-      vendorData: JSON.stringify(vendorData, null, 2),
-      format_instructions: parser.getFormatInstructions()
-    });
-    
-    res.json(result);
+    try {
+      const result = await chain.invoke({
+        eventType,
+        budget,
+        guestsCount,
+        date,
+        city,
+        description: description || 'Не указано',
+        vendorData: JSON.stringify(vendorData, null, 2),
+        format_instructions: parser.getFormatInstructions()
+      });
+      
+      res.json(result);
+    } catch (chainError) {
+      // Если ошибка произошла в chain, пробрасываем её дальше для обработки в общем catch
+      throw chainError;
+    }
   } catch (error) {
     console.error('AI search error:', error);
+    console.error('Error stack:', error.stack);
+    
+    // Извлекаем вложенную ошибку, если она есть (например, из ResponseError)
+    let actualError = error;
+    if (error.response) {
+      actualError = error;
+    } else if (error.cause) {
+      actualError = error.cause;
+    }
+    
+    console.error('Error details:', {
+      message: actualError.message || error.message,
+      response: actualError.response?.data || error.response?.data,
+      status: actualError.response?.status || error.response?.status,
+      statusText: actualError.response?.statusText || error.response?.statusText
+    });
     
     // Обработка специфических ошибок
     let statusCode = 500;
     let errorMessage = 'Ошибка при подборе подрядчиков';
     
-    if (error.response && error.response.status === 429) {
-      statusCode = 429;
-      errorMessage = 'Слишком много запросов к GigaChat API. Пожалуйста, подождите немного и попробуйте снова.';
+    const response = actualError.response || error.response;
+    if (response) {
+      const status = response.status;
+      if (status === 429) {
+        statusCode = 429;
+        errorMessage = 'Слишком много запросов к GigaChat API. Пожалуйста, подождите немного и попробуйте снова.';
+      } else if (status === 401) {
+        statusCode = 401;
+        errorMessage = 'Ошибка авторизации GigaChat API. Проверьте ключ авторизации.';
+      } else if (status === 404) {
+        statusCode = 404;
+        errorMessage = 'Модель не найдена. Убедитесь, что используется правильная модель для вашего типа доступа.';
+      } else if (status === 422) {
+        statusCode = 422;
+        errorMessage = 'Некорректные параметры запроса к GigaChat API.';
+      } else {
+        statusCode = status;
+        errorMessage = response.data?.message || `Ошибка GigaChat API (${status})`;
+      }
     } else if (error.message && error.message.includes('parse')) {
       errorMessage = 'ИИ вернул некорректный ответ. Пожалуйста, попробуйте еще раз.';
+    } else if (error.message && error.message.includes('credentials')) {
+      errorMessage = 'Ошибка авторизации. Проверьте ключ авторизации GigaChat.';
+    } else if (error.message && error.message.includes('429')) {
+      statusCode = 429;
+      errorMessage = 'Слишком много запросов к GigaChat API. Пожалуйста, подождите немного и попробуйте снова.';
     }
     
     res.status(statusCode).json({ 
       error: errorMessage, 
-      details: error.message 
+      details: actualError.message || error.message,
+      status: statusCode
     });
   }
 });
