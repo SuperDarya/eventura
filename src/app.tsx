@@ -11,7 +11,7 @@ import './styles/global.css'
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename=''>
       <ChakraProvider>
         <ReduxProvider store={store}>
           <Header />
