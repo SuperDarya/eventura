@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, Navigate } from 'react-router-dom'
 
 import { URLs } from './__data__/urls'
 import { HomePage, ChatPage, CatalogPage, BookingPage, BookingDetailPage, ProfilePage, VendorProfilePage } from './pages'
@@ -11,6 +11,7 @@ const PageWrapper = ({ children }: React.PropsWithChildren) => (
 export const Dashboard = () => {
   return (
     <Routes>
+      <Route path="/" element={<Navigate to={URLs.baseUrl} replace />} />
       <Route
         path={URLs.baseUrl}
         element={

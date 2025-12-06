@@ -11,7 +11,7 @@ import './styles/global.css'
 
 const App = () => {
   return (
-    <BrowserRouter basename='/eventura'>
+    <BrowserRouter>
       <ChakraProvider>
         <ReduxProvider store={store}>
           <Header />
