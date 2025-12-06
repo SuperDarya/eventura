@@ -44,7 +44,7 @@ export const Dashboard = () => {
         }
       />
       <Route
-        path="/eventura/booking/:id"
+        path={URLs.bookingDetail.url}
         element={
           <PageWrapper>
             <BookingDetailPage />
