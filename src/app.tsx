@@ -10,8 +10,10 @@ import { store } from './__data__/store'
 import './styles/global.css'
 
 const App = () => {
+  const basename = '/eventura'
+  
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <ChakraProvider>
         <ReduxProvider store={store}>
           <Header />

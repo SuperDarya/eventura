@@ -2,39 +2,39 @@ import { getNavigation, getNavigationValue } from '@brojs/cli'
 
 import pkg from '../../package.json'
 
-const baseUrl = getNavigationValue(`${pkg.name}.main`)
+const baseUrl = getNavigationValue(`${pkg.name}.main`) || ''
 const navs = getNavigation()
-const makeUrl = (url) => baseUrl + url
+const makeUrl = (url) => url.startsWith('/') ? url : `/${url}`
 
 export const URLs = {
-  baseUrl,
+  baseUrl: baseUrl || '/',
   chat: {
-    url: makeUrl('/chat'),
+    url: '/chat',
     isOn: true,
   },
   catalog: {
-    url: makeUrl('/catalog'),
+    url: '/catalog',
     isOn: true,
   },
   booking: {
-    url: makeUrl('/booking'),
+    url: '/booking',
     isOn: true,
   },
   profile: {
-    url: makeUrl('/profile'),
+    url: '/profile',
     isOn: true,
   },
   vendorProfile: {
-    url: makeUrl('/vendor-profile'),
+    url: '/vendor-profile',
     isOn: true,
   },
   bookingDetail: {
-    url: makeUrl('/booking/:id'),
-    makeUrl: (id: number) => makeUrl(`/booking/${id}`),
+    url: '/booking/:id',
+    makeUrl: (id: number) => `/booking/${id}`,
     isOn: true,
   },
   auth: {
-    url: makeUrl(navs[`link.${pkg.name}.auth`]),
+    url: navs[`link.${pkg.name}.auth`] || '/auth',
     isOn: Boolean(navs[`link.${pkg.name}.auth`])
   },
 }

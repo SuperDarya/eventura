@@ -11,9 +11,8 @@ const PageWrapper = ({ children }: React.PropsWithChildren) => (
 export const Dashboard = () => {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to={URLs.baseUrl} replace />} />
       <Route
-        path={URLs.baseUrl}
+        path="/"
         element={
           <PageWrapper>
             <HomePage />
