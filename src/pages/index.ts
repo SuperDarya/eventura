@@ -7,6 +7,7 @@ export const BookingPage = lazy(() => import(/* webpackChunkName: 'booking' */'.
 export const BookingDetailPage = lazy(() => import(/* webpackChunkName: 'booking-detail' */'./booking-detail/booking-detail'))
 export const ProfilePage = lazy(() => import(/* webpackChunkName: 'profile' */'./profile/profile'))
 export const VendorProfilePage = lazy(() => import(/* webpackChunkName: 'vendor-profile' */'./vendor-profile/vendor-profile'))
+export const AuthPage = lazy(() => import(/* webpackChunkName: 'auth' */'./auth/auth'))
 
 // Старые страницы (для совместимости)
 export const MainPage = HomePage

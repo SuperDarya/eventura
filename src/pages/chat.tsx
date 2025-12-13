@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { 
   Box, 
   Button, 
@@ -13,13 +14,30 @@ import {
   Spinner,
   useColorModeValue
 } from '@chakra-ui/react'
+import { useAppDispatch } from '../__data__/store'
+import { setFormData } from '../__data__/bookingFormSlice'
+import { URLs } from '../__data__/urls'
 
 interface Message {
   role: 'user' | 'assistant'
   content: string
 }
 
+interface BookingData {
+  shouldBook: boolean
+  eventType?: string
+  date?: string
+  guestsCount?: string
+  budget?: string
+  city?: string
+  description?: string
+  dishes?: string
+  otherDetails?: string
+}
+
 const ChatPage = () => {
+  const navigate = useNavigate()
+  const dispatch = useAppDispatch()
   const [messages, setMessages] = useState<Message[]>([
     { role: 'assistant', content: 'Здравствуйте! Я ИИ-консультант Eventura. Помогу вам с организацией мероприятия. Чем могу помочь?' }
   ])
@@ -70,8 +88,33 @@ const ChatPage = () => {
       }
       
       setMessages(prev => [...prev, { role: 'assistant', content: data.message || 'Извините, произошла ошибка' }])
+      
+      if (data.bookingData && data.bookingData.shouldBook) {
+        const bookingData: BookingData = data.bookingData
+        
+        let description = bookingData.description || ''
+        if (bookingData.dishes) {
+          description += (description ? '\n\n' : '') + `Пожелания по меню: ${bookingData.dishes}`
+        }
+        if (bookingData.otherDetails) {
+          description += (description ? '\n\n' : '') + `Дополнительные детали: ${bookingData.otherDetails}`
+        }
+        
+        dispatch(setFormData({
+          eventType: bookingData.eventType || '',
+          date: bookingData.date || '',
+          guestsCount: bookingData.guestsCount || '',
+          budget: bookingData.budget || '',
+          city: bookingData.city || '',
+          description: description,
+          selectedVendors: []
+        }))
+        
+        setTimeout(() => {
+          navigate(URLs.booking.url)
+        }, 500)
+      }
     } catch (error) {
-      console.error('Chat error:', error)
       setMessages(prev => [...prev, { 
         role: 'assistant', 
         content: 'Извините, произошла ошибка при обработке запроса. Попробуйте еще раз.' 

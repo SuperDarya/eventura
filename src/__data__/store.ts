@@ -3,11 +3,13 @@ import { type TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux
 
 import { api } from './api'
 import bookingFormReducer from './bookingFormSlice'
+import authReducer from './authSlice'
 
 export const store = configureStore({
   reducer: {
     [api.reducerPath]: api.reducer,
     bookingForm: bookingFormReducer,
+    auth: authReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

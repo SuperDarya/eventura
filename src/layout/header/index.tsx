@@ -22,13 +22,12 @@ export const Header = () => {
         >
             <Box maxW="container.xl" mx="auto" px={4} py={4}>
                 <HStack justify="space-between" spacing={8}>
-                    <Text fontSize="2xl" fontWeight="bold" color="pink.400">
-                        Eventura
-                    </Text>
+                    <Link as={RouterLink} to="/" _hover={{ textDecoration: 'none' }}>
+                        <Text fontSize="2xl" fontWeight="bold" color="pink.400" cursor="pointer">
+                            Eventura
+                        </Text>
+                    </Link>
                     <HStack spacing={6}>
-                        <Link as={RouterLink} to={URLs.baseUrl} fontWeight="medium">
-                            Главная
-                        </Link>
                         <Link as={RouterLink} to={URLs.catalog.url} fontWeight="medium">
                             Каталог
                         </Link>

@@ -2,7 +2,7 @@ import React, { Suspense } from 'react'
 import { Route, Routes, Navigate } from 'react-router-dom'
 
 import { URLs } from './__data__/urls'
-import { HomePage, ChatPage, CatalogPage, BookingPage, BookingDetailPage, ProfilePage, VendorProfilePage } from './pages'
+import { HomePage, ChatPage, CatalogPage, BookingPage, BookingDetailPage, ProfilePage, VendorProfilePage, AuthPage } from './pages'
 
 const PageWrapper = ({ children }: React.PropsWithChildren) => (
   <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
@@ -64,6 +64,14 @@ export const Dashboard = () => {
         element={
           <PageWrapper>
             <VendorProfilePage />
+          </PageWrapper>
+        }
+      />
+      <Route
+        path={URLs.auth.url}
+        element={
+          <PageWrapper>
+            <AuthPage />
           </PageWrapper>
         }
       />

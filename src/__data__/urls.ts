@@ -34,7 +34,9 @@ export const URLs = {
     isOn: true,
   },
   auth: {
-    url: navs[`link.${pkg.name}.auth`] || '/auth',
-    isOn: Boolean(navs[`link.${pkg.name}.auth`])
+    url: '/auth',
+    login: '/auth/login',
+    register: '/auth/register',
+    isOn: true
   },
 }

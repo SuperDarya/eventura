@@ -90,10 +90,65 @@ export interface AISearchResponse {
   clarificationQuestion?: string
 }
 
+export interface User {
+  id: number
+  type: 'client' | 'vendor' | 'organizer'
+  email: string
+  firstName?: string
+  lastName?: string
+  phone?: string
+  city?: string
+  companyName?: string
+  contactPerson?: string
+  createdAt?: string
+  favorites?: number[]
+  calendar?: string[]
+}
+
+export interface LoginRequest {
+  email: string
+  password: string
+}
+
+export interface RegisterRequest {
+  email: string
+  password: string
+  firstName?: string
+  lastName?: string
+  phone?: string
+  city?: string
+  type: 'client' | 'vendor' | 'organizer'
+  companyName?: string
+  contactPerson?: string
+}
+
+export interface AuthResponse {
+  user: User
+  token?: string
+}
+
 export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
-  tagTypes: ['Favorite'],
+  tagTypes: ['Favorite', 'Service', 'Vendor'],
   endpoints: (builder) => ({
+    // Auth endpoints
+    login: builder.mutation<AuthResponse, LoginRequest>({
+      query: (body) => ({
+        url: '/eventura/auth/login',
+        method: 'POST',
+        body,
+      }),
+    }),
+    register: builder.mutation<AuthResponse, RegisterRequest>({
+      query: (body) => ({
+        url: '/eventura/auth/register',
+        method: 'POST',
+        body,
+      }),
+    }),
+    getCurrentUser: builder.query<User, void>({
+      query: () => '/eventura/auth/me',
+    }),
     generateImage: builder.mutation<GenerateImageResponse, GenerateImageRequest>({
       query: (body) => ({
         url: '/generate-image',
@@ -201,6 +256,39 @@ export const api = createApi({
         body: { calendar },
       }),
     }),
+    // Service management for vendors
+    createService: builder.mutation<Service, Partial<Service>>({
+      query: (body) => ({
+        url: '/eventura/services',
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: ['Service'],
+    }),
+    updateService: builder.mutation<Service, { id: number; data: Partial<Service> }>({
+      query: ({ id, data }) => ({
+        url: `/eventura/services/${id}`,
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: ['Service'],
+    }),
+    deleteService: builder.mutation<{ success: boolean }, number>({
+      query: (id) => ({
+        url: `/eventura/services/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Service'],
+    }),
+    // Vendor management
+    updateVendor: builder.mutation<Vendor, { id: number; data: Partial<Vendor> }>({
+      query: ({ id, data }) => ({
+        url: `/eventura/vendors/${id}`,
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: ['Vendor'],
+    }),
   }),
 })
 
@@ -218,7 +306,14 @@ export const {
   useGetFavoritesQuery,
   useAddFavoriteMutation,
   useRemoveFavoriteMutation,
-        useGetBookingQuery,
-        useUpdateBookingMutation,
-        useUpdateVendorCalendarMutation,
+  useGetBookingQuery,
+  useUpdateBookingMutation,
+  useUpdateVendorCalendarMutation,
+  useLoginMutation,
+  useRegisterMutation,
+  useGetCurrentUserQuery,
+  useCreateServiceMutation,
+  useUpdateServiceMutation,
+  useDeleteServiceMutation,
+  useUpdateVendorMutation,
 } = api

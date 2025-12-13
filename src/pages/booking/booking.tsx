@@ -60,19 +60,32 @@ const BookingPage = () => {
   // Используем данные из Redux store, но с локальным state для UI
   const [formData, setFormDataLocal] = useState(savedFormData)
   
-  // Загружаем данные из store при монтировании
-  useEffect(() => {
-    if (savedFormData.eventType || savedFormData.date || savedFormData.city) {
-      setFormDataLocal(savedFormData)
-    }
-  }, [])
+  // Загружаем данные из store при монтировании и при изменении store
+  const [wasEmpty, setWasEmpty] = useState(true)
   
-  // Сохраняем форму в localStorage при изменении
+  useEffect(() => {
+    // Если в store есть данные, обновляем локальный state
+    const hasData = savedFormData.eventType || savedFormData.date || savedFormData.city || savedFormData.budget || savedFormData.guestsCount
+    if (hasData) {
+      const wasEmptyBefore = wasEmpty && !formData.eventType && !formData.date && !formData.city
+      setFormDataLocal(savedFormData)
+      
+      // Показываем уведомление, если форма была предзаполнена из чата (была пустая, стала заполненной)
+      if (wasEmptyBefore && hasData) {
+        setShowPrefilledAlert(true)
+        setTimeout(() => setShowPrefilledAlert(false), 5000)
+      }
+      
+      if (wasEmpty) {
+        setWasEmpty(false)
+      }
+    }
+  }, [savedFormData])
+  
   useEffect(() => {
     try {
       localStorage.setItem('bookingForm', JSON.stringify(savedFormData))
     } catch (error) {
-      console.error('Failed to save booking form to storage:', error)
     }
   }, [savedFormData])
   
@@ -81,6 +94,7 @@ const BookingPage = () => {
   const [clarificationQuestion, setClarificationQuestion] = useState<string>('')
   const [clarificationAnswer, setClarificationAnswer] = useState<string>('')
   const [clarificationCount, setClarificationCount] = useState(0)
+  const [showPrefilledAlert, setShowPrefilledAlert] = useState(false)
   
   // Для ручного выбора
   const [showFavorites, setShowFavorites] = useState(false)
@@ -127,9 +141,8 @@ const BookingPage = () => {
       setAiResult(result)
       setActiveStep(2)
       setClarificationQuestion('')
-    } catch (error) {
-      console.error('AI search error:', error)
-      alert('Ошибка при поиске подрядчиков')
+      } catch (error) {
+        alert('Ошибка при поиске подрядчиков')
     }
   }
   
@@ -214,18 +227,15 @@ const BookingPage = () => {
       try {
         localStorage.removeItem('bookingForm')
       } catch (error) {
-        console.error('Failed to clear booking form from storage:', error)
       }
       
       // Перенаправляем на детальную страницу первого бронирования
       if (firstBookingId) {
         navigate(URLs.bookingDetail.makeUrl(firstBookingId))
       } else {
-        console.error('Failed to create bookings')
         alert('Ошибка при создании бронирования')
       }
     } catch (error) {
-      console.error('Booking error:', error)
       alert('Ошибка при создании бронирования')
     }
   }
@@ -266,6 +276,17 @@ const BookingPage = () => {
           ))}
         </HStack>
       </Box>
+      
+      {/* Уведомление о предзаполнении формы */}
+      {showPrefilledAlert && (
+        <Alert status="info" mb={4} borderRadius="md">
+          <AlertIcon />
+          <Box>
+            <Text fontWeight="bold">Форма предзаполнена данными из чата</Text>
+            <Text fontSize="sm">Проверьте и при необходимости дополните информацию</Text>
+          </Box>
+        </Alert>
+      )}
       
       {/* Step 1: Основная информация */}
       {activeStep === 0 && (

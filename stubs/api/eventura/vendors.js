@@ -57,6 +57,33 @@ router.get('/:id', (req, res) => {
   }
 });
 
+// PUT /api/eventura/vendors/:id - Обновить данные подрядчика
+router.put('/:id', (req, res) => {
+  try {
+    const users = readJSONFile('users_and_vendors.json');
+    const vendorIndex = users.findIndex(u => u.id === parseInt(req.params.id) && (u.type === 'vendor' || u.type === 'organizer'));
+    
+    if (vendorIndex === -1) {
+      return res.status(404).json({ error: 'Vendor not found' });
+    }
+    
+    const { companyName, contactPerson, phone, city, email } = req.body;
+    
+    if (companyName !== undefined) users[vendorIndex].companyName = companyName;
+    if (contactPerson !== undefined) users[vendorIndex].contactPerson = contactPerson;
+    if (phone !== undefined) users[vendorIndex].phone = phone;
+    if (city !== undefined) users[vendorIndex].city = city;
+    if (email !== undefined) users[vendorIndex].email = email;
+    
+    writeJSONFile('users_and_vendors.json', users);
+    
+    const { password: _, ...vendorWithoutPassword } = users[vendorIndex];
+    res.json(vendorWithoutPassword);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // PUT /api/eventura/vendors/:id/calendar - Обновить календарь подрядчика
 router.put('/:id/calendar', (req, res) => {
   try {

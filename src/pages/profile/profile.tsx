@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   Box,
   Container,
@@ -15,36 +15,155 @@ import {
   CardBody,
   Badge,
   Button,
-  Stat,
-  StatLabel,
-  StatNumber,
   SimpleGrid,
   useColorModeValue,
   Avatar,
   IconButton,
-  Tooltip
+  Tooltip,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalCloseButton,
+  ModalFooter,
+  useDisclosure,
+  FormControl,
+  FormLabel,
+  Input,
+  Textarea,
+  Select,
+  Alert,
+  AlertIcon,
+  Divider
 } from '@chakra-ui/react'
-import { AiFillStar } from 'react-icons/ai'
-import { FaMapMarkerAlt, FaHeart, FaRegHeart } from 'react-icons/fa'
-import { useGetEventsQuery, useGetBookingsQuery, useGetFavoritesQuery, useRemoveFavoriteMutation } from '../../__data__/api'
-import { Link } from 'react-router-dom'
+import { AiFillStar, AiOutlineEdit, AiOutlineDelete, AiOutlinePlus } from 'react-icons/ai'
+import { FaMapMarkerAlt, FaHeart, FaCalendar } from 'react-icons/fa'
+import { 
+  useGetEventsQuery, 
+  useGetBookingsQuery, 
+  useGetFavoritesQuery, 
+  useRemoveFavoriteMutation,
+  useGetServicesQuery,
+  useGetBookingsQuery as useGetVendorBookingsQuery,
+  useCreateServiceMutation,
+  useUpdateServiceMutation,
+  useDeleteServiceMutation,
+  useUpdateVendorCalendarMutation,
+  Service
+} from '../../__data__/api'
+import { useAppSelector, useAppDispatch } from '../../__data__/store'
+import { logout } from '../../__data__/authSlice'
+import { Link, useNavigate } from 'react-router-dom'
 import { URLs } from '../../__data__/urls'
 
 const ProfilePage = () => {
-  const [userType] = useState<'client' | 'vendor'>('client') // TODO: получать из авторизации
+  const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+  const user = useAppSelector(state => state.auth.user)
   const [activeTab, setActiveTab] = useState(0)
-  const currentUserId = 1 // TODO: получать из авторизации
   
-  const { data: events = [] } = useGetEventsQuery({ clientId: currentUserId }, { skip: userType !== 'client' })
-  const { data: bookings = [] } = useGetBookingsQuery({ clientId: currentUserId }, { skip: userType !== 'client' })
-  const { data: favorites = [] } = useGetFavoritesQuery(currentUserId, { skip: userType !== 'client' })
+  const isClient = user?.type === 'client'
+  const isVendor = user?.type === 'vendor' || user?.type === 'organizer'
+  const currentUserId = user?.id || 0
+  
+  const { data: events = [] } = useGetEventsQuery({ clientId: currentUserId }, { skip: !isClient || !currentUserId })
+  const { data: bookings = [] } = useGetBookingsQuery({ clientId: currentUserId }, { skip: !isClient || !currentUserId })
+  const { data: favorites = [] } = useGetFavoritesQuery(currentUserId, { skip: !isClient || !currentUserId })
+  const { data: services = [] } = useGetServicesQuery({ vendorId: currentUserId }, { skip: !isVendor || !currentUserId })
+  const { data: vendorBookings = [] } = useGetVendorBookingsQuery({ vendorId: currentUserId }, { skip: !isVendor || !currentUserId })
+  
   const [removeFavorite] = useRemoveFavoriteMutation()
+  const [createService] = useCreateServiceMutation()
+  const [updateService] = useUpdateServiceMutation()
+  const [deleteService] = useDeleteServiceMutation()
+  const [updateCalendar] = useUpdateVendorCalendarMutation()
+  
+  const { isOpen: isServiceModalOpen, onOpen: onServiceModalOpen, onClose: onServiceModalClose } = useDisclosure()
+  const { isOpen: isCalendarModalOpen, onOpen: onCalendarModalOpen, onClose: onCalendarModalClose } = useDisclosure()
+  
+  const [editingService, setEditingService] = useState<Service | null>(null)
+  const [calendarDates, setCalendarDates] = useState<string[]>(user?.calendar || [])
+  const [newDate, setNewDate] = useState('')
+  
+  useEffect(() => {
+    if (user?.calendar) {
+      setCalendarDates(user.calendar)
+    }
+  }, [user])
+  
+  // Если не авторизован, перенаправляем на страницу авторизации
+  useEffect(() => {
+    if (!user) {
+      navigate(URLs.auth.url)
+    }
+  }, [user, navigate])
+  
+  if (!user) {
+    return null
+  }
   
   const handleRemoveFavorite = async (vendorId: number) => {
     try {
       await removeFavorite({ userId: currentUserId, vendorId }).unwrap()
     } catch (error) {
-      console.error('Error removing favorite:', error)
+    }
+  }
+  
+  const handleServiceSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const formData = new FormData(e.currentTarget)
+    
+    const serviceData = {
+      vendorId: currentUserId,
+      name: formData.get('name') as string,
+      category: formData.get('category') as string,
+      description: formData.get('description') as string,
+      priceMin: parseInt(formData.get('priceMin') as string) || 0,
+      priceMax: parseInt(formData.get('priceMax') as string) || 0,
+      unit: formData.get('unit') as string || 'шт',
+      duration: parseInt(formData.get('duration') as string) || 0
+    }
+    
+    try {
+      if (editingService) {
+        await updateService({ id: editingService.id, data: serviceData }).unwrap()
+      } else {
+        await createService(serviceData).unwrap()
+      }
+      onServiceModalClose()
+      setEditingService(null)
+    } catch (error) {
+    }
+  }
+  
+  const handleDeleteService = async (serviceId: number) => {
+    if (window.confirm('Вы уверены, что хотите удалить эту услугу?')) {
+      try {
+        await deleteService(serviceId).unwrap()
+      } catch (error) {
+      }
+    }
+  }
+  
+  const handleAddCalendarDate = () => {
+    if (newDate && !calendarDates.includes(newDate)) {
+      const updated = [...calendarDates, newDate].sort()
+      setCalendarDates(updated)
+      setNewDate('')
+    }
+  }
+  
+  const handleRemoveCalendarDate = (date: string) => {
+    const updated = calendarDates.filter(d => d !== date)
+    setCalendarDates(updated)
+  }
+  
+  const handleSaveCalendar = async () => {
+    try {
+      await updateCalendar({ vendorId: currentUserId, calendar: calendarDates }).unwrap()
+      onCalendarModalClose()
+    } catch (error) {
     }
   }
   
@@ -59,9 +178,14 @@ const ProfilePage = () => {
   
   return (
     <Container maxW="container.xl" py={8}>
-      <Heading size="lg" mb={8}>Личный кабинет</Heading>
+      <HStack justify="space-between" mb={8}>
+        <Heading size="lg">Личный кабинет</Heading>
+        <Button onClick={() => dispatch(logout())} variant="outline" size="sm">
+          Выйти
+        </Button>
+      </HStack>
       
-      {userType === 'client' ? (
+      {isClient ? (
         <Tabs index={activeTab} onChange={setActiveTab}>
           <TabList>
             <Tab>Мои мероприятия</Tab>
@@ -172,12 +296,6 @@ const ProfilePage = () => {
                             <Text fontSize="lg" fontWeight="bold" color="pink.500">
                               {booking.totalPrice.toLocaleString()} ₽
                             </Text>
-                            <Button size="sm" colorScheme="pink" variant="outline" onClick={(e) => {
-                              e.preventDefault()
-                              window.location.href = URLs.bookingDetail.makeUrl(booking.id)
-                            }}>
-                              Подробнее
-                            </Button>
                           </VStack>
                         </CardBody>
                       </Card>
@@ -271,9 +389,311 @@ const ProfilePage = () => {
             </TabPanel>
           </TabPanels>
         </Tabs>
-      ) : (
-        <Text>Профиль подрядчика (в разработке)</Text>
-      )}
+      ) : isVendor ? (
+        <Tabs index={activeTab} onChange={setActiveTab}>
+          <TabList>
+            <Tab>Мои объявления</Tab>
+            <Tab>Бронирования</Tab>
+            <Tab>Календарь</Tab>
+            <Tab>Настройки</Tab>
+          </TabList>
+          
+          <TabPanels>
+            {/* Мои объявления */}
+            <TabPanel>
+              <VStack spacing={4} align="stretch">
+                <HStack justify="space-between">
+                  <Text fontSize="lg" fontWeight="semibold">
+                    Мои услуги ({services.length})
+                  </Text>
+                  <Button 
+                    onClick={() => {
+                      setEditingService(null)
+                      onServiceModalOpen()
+                    }}
+                    colorScheme="pink"
+                    size="sm"
+                    leftIcon={<AiOutlinePlus />}
+                  >
+                    Добавить услугу
+                  </Button>
+                </HStack>
+                
+                {services.length > 0 ? (
+                  <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
+                    {services.map((service: Service) => (
+                      <Card key={service.id}>
+                        <CardBody>
+                          <VStack align="stretch" spacing={3}>
+                            <HStack justify="space-between">
+                              <Heading size="sm">{service.name}</Heading>
+                              <HStack>
+                                <IconButton
+                                  aria-label="Редактировать"
+                                  icon={<AiOutlineEdit />}
+                                  size="sm"
+                                  variant="ghost"
+                                  onClick={() => {
+                                    setEditingService(service)
+                                    onServiceModalOpen()
+                                  }}
+                                />
+                                <IconButton
+                                  aria-label="Удалить"
+                                  icon={<AiOutlineDelete />}
+                                  size="sm"
+                                  variant="ghost"
+                                  colorScheme="red"
+                                  onClick={() => handleDeleteService(service.id)}
+                                />
+                              </HStack>
+                            </HStack>
+                            <Badge colorScheme="blue">{service.category}</Badge>
+                            <Text fontSize="sm" noOfLines={2}>
+                              {service.description}
+                            </Text>
+                            <Text fontSize="lg" fontWeight="bold" color="pink.500">
+                              {service.priceMin.toLocaleString()} - {service.priceMax.toLocaleString()} ₽
+                            </Text>
+                            <Text fontSize="sm" color="gray.600">
+                              {service.unit} • {service.duration} мин
+                            </Text>
+                          </VStack>
+                        </CardBody>
+                      </Card>
+                    ))}
+                  </SimpleGrid>
+                ) : (
+                  <Box textAlign="center" py={10}>
+                    <Text color="gray.500" mb={4}>У вас пока нет услуг</Text>
+                    <Button 
+                      onClick={() => {
+                        setEditingService(null)
+                        onServiceModalOpen()
+                      }}
+                      colorScheme="pink"
+                    >
+                      Добавить первую услугу
+                    </Button>
+                  </Box>
+                )}
+              </VStack>
+            </TabPanel>
+            
+            {/* Бронирования подрядчика */}
+            <TabPanel>
+              <VStack spacing={4} align="stretch">
+                <Text fontSize="lg" fontWeight="semibold">
+                  Бронирования ({vendorBookings.length})
+                </Text>
+                
+                {vendorBookings.length > 0 ? (
+                  <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
+                    {vendorBookings.map((booking: any) => (
+                      <Card key={booking.id}>
+                        <CardBody>
+                          <VStack align="stretch" spacing={3}>
+                            <HStack justify="space-between">
+                              <Text fontWeight="bold">Бронирование #{booking.id}</Text>
+                              <Badge colorScheme={statusColors[booking.status] || 'gray'}>
+                                {booking.status}
+                              </Badge>
+                            </HStack>
+                            <Text fontSize="sm">
+                              Дата: {new Date(booking.date).toLocaleDateString()}
+                            </Text>
+                            <Text fontSize="sm">
+                              Клиент: #{booking.clientId}
+                            </Text>
+                            <Text fontSize="lg" fontWeight="bold" color="pink.500">
+                              {booking.totalPrice.toLocaleString()} ₽
+                            </Text>
+                          </VStack>
+                        </CardBody>
+                      </Card>
+                    ))}
+                  </SimpleGrid>
+                ) : (
+                  <Box textAlign="center" py={10}>
+                    <Text color="gray.500">У вас пока нет бронирований</Text>
+                  </Box>
+                )}
+              </VStack>
+            </TabPanel>
+            
+            {/* Календарь */}
+            <TabPanel>
+              <VStack spacing={4} align="stretch">
+                <HStack justify="space-between">
+                  <Text fontSize="lg" fontWeight="semibold">
+                    Занятые даты ({calendarDates.length})
+                  </Text>
+                  <Button 
+                    onClick={onCalendarModalOpen}
+                    colorScheme="pink"
+                    size="sm"
+                    leftIcon={<FaCalendar />}
+                  >
+                    Управление календарем
+                  </Button>
+                </HStack>
+                
+                {calendarDates.length > 0 ? (
+                  <SimpleGrid columns={{ base: 2, md: 4 }} spacing={2}>
+                    {calendarDates.map((date) => (
+                      <Badge key={date} colorScheme="red" p={2} textAlign="center">
+                        {new Date(date).toLocaleDateString()}
+                      </Badge>
+                    ))}
+                  </SimpleGrid>
+                ) : (
+                  <Box textAlign="center" py={10}>
+                    <Text color="gray.500">У вас нет занятых дат</Text>
+                  </Box>
+                )}
+              </VStack>
+            </TabPanel>
+            
+            {/* Настройки */}
+            <TabPanel>
+              <Card>
+                <CardBody>
+                  <VStack align="stretch" spacing={4}>
+                    <Heading size="md">Настройки профиля</Heading>
+                    <Text color="gray.500">Настройки профиля (в разработке)</Text>
+                  </VStack>
+                </CardBody>
+              </Card>
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+      ) : null}
+      
+      {/* Модальное окно для услуги */}
+      <Modal isOpen={isServiceModalOpen} onClose={onServiceModalClose} size="lg">
+        <ModalOverlay />
+        <ModalContent>
+          <form onSubmit={handleServiceSubmit}>
+            <ModalHeader>
+              {editingService ? 'Редактировать услугу' : 'Добавить услугу'}
+            </ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <VStack spacing={4}>
+                <FormControl isRequired>
+                  <FormLabel>Название</FormLabel>
+                  <Input name="name" defaultValue={editingService?.name} />
+                </FormControl>
+                
+                <FormControl isRequired>
+                  <FormLabel>Категория</FormLabel>
+                  <Select name="category" defaultValue={editingService?.category}>
+                    <option value="Фотограф">Фотограф</option>
+                    <option value="Видеограф">Видеограф</option>
+                    <option value="Декор">Декор</option>
+                    <option value="Кейтеринг">Кейтеринг</option>
+                    <option value="Музыка">Музыка</option>
+                    <option value="Организатор">Организатор</option>
+                  </Select>
+                </FormControl>
+                
+                <FormControl>
+                  <FormLabel>Описание</FormLabel>
+                  <Textarea name="description" defaultValue={editingService?.description} rows={4} />
+                </FormControl>
+                
+                <HStack spacing={4} width="100%">
+                  <FormControl>
+                    <FormLabel>Цена от (₽)</FormLabel>
+                    <Input name="priceMin" type="number" defaultValue={editingService?.priceMin} />
+                  </FormControl>
+                  
+                  <FormControl>
+                    <FormLabel>Цена до (₽)</FormLabel>
+                    <Input name="priceMax" type="number" defaultValue={editingService?.priceMax} />
+                  </FormControl>
+                </HStack>
+                
+                <HStack spacing={4} width="100%">
+                  <FormControl>
+                    <FormLabel>Единица измерения</FormLabel>
+                    <Input name="unit" defaultValue={editingService?.unit || 'шт'} />
+                  </FormControl>
+                  
+                  <FormControl>
+                    <FormLabel>Длительность (мин)</FormLabel>
+                    <Input name="duration" type="number" defaultValue={editingService?.duration} />
+                  </FormControl>
+                </HStack>
+              </VStack>
+            </ModalBody>
+            <ModalFooter>
+              <Button variant="ghost" mr={3} onClick={onServiceModalClose}>
+                Отмена
+              </Button>
+              <Button colorScheme="pink" type="submit">
+                {editingService ? 'Сохранить' : 'Создать'}
+              </Button>
+            </ModalFooter>
+          </form>
+        </ModalContent>
+      </Modal>
+      
+      {/* Модальное окно для календаря */}
+      <Modal isOpen={isCalendarModalOpen} onClose={onCalendarModalClose} size="lg">
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Управление календарем</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <VStack spacing={4}>
+              <HStack width="100%">
+                <Input
+                  type="date"
+                  value={newDate}
+                  onChange={(e) => setNewDate(e.target.value)}
+                />
+                <Button onClick={handleAddCalendarDate} colorScheme="pink">
+                  Добавить
+                </Button>
+              </HStack>
+              
+              <Divider />
+              
+              <Box width="100%">
+                <Text fontWeight="semibold" mb={2}>Занятые даты:</Text>
+                {calendarDates.length > 0 ? (
+                  <SimpleGrid columns={2} spacing={2}>
+                    {calendarDates.map((date) => (
+                      <HStack key={date} justify="space-between" p={2} bg="gray.50" borderRadius="md">
+                        <Text>{new Date(date).toLocaleDateString()}</Text>
+                        <IconButton
+                          aria-label="Удалить"
+                          icon={<AiOutlineDelete />}
+                          size="sm"
+                          variant="ghost"
+                          colorScheme="red"
+                          onClick={() => handleRemoveCalendarDate(date)}
+                        />
+                      </HStack>
+                    ))}
+                  </SimpleGrid>
+                ) : (
+                  <Text color="gray.500">Нет занятых дат</Text>
+                )}
+              </Box>
+            </VStack>
+          </ModalBody>
+          <ModalFooter>
+            <Button variant="ghost" mr={3} onClick={onCalendarModalClose}>
+              Отмена
+            </Button>
+            <Button colorScheme="pink" onClick={handleSaveCalendar}>
+              Сохранить
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </Container>
   )
 }

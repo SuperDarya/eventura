@@ -150,7 +150,6 @@ const CatalogPage = () => {
         await addFavorite({ userId: currentUserId, vendorId }).unwrap()
       }
     } catch (error) {
-      console.error('Error toggling favorite:', error)
     }
   }
 

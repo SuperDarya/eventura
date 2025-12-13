@@ -28,7 +28,6 @@ const loadFromStorage = (): BookingFormState => {
       return { ...initialState, ...JSON.parse(saved) }
     }
   } catch (error) {
-    console.error('Failed to load booking form from storage:', error)
   }
   return initialState
 }

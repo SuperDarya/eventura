@@ -43,5 +43,87 @@ router.get('/:id', (req, res) => {
   }
 });
 
+// POST /api/eventura/services - Создать услугу
+router.post('/', (req, res) => {
+  try {
+    const { vendorId, name, category, description, priceMin, priceMax, unit, duration } = req.body;
+
+    if (!vendorId || !name || !category) {
+      return res.status(400).json({ error: 'vendorId, name и category обязательны' });
+    }
+
+    const services = readJSONFile('services.json');
+    
+    const newService = {
+      id: getNextId(services),
+      vendorId: parseInt(vendorId),
+      name,
+      category,
+      description: description || '',
+      priceMin: priceMin || 0,
+      priceMax: priceMax || 0,
+      unit: unit || 'шт',
+      duration: duration || 0
+    };
+
+    services.push(newService);
+    writeJSONFile('services.json', services);
+
+    res.status(201).json(newService);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// PUT /api/eventura/services/:id - Обновить услугу
+router.put('/:id', (req, res) => {
+  try {
+    const services = readJSONFile('services.json');
+    const serviceIndex = services.findIndex(s => s.id === parseInt(req.params.id));
+    
+    if (serviceIndex === -1) {
+      return res.status(404).json({ error: 'Service not found' });
+    }
+
+    const { name, category, description, priceMin, priceMax, unit, duration } = req.body;
+    
+    services[serviceIndex] = {
+      ...services[serviceIndex],
+      ...(name && { name }),
+      ...(category && { category }),
+      ...(description !== undefined && { description }),
+      ...(priceMin !== undefined && { priceMin }),
+      ...(priceMax !== undefined && { priceMax }),
+      ...(unit && { unit }),
+      ...(duration !== undefined && { duration })
+    };
+
+    writeJSONFile('services.json', services);
+
+    res.json(services[serviceIndex]);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// DELETE /api/eventura/services/:id - Удалить услугу
+router.delete('/:id', (req, res) => {
+  try {
+    const services = readJSONFile('services.json');
+    const serviceIndex = services.findIndex(s => s.id === parseInt(req.params.id));
+    
+    if (serviceIndex === -1) {
+      return res.status(404).json({ error: 'Service not found' });
+    }
+
+    services.splice(serviceIndex, 1);
+    writeJSONFile('services.json', services);
+
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 module.exports = router;
 
