@@ -108,5 +108,23 @@ router.get('/me', (req, res) => {
   }
 });
 
+router.get('/user/:id', (req, res) => {
+  try {
+    const userId = parseInt(req.params.id);
+    const users = readJSONFile('users_and_vendors.json');
+    const user = users.find(u => u.id === userId);
+
+    if (!user) {
+      return res.status(404).json({ error: 'Пользователь не найден' });
+    }
+
+    const { password: _, ...userWithoutPassword } = user;
+
+    res.json(userWithoutPassword);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 module.exports = router;
 

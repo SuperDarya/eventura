@@ -11,6 +11,7 @@ const eventsRouter = require('./eventura/events')
 const bookingsRouter = require('./eventura/bookings')
 const aiSearchRouter = require('./eventura/ai-search')
 const favoritesRouter = require('./eventura/favorites')
+const messagesRouter = require('./eventura/messages')
 
 const router = Router()
 
@@ -27,5 +28,6 @@ router.use('/eventura/events', eventsRouter)
 router.use('/eventura/bookings', bookingsRouter)
 router.use('/eventura/ai-search', aiSearchRouter)
 router.use('/eventura/favorites', favoritesRouter)
+router.use('/eventura/messages', messagesRouter)
 
 module.exports = router;
