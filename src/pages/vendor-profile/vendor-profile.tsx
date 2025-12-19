@@ -28,18 +28,24 @@ import {
   SkeletonText,
   useColorModeValue,
   Button,
+  IconButton,
   Tooltip,
   Alert,
   AlertIcon
 } from '@chakra-ui/react'
 import { AiFillStar } from 'react-icons/ai'
-import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaHeart, FaRegHeart } from 'react-icons/fa'
+import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaHeart, FaRegHeart, FaComments } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
 import { useGetVendorQuery, useGetServicesQuery, useGetFavoritesQuery, useAddFavoriteMutation, useRemoveFavoriteMutation } from '../../__data__/api'
+import { URLs } from '../../__data__/urls'
+import { useAppSelector } from '../../__data__/store'
 
 const VendorProfilePage = () => {
   const [searchParams] = useSearchParams()
+  const navigate = useNavigate()
   const vendorId = parseInt(searchParams.get('id') || '0')
-  const currentUserId = 1 // TODO: получать из авторизации
+  const currentUser = useAppSelector(state => state.auth.user)
+  const currentUserId = currentUser?.id || 1
   
   const { data: vendor, isLoading: isLoadingVendor } = useGetVendorQuery(vendorId, {
     skip: !vendorId
@@ -65,8 +71,11 @@ const VendorProfilePage = () => {
         await addFavorite({ userId: currentUserId, vendorId }).unwrap()
       }
     } catch (error) {
-      console.error('Error toggling favorite:', error)
     }
+  }
+
+  const handleChatClick = () => {
+    navigate(URLs.messenger.makeChatUrl(vendorId))
   }
   
   if (isLoadingVendor) {
@@ -107,16 +116,26 @@ const VendorProfilePage = () => {
               </HStack>
             </VStack>
           </HStack>
-          <Tooltip label={isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}>
-            <Button
-              leftIcon={isFavorite ? <FaHeart /> : <FaRegHeart />}
-              colorScheme={isFavorite ? 'pink' : 'gray'}
-              variant={isFavorite ? 'solid' : 'outline'}
-              onClick={toggleFavorite}
-            >
-              {isFavorite ? 'В избранном' : 'В избранное'}
-            </Button>
-          </Tooltip>
+          <HStack spacing={2}>
+            <Tooltip label="Написать сообщение">
+              <IconButton
+                aria-label="Написать сообщение"
+                icon={<FaComments />}
+                colorScheme="pink"
+                onClick={handleChatClick}
+              />
+            </Tooltip>
+            <Tooltip label={isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}>
+              <Button
+                leftIcon={isFavorite ? <FaHeart /> : <FaRegHeart />}
+                colorScheme={isFavorite ? 'pink' : 'gray'}
+                variant={isFavorite ? 'solid' : 'outline'}
+                onClick={toggleFavorite}
+              >
+                {isFavorite ? 'В избранном' : 'В избранное'}
+              </Button>
+            </Tooltip>
+          </HStack>
         </HStack>
         
         <HStack spacing={4} flexWrap="wrap">

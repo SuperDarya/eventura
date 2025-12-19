@@ -8,6 +8,8 @@ export const BookingDetailPage = lazy(() => import(/* webpackChunkName: 'booking
 export const ProfilePage = lazy(() => import(/* webpackChunkName: 'profile' */'./profile/profile'))
 export const VendorProfilePage = lazy(() => import(/* webpackChunkName: 'vendor-profile' */'./vendor-profile/vendor-profile'))
 export const AuthPage = lazy(() => import(/* webpackChunkName: 'auth' */'./auth/auth'))
+export const MessengerPage = lazy(() => import(/* webpackChunkName: 'messenger' */'./messenger/messenger'))
+export const MessengerChatPage = lazy(() => import(/* webpackChunkName: 'messenger-chat' */'./messenger/chat'))
 
 // Старые страницы (для совместимости)
 export const MainPage = HomePage

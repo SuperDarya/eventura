@@ -39,4 +39,10 @@ export const URLs = {
     register: '/auth/register',
     isOn: true
   },
+  messenger: {
+    url: '/messenger',
+    chat: '/messenger/chat/:userId',
+    makeChatUrl: (userId: number) => `/messenger/chat/${userId}`,
+    isOn: true
+  },
 }

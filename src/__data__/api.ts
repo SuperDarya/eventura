@@ -127,9 +127,34 @@ export interface AuthResponse {
   token?: string
 }
 
+export interface Message {
+  id: number
+  senderId: number
+  receiverId: number
+  text: string
+  read: boolean
+  createdAt: string
+}
+
+export interface Chat {
+  id: string
+  otherUser: {
+    id: number
+    name: string
+    avatar?: string
+    type: string
+  }
+  lastMessage: {
+    text: string
+    createdAt: string
+  } | null
+  unreadCount: number
+  updatedAt: string
+}
+
 export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
-  tagTypes: ['Favorite', 'Service', 'Vendor'],
+  tagTypes: ['Favorite', 'Service', 'Vendor', 'Message', 'Chat'],
   endpoints: (builder) => ({
     // Auth endpoints
     login: builder.mutation<AuthResponse, LoginRequest>({
@@ -148,6 +173,9 @@ export const api = createApi({
     }),
     getCurrentUser: builder.query<User, void>({
       query: () => '/eventura/auth/me',
+    }),
+    getUser: builder.query<User, number>({
+      query: (id) => `/eventura/auth/user/${id}`,
     }),
     generateImage: builder.mutation<GenerateImageResponse, GenerateImageRequest>({
       query: (body) => ({
@@ -289,6 +317,30 @@ export const api = createApi({
       }),
       invalidatesTags: ['Vendor'],
     }),
+    // Messages
+    getChats: builder.query<Chat[], number>({
+      query: (userId) => `/eventura/messages/chats?userId=${userId}`,
+      providesTags: ['Chat'],
+    }),
+    getMessages: builder.query<Message[], { userId1: number; userId2: number }>({
+      query: ({ userId1, userId2 }) => `/eventura/messages/${userId1}/${userId2}`,
+      providesTags: ['Message'],
+    }),
+    sendMessage: builder.mutation<Message, { senderId: number; receiverId: number; text: string }>({
+      query: (body) => ({
+        url: '/eventura/messages',
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: ['Message', 'Chat'],
+    }),
+    markMessagesAsRead: builder.mutation<{ updated: number }, { userId1: number; userId2: number }>({
+      query: ({ userId1, userId2 }) => ({
+        url: `/eventura/messages/chats/${userId1}/${userId2}/read`,
+        method: 'PUT',
+      }),
+      invalidatesTags: ['Message', 'Chat'],
+    }),
   }),
 })
 
@@ -312,8 +364,13 @@ export const {
   useLoginMutation,
   useRegisterMutation,
   useGetCurrentUserQuery,
+  useGetUserQuery,
   useCreateServiceMutation,
   useUpdateServiceMutation,
   useDeleteServiceMutation,
   useUpdateVendorMutation,
+  useGetChatsQuery,
+  useGetMessagesQuery,
+  useSendMessageMutation,
+  useMarkMessagesAsReadMutation,
 } = api

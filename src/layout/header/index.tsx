@@ -34,6 +34,9 @@ export const Header = () => {
                         <Link as={RouterLink} to={URLs.booking.url} fontWeight="medium">
                             Бронирование
                         </Link>
+                        <Link as={RouterLink} to={URLs.messenger.url} fontWeight="medium">
+                            Сообщения
+                        </Link>
                         <Link as={RouterLink} to={URLs.profile.url} fontWeight="medium">
                             Профиль
                         </Link>

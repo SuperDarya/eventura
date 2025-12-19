@@ -23,23 +23,32 @@ import {
   Tooltip
 } from '@chakra-ui/react'
 import { AiFillStar } from 'react-icons/ai'
-import { FaMapMarkerAlt, FaHeart, FaRegHeart } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { FaMapMarkerAlt, FaHeart, FaRegHeart, FaComments } from 'react-icons/fa'
+import { Link, useNavigate } from 'react-router-dom'
 import { useGetVendorsQuery, useGetFavoritesQuery, useAddFavoriteMutation, useRemoveFavoriteMutation } from '../__data__/api'
 import { URLs } from '../__data__/urls'
+import { useAppSelector } from '../__data__/store'
 
 const cities = ['Все города', 'Москва', 'Санкт-Петербург', 'Екатеринбург', 'Новосибирск', 'Казань', 'Нижний Новгород']
 const categories = ['Все категории', 'Кейтеринг', 'Фото и видео', 'Декор', 'Развлечения', 'Площадки', 'Транспорт']
 
 const VendorCard = ({ vendor, isFavorite, onToggleFavorite }: { vendor: any; isFavorite: boolean; onToggleFavorite: () => void }) => {
+  const navigate = useNavigate()
   const bg = useColorModeValue('white', 'gray.800')
   const hoverBg = useColorModeValue('gray.50', 'gray.700')
-  const currentUserId = 1 // TODO: получать из авторизации
+  const currentUser = useAppSelector(state => state.auth.user)
+  const currentUserId = currentUser?.id || 1
   
   const handleFavoriteClick = (e: React.MouseEvent) => {
     e.preventDefault()
     e.stopPropagation()
     onToggleFavorite()
+  }
+
+  const handleChatClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    navigate(URLs.messenger.makeChatUrl(vendor.id))
   }
   
   return (
@@ -68,20 +77,28 @@ const VendorCard = ({ vendor, isFavorite, onToggleFavorite }: { vendor: any; isF
         >
           {vendor.isOrganizer ? 'Организатор' : 'Подрядчик'}
         </Badge>
-        <Tooltip label={isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}>
-          <IconButton
-            aria-label={isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}
-            icon={isFavorite ? <FaHeart color="red" /> : <FaRegHeart />}
-            position="absolute"
-            top={2}
-            left={2}
-            size="sm"
-            bg="white"
-            _hover={{ bg: 'gray.100' }}
-            onClick={handleFavoriteClick}
-            zIndex={1}
-          />
-        </Tooltip>
+        <HStack position="absolute" top={2} left={2} spacing={1} zIndex={1}>
+          <Tooltip label="Написать сообщение">
+            <IconButton
+              aria-label="Написать сообщение"
+              icon={<FaComments />}
+              size="sm"
+              bg="white"
+              _hover={{ bg: 'gray.100' }}
+              onClick={handleChatClick}
+            />
+          </Tooltip>
+          <Tooltip label={isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}>
+            <IconButton
+              aria-label={isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}
+              icon={isFavorite ? <FaHeart color="red" /> : <FaRegHeart />}
+              size="sm"
+              bg="white"
+              _hover={{ bg: 'gray.100' }}
+              onClick={handleFavoriteClick}
+            />
+          </Tooltip>
+        </HStack>
       </Box>
       <Box p={4}>
         <VStack align="stretch" spacing={3}>
@@ -129,7 +146,8 @@ const CatalogPage = () => {
   const [sortBy, setSortBy] = useState<'rating' | 'name' | 'reviews'>('rating')
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false)
   
-  const currentUserId = 1 // TODO: получать из авторизации
+  const currentUser = useAppSelector(state => state.auth.user)
+  const currentUserId = currentUser?.id || 1
   
   const { data: vendors = [], isLoading, error } = useGetVendorsQuery({
     city: city && city !== 'Все города' ? city : undefined,

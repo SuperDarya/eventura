@@ -2,7 +2,7 @@ import React, { Suspense } from 'react'
 import { Route, Routes, Navigate } from 'react-router-dom'
 
 import { URLs } from './__data__/urls'
-import { HomePage, ChatPage, CatalogPage, BookingPage, BookingDetailPage, ProfilePage, VendorProfilePage, AuthPage } from './pages'
+import { HomePage, ChatPage, CatalogPage, BookingPage, BookingDetailPage, ProfilePage, VendorProfilePage, AuthPage, MessengerPage, MessengerChatPage } from './pages'
 
 const PageWrapper = ({ children }: React.PropsWithChildren) => (
   <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
@@ -72,6 +72,22 @@ export const Dashboard = () => {
         element={
           <PageWrapper>
             <AuthPage />
+          </PageWrapper>
+        }
+      />
+      <Route
+        path={URLs.messenger.url}
+        element={
+          <PageWrapper>
+            <MessengerPage />
+          </PageWrapper>
+        }
+      />
+      <Route
+        path={URLs.messenger.chat}
+        element={
+          <PageWrapper>
+            <MessengerChatPage />
           </PageWrapper>
         }
       />
