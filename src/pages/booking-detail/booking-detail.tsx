@@ -31,12 +31,13 @@ import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaTrash, FaPlus } from 'react-icon
 import { useGetBookingQuery, useGetBookingsQuery, useUpdateBookingMutation, useCreateBookingMutation, useGetFavoritesQuery, useGetVendorQuery, useGetServicesQuery } from '../../__data__/api'
 import { Link } from 'react-router-dom'
 import { URLs } from '../../__data__/urls'
+import { useAppSelector } from '../../__data__/store'
 
 const BookingDetailPage = () => {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
   const bookingId = parseInt(id || '0')
-  const currentUserId = 1 // TODO: получать из авторизации
+  const currentUser = useAppSelector(state => state.auth.user)
   
   const { data: booking, isLoading, error } = useGetBookingQuery(bookingId, {
     skip: !bookingId
@@ -48,7 +49,7 @@ const BookingDetailPage = () => {
     { skip: !booking?.eventId }
   )
   
-  const { data: favorites = [] } = useGetFavoritesQuery(currentUserId)
+  const { data: favorites = [] } = useGetFavoritesQuery(currentUser?.id || 0, { skip: !currentUser?.id })
   const [updateBooking] = useUpdateBookingMutation()
   
   const { isOpen: isAddModalOpen, onOpen: onAddModalOpen, onClose: onAddModalClose } = useDisclosure()
@@ -359,6 +360,7 @@ const AddVendorModal = ({
 }) => {
   const [createBooking] = useCreateBookingMutation()
   const navigate = useNavigate()
+  const currentUser = useAppSelector(state => state.auth.user)
   
   // Фильтруем подрядчиков, которые уже добавлены
   const availableFavorites = favorites.filter((v: any) => !existingVendorIds.includes(v.id))
@@ -369,6 +371,11 @@ const AddVendorModal = ({
       return
     }
     
+    if (!currentUser?.id) {
+      alert('Необходимо войти в систему для добавления подрядчика')
+      return
+    }
+    
     try {
       // Получаем первую услугу подрядчика
       const servicesResponse = await fetch(`/api/eventura/services?vendorId=${vendorId}`)
@@ -376,7 +383,7 @@ const AddVendorModal = ({
       const service = services[0] || { id: 1 }
       
       await createBooking({
-        clientId: 1, // TODO: получать из авторизации
+        clientId: currentUser.id,
         vendorId,
         serviceId: service.id,
         eventId,

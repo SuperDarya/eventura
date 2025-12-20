@@ -98,12 +98,12 @@ const BookingPage = () => {
   
   // Для ручного выбора
   const [showFavorites, setShowFavorites] = useState(false)
-  const currentUserId = 1 // TODO: получать из авторизации
+  const currentUser = useAppSelector(state => state.auth.user)
   
   const [aiSearch, { isLoading: isSearching }] = useAiSearchMutation()
   const [createEvent] = useCreateEventMutation()
   const [createBooking] = useCreateBookingMutation()
-  const { data: favorites = [] } = useGetFavoritesQuery(currentUserId, { skip: !showFavorites })
+  const { data: favorites = [] } = useGetFavoritesQuery(currentUser?.id || 0, { skip: !showFavorites || !currentUser?.id })
   
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [paymentData, setPaymentData] = useState<any>(null)
@@ -175,6 +175,11 @@ const BookingPage = () => {
       return
     }
     
+    if (!currentUser?.id) {
+      alert('Необходимо войти в систему для создания бронирования')
+      return
+    }
+    
     try {
       // Создаем мероприятие
       const event = await createEvent({
@@ -186,7 +191,7 @@ const BookingPage = () => {
         city: formData.city,
         description: formData.description || aiResult?.eventConcept || '',
         status: 'planning',
-        clientId: 1 // TODO: получать из авторизации
+        clientId: currentUser.id
       }).unwrap()
       
       // Получаем услуги через API для создания бронирований
@@ -206,7 +211,7 @@ const BookingPage = () => {
           : 0 // Для ручного выбора цена будет указана позже
         
         const booking = await createBooking({
-          clientId: 1, // TODO: получать из авторизации
+          clientId: currentUser.id,
           vendorId,
           serviceId: vendorService.id,
           eventId: event.id,
