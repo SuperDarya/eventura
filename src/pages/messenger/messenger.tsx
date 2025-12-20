@@ -30,10 +30,10 @@ const MessengerPage = () => {
   const borderColor = useColorModeValue('gray.200', 'gray.700')
   
   const currentUser = useAppSelector(state => state.auth.user)
-  const currentUserId = currentUser?.id || 1
+  const currentUserId = currentUser?.id
 
-  const { data: chats = [], isLoading: isLoadingChats, refetch } = useGetChatsQuery(currentUserId)
-  const { data: favorites = [] } = useGetFavoritesQuery(currentUserId)
+  const { data: chats = [], isLoading: isLoadingChats, refetch } = useGetChatsQuery(currentUserId || 0, { skip: !currentUserId })
+  const { data: favorites = [] } = useGetFavoritesQuery(currentUserId || 0, { skip: !currentUserId })
 
   useEffect(() => {
     const interval = setInterval(() => {

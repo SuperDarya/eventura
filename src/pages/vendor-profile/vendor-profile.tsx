@@ -45,7 +45,7 @@ const VendorProfilePage = () => {
   const navigate = useNavigate()
   const vendorId = parseInt(searchParams.get('id') || '0')
   const currentUser = useAppSelector(state => state.auth.user)
-  const currentUserId = currentUser?.id || 1
+  const currentUserId = currentUser?.id
   
   const { data: vendor, isLoading: isLoadingVendor } = useGetVendorQuery(vendorId, {
     skip: !vendorId
@@ -56,7 +56,7 @@ const VendorProfilePage = () => {
     { skip: !vendorId }
   )
   
-  const { data: favorites = [] } = useGetFavoritesQuery(currentUserId)
+  const { data: favorites = [] } = useGetFavoritesQuery(currentUserId || 0, { skip: !currentUserId })
   const [addFavorite] = useAddFavoriteMutation()
   const [removeFavorite] = useRemoveFavoriteMutation()
   
@@ -64,6 +64,11 @@ const VendorProfilePage = () => {
   const isFavorite = favoriteIds.includes(vendorId)
   
   const toggleFavorite = async () => {
+    if (!currentUserId) {
+      alert('Необходимо войти в систему для добавления в избранное')
+      return
+    }
+    
     try {
       if (isFavorite) {
         await removeFavorite({ userId: currentUserId, vendorId }).unwrap()

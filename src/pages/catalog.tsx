@@ -36,8 +36,6 @@ const VendorCard = ({ vendor, isFavorite, onToggleFavorite }: { vendor: any; isF
   const navigate = useNavigate()
   const bg = useColorModeValue('white', 'gray.800')
   const hoverBg = useColorModeValue('gray.50', 'gray.700')
-  const currentUser = useAppSelector(state => state.auth.user)
-  const currentUserId = currentUser?.id || 1
   
   const handleFavoriteClick = (e: React.MouseEvent) => {
     e.preventDefault()
@@ -147,20 +145,25 @@ const CatalogPage = () => {
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false)
   
   const currentUser = useAppSelector(state => state.auth.user)
-  const currentUserId = currentUser?.id || 1
+  const currentUserId = currentUser?.id
   
   const { data: vendors = [], isLoading, error } = useGetVendorsQuery({
     city: city && city !== 'Все города' ? city : undefined,
     minRating: minRating ? parseFloat(minRating) : undefined,
   })
   
-  const { data: favorites = [] } = useGetFavoritesQuery(currentUserId)
+  const { data: favorites = [] } = useGetFavoritesQuery(currentUserId || 0, { skip: !currentUserId })
   const [addFavorite] = useAddFavoriteMutation()
   const [removeFavorite] = useRemoveFavoriteMutation()
   
   const favoriteIds = favorites.map((v: any) => v.id)
   
   const toggleFavorite = async (vendorId: number) => {
+    if (!currentUserId) {
+      alert('Необходимо войти в систему для добавления в избранное')
+      return
+    }
+    
     try {
       if (favoriteIds.includes(vendorId)) {
         await removeFavorite({ userId: currentUserId, vendorId }).unwrap()

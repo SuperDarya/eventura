@@ -85,7 +85,6 @@ const BookingDetailPage = () => {
       setVendorToDelete(null)
       onDeleteModalClose()
     } catch (error) {
-      console.error('Error deleting vendor:', error)
       alert('Ошибка при удалении подрядчика')
     }
   }
@@ -396,7 +395,6 @@ const AddVendorModal = ({
       onVendorAdded?.()
       onClose()
     } catch (error) {
-      console.error('Error adding vendor:', error)
       alert('Ошибка при добавлении подрядчика')
     }
   }

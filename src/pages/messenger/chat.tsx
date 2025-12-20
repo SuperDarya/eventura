@@ -32,7 +32,7 @@ const ChatPage = () => {
   const otherUserId = parseInt(userId || '0')
   
   const currentUser = useAppSelector(state => state.auth.user)
-  const currentUserId = currentUser?.id || 1
+  const currentUserId = currentUser?.id
 
   const [messageText, setMessageText] = useState('')
   const messagesEndRef = useRef<HTMLDivElement>(null)
@@ -42,8 +42,8 @@ const ChatPage = () => {
   const borderColor = useColorModeValue('gray.200', 'gray.700')
 
   const { data: messages = [], isLoading, refetch } = useGetMessagesQuery(
-    { userId1: currentUserId, userId2: otherUserId },
-    { skip: !otherUserId }
+    { userId1: currentUserId || 0, userId2: otherUserId },
+    { skip: !otherUserId || !currentUserId }
   )
   
   const { data: otherUser } = useGetUserQuery(otherUserId, { skip: !otherUserId })
@@ -70,7 +70,7 @@ const ChatPage = () => {
   }, [refetch])
 
   const handleSend = async () => {
-    if (!messageText.trim() || !otherUserId) return
+    if (!messageText.trim() || !otherUserId || !currentUserId) return
 
     try {
       await sendMessage({
@@ -81,7 +81,6 @@ const ChatPage = () => {
       setMessageText('')
       refetch()
     } catch (error) {
-      console.error('Failed to send message:', error)
     }
   }
 
@@ -125,7 +124,6 @@ const ChatPage = () => {
           />
           <Avatar
             name={otherUserName}
-            src={otherUser?.avatar}
             size="sm"
           />
           <VStack align="start" spacing={0} flex={1}>
@@ -169,7 +167,6 @@ const ChatPage = () => {
                   {!isMyMessage && (
                     <Avatar
                       name={otherUserName}
-                      src={otherUser?.avatar}
                       size="xs"
                     />
                   )}
