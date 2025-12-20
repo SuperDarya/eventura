@@ -26,6 +26,7 @@ module.exports = {
   },
   config: {
     'eventura.api': '/api',
-    'eventura.ai-api': '/api/eventura/ai-search'
+    'eventura.ai-api': '/api/eventura/ai-search',
+    'eventura.back': 'ms/kfu-2025-b/eventura/'
   }
 }

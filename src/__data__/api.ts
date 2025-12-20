@@ -1,5 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { analyticsService } from '../service/analytics'
+import { getConfigValue } from '@brojs/cli'
+
+const apiBaseUrl = getConfigValue('eventura.back') || '/'
 
 interface GenerateImageResponse {
   uuid: string
@@ -153,7 +156,7 @@ export interface Chat {
 }
 
 export const api = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: '/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: apiBaseUrl }),
   tagTypes: ['Favorite', 'Service', 'Vendor', 'Message', 'Chat'],
   endpoints: (builder) => ({
     // Auth endpoints
