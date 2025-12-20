@@ -155,6 +155,29 @@ export interface Chat {
   updatedAt: string
 }
 
+export interface AgentPromptRequest {
+  message: string
+  sessionId?: string
+}
+
+export interface BookingData {
+  shouldBook: boolean
+  eventType?: string
+  date?: string
+  guestsCount?: string
+  budget?: string
+  city?: string
+  description?: string
+  dishes?: string
+  otherDetails?: string
+}
+
+export interface AgentPromptResponse {
+  message: string
+  sessionId: string
+  bookingData?: BookingData
+}
+
 export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: apiBaseUrl }),
   tagTypes: ['Favorite', 'Service', 'Vendor', 'Message', 'Chat'],
@@ -344,6 +367,14 @@ export const api = createApi({
       }),
       invalidatesTags: ['Message', 'Chat'],
     }),
+    // Agent
+    agentPrompt: builder.mutation<AgentPromptResponse, AgentPromptRequest>({
+      query: (body) => ({
+        url: '/agent/prompt',
+        method: 'POST',
+        body,
+      }),
+    }),
   }),
 })
 
@@ -376,4 +407,5 @@ export const {
   useGetMessagesQuery,
   useSendMessageMutation,
   useMarkMessagesAsReadMutation,
+  useAgentPromptMutation,
 } = api

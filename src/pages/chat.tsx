@@ -17,32 +17,21 @@ import {
 import { useAppDispatch } from '../__data__/store'
 import { setFormData } from '../__data__/bookingFormSlice'
 import { URLs } from '../__data__/urls'
+import { useAgentPromptMutation, BookingData } from '../__data__/api'
 
 interface Message {
   role: 'user' | 'assistant'
   content: string
 }
 
-interface BookingData {
-  shouldBook: boolean
-  eventType?: string
-  date?: string
-  guestsCount?: string
-  budget?: string
-  city?: string
-  description?: string
-  dishes?: string
-  otherDetails?: string
-}
-
 const ChatPage = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
+  const [agentPrompt, { isLoading: isAgentLoading }] = useAgentPromptMutation()
   const [messages, setMessages] = useState<Message[]>([
     { role: 'assistant', content: 'Здравствуйте! Я ИИ-консультант Eventura. Помогу вам с организацией мероприятия. Чем могу помочь?' }
   ])
   const [text, setText] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
   const [sessionId, setSessionId] = useState<string | null>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   
@@ -58,30 +47,17 @@ const ChatPage = () => {
   }, [messages])
   
   const send = async () => {
-    if (!text.trim() || isLoading) return
+    if (!text.trim() || isAgentLoading) return
     
     const userMessage = text.trim()
     setText('')
     setMessages(prev => [...prev, { role: 'user', content: userMessage }])
-    setIsLoading(true)
     
     try {
-      const response = await fetch('/api/agent/prompt', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          message: userMessage,
-          sessionId: sessionId || undefined
-        })
-      })
-      
-      if (!response.ok) {
-        throw new Error('Ошибка запроса')
-      }
-      
-      const data = await response.json()
+      const data = await agentPrompt({
+        message: userMessage,
+        sessionId: sessionId || undefined
+      }).unwrap()
       
       if (!sessionId && data.sessionId) {
         setSessionId(data.sessionId)
@@ -119,8 +95,6 @@ const ChatPage = () => {
         role: 'assistant', 
         content: 'Извините, произошла ошибка при обработке запроса. Попробуйте еще раз.' 
       }])
-    } finally {
-      setIsLoading(false)
     }
   }
   
@@ -162,7 +136,7 @@ const ChatPage = () => {
                 )}
               </HStack>
             ))}
-            {isLoading && (
+            {isAgentLoading && (
               <HStack align="start" spacing={2}>
                 <Badge colorScheme="purple">AI</Badge>
                 <Box bg={bgAssistant} borderRadius="md" p={3}>
@@ -187,12 +161,12 @@ const ChatPage = () => {
                 send()
               }
             }}
-            isDisabled={isLoading}
+            isDisabled={isAgentLoading}
           />
           <Button 
             colorScheme="pink" 
             onClick={send}
-            isLoading={isLoading}
+            isLoading={isAgentLoading}
             loadingText="Отправка..."
           >
             Отправить
