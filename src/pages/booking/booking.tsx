@@ -33,7 +33,7 @@ import {
   RadioGroup,
   Stack
 } from '@chakra-ui/react'
-import { useAiSearchMutation, useCreateEventMutation, useGetVendorQuery, useCreateBookingMutation, useGetFavoritesQuery, useGetVendorsQuery, useGetServicesQuery } from '../../__data__/api'
+import { useAiSearchMutation, useCreateEventMutation, useGetVendorQuery, useCreateBookingMutation, useGetFavoritesQuery, useGetVendorsQuery, useGetServicesQuery, api } from '../../__data__/api'
 import { Link, useNavigate } from 'react-router-dom'
 import { URLs } from '../../__data__/urls'
 import { AiFillStar } from 'react-icons/ai'
@@ -195,8 +195,8 @@ const BookingPage = () => {
       }).unwrap()
       
       // Получаем услуги через API для создания бронирований
-      const servicesResponse = await fetch('/api/eventura/services')
-      const services: any[] = servicesResponse.ok ? await servicesResponse.json() : []
+      const servicesResult = await dispatch(api.endpoints.getServices.initiate({}))
+      const services: any[] = servicesResult.data || []
       
       // Создаем бронирования для каждого выбранного подрядчика
       const createdBookings = []

@@ -28,10 +28,10 @@ import {
 } from '@chakra-ui/react'
 import { AiFillStar } from 'react-icons/ai'
 import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaTrash, FaPlus } from 'react-icons/fa'
-import { useGetBookingQuery, useGetBookingsQuery, useUpdateBookingMutation, useCreateBookingMutation, useGetFavoritesQuery, useGetVendorQuery, useGetServicesQuery } from '../../__data__/api'
+import { useGetBookingQuery, useGetBookingsQuery, useUpdateBookingMutation, useCreateBookingMutation, useGetFavoritesQuery, useGetVendorQuery, useGetServicesQuery, api } from '../../__data__/api'
 import { Link } from 'react-router-dom'
 import { URLs } from '../../__data__/urls'
-import { useAppSelector } from '../../__data__/store'
+import { useAppSelector, useAppDispatch } from '../../__data__/store'
 
 const BookingDetailPage = () => {
   const { id } = useParams<{ id: string }>()
@@ -360,6 +360,7 @@ const AddVendorModal = ({
 }) => {
   const [createBooking] = useCreateBookingMutation()
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
   const currentUser = useAppSelector(state => state.auth.user)
   
   // Фильтруем подрядчиков, которые уже добавлены
@@ -378,8 +379,8 @@ const AddVendorModal = ({
     
     try {
       // Получаем первую услугу подрядчика
-      const servicesResponse = await fetch(`/api/eventura/services?vendorId=${vendorId}`)
-      const services: any[] = servicesResponse.ok ? await servicesResponse.json() : []
+      const servicesResult = await dispatch(api.endpoints.getServices.initiate({ vendorId }))
+      const services: any[] = servicesResult.data || []
       const service = services[0] || { id: 1 }
       
       await createBooking({
