@@ -370,7 +370,7 @@ export const api = createApi({
     // Agent
     agentPrompt: builder.mutation<AgentPromptResponse, AgentPromptRequest>({
       query: (body) => ({
-        url: '/agent/prompt',
+        url: '/eventura/agent/prompt',
         method: 'POST',
         body,
       }),
