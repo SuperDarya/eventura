@@ -153,7 +153,7 @@ export interface Chat {
 }
 
 export const api = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: '/kfu-2025-b/eventura' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'ms/kfu-2025-b' }),
   tagTypes: ['Favorite', 'Service', 'Vendor', 'Message', 'Chat'],
   endpoints: (builder) => ({
     // Auth endpoints
