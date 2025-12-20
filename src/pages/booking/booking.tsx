@@ -103,7 +103,7 @@ const BookingPage = () => {
   const [aiSearch, { isLoading: isSearching }] = useAiSearchMutation()
   const [createEvent] = useCreateEventMutation()
   const [createBooking] = useCreateBookingMutation()
-  const { data: favorites = [] } = useGetFavoritesQuery(currentUser?.id || 0, { skip: !showFavorites || !currentUser?.id })
+  const { data: favorites = [] } = useGetFavoritesQuery(currentUser?.id, { skip: !showFavorites || !currentUser?.id })
   
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [paymentData, setPaymentData] = useState<any>(null)

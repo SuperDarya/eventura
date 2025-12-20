@@ -49,7 +49,7 @@ const BookingDetailPage = () => {
     { skip: !booking?.eventId }
   )
   
-  const { data: favorites = [] } = useGetFavoritesQuery(currentUser?.id || 0, { skip: !currentUser?.id })
+  const { data: favorites = [] } = useGetFavoritesQuery(currentUser?.id, { skip: !currentUser?.id })
   const [updateBooking] = useUpdateBookingMutation()
   
   const { isOpen: isAddModalOpen, onOpen: onAddModalOpen, onClose: onAddModalClose } = useDisclosure()
