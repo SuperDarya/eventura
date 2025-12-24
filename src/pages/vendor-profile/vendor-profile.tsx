@@ -39,6 +39,7 @@ import { useNavigate } from 'react-router-dom'
 import { useGetVendorQuery, useGetServicesQuery, useGetFavoritesQuery, useAddFavoriteMutation, useRemoveFavoriteMutation } from '../../__data__/api'
 import { URLs } from '../../__data__/urls'
 import { useAppSelector } from '../../__data__/store'
+import { useToast } from '../../hooks/useToast'
 
 const VendorProfilePage = () => {
   const [searchParams] = useSearchParams()
@@ -59,23 +60,27 @@ const VendorProfilePage = () => {
   const { data: favorites = [] } = useGetFavoritesQuery(currentUserId || 0, { skip: !currentUserId })
   const [addFavorite] = useAddFavoriteMutation()
   const [removeFavorite] = useRemoveFavoriteMutation()
+  const { showError, showSuccess } = useToast()
   
   const favoriteIds = favorites.map((v: any) => v.id)
   const isFavorite = favoriteIds.includes(vendorId)
   
   const toggleFavorite = async () => {
     if (!currentUserId) {
-      alert('Необходимо войти в систему для добавления в избранное')
+      showError('Требуется авторизация', 'Необходимо войти в систему для добавления в избранное')
       return
     }
     
     try {
       if (isFavorite) {
         await removeFavorite({ userId: currentUserId, vendorId }).unwrap()
+        showSuccess('Удалено из избранного')
       } else {
         await addFavorite({ userId: currentUserId, vendorId }).unwrap()
+        showSuccess('Добавлено в избранное')
       }
     } catch (error) {
+      showError('Ошибка', 'Не удалось обновить избранное')
     }
   }
 

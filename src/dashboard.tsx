@@ -3,9 +3,10 @@ import { Route, Routes, Navigate } from 'react-router-dom'
 
 import { URLs } from './__data__/urls'
 import { HomePage, ChatPage, CatalogPage, BookingPage, BookingDetailPage, ProfilePage, VendorProfilePage, AuthPage, MessengerPage, MessengerChatPage } from './pages'
+import { LoadingState } from './components/shared'
 
 const PageWrapper = ({ children }: React.PropsWithChildren) => (
-  <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
+  <Suspense fallback={<LoadingState fullScreen />}>{children}</Suspense>
 )
 
 export const Dashboard = () => {

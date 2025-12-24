@@ -35,7 +35,13 @@ import {
   Select,
   Alert,
   AlertIcon,
-  Divider
+  Divider,
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
 } from '@chakra-ui/react'
 import { AiFillStar, AiOutlineEdit, AiOutlineDelete, AiOutlinePlus } from 'react-icons/ai'
 import { FaMapMarkerAlt, FaHeart, FaCalendar } from 'react-icons/fa'
@@ -56,6 +62,8 @@ import { useAppSelector, useAppDispatch } from '../../__data__/store'
 import { logout } from '../../__data__/authSlice'
 import { Link, useNavigate } from 'react-router-dom'
 import { URLs } from '../../__data__/urls'
+import { useToast } from '../../hooks/useToast'
+import { ServiceCard } from '../../components/ui'
 
 const ProfilePage = () => {
   const navigate = useNavigate()
@@ -78,11 +86,15 @@ const ProfilePage = () => {
   const [updateService] = useUpdateServiceMutation()
   const [deleteService] = useDeleteServiceMutation()
   const [updateCalendar] = useUpdateVendorCalendarMutation()
+  const { showError, showSuccess } = useToast()
   
   const { isOpen: isServiceModalOpen, onOpen: onServiceModalOpen, onClose: onServiceModalClose } = useDisclosure()
   const { isOpen: isCalendarModalOpen, onOpen: onCalendarModalOpen, onClose: onCalendarModalClose } = useDisclosure()
+  const { isOpen: isDeleteDialogOpen, onOpen: onDeleteDialogOpen, onClose: onDeleteDialogClose } = useDisclosure()
+  const cancelRef = React.useRef<HTMLButtonElement>(null)
   
   const [editingService, setEditingService] = useState<Service | null>(null)
+  const [serviceToDelete, setServiceToDelete] = useState<number | null>(null)
   const [calendarDates, setCalendarDates] = useState<string[]>(user?.calendar || [])
   const [newDate, setNewDate] = useState('')
   
@@ -131,18 +143,29 @@ const ProfilePage = () => {
       } else {
         await createService(serviceData).unwrap()
       }
+      showSuccess(editingService ? 'Услуга обновлена' : 'Услуга создана')
       onServiceModalClose()
       setEditingService(null)
     } catch (error) {
+      showError('Ошибка', 'Не удалось сохранить услугу')
     }
   }
   
-  const handleDeleteService = async (serviceId: number) => {
-    if (window.confirm('Вы уверены, что хотите удалить эту услугу?')) {
-      try {
-        await deleteService(serviceId).unwrap()
-      } catch (error) {
-      }
+  const handleDeleteServiceClick = (serviceId: number) => {
+    setServiceToDelete(serviceId)
+    onDeleteDialogOpen()
+  }
+  
+  const handleDeleteService = async () => {
+    if (!serviceToDelete) return
+    
+    try {
+      await deleteService(serviceToDelete).unwrap()
+      showSuccess('Услуга удалена')
+      setServiceToDelete(null)
+      onDeleteDialogClose()
+    } catch (error) {
+      showError('Ошибка', 'Не удалось удалить услугу')
     }
   }
   
@@ -162,8 +185,10 @@ const ProfilePage = () => {
   const handleSaveCalendar = async () => {
     try {
       await updateCalendar({ vendorId: currentUserId, calendar: calendarDates }).unwrap()
+      showSuccess('Календарь обновлен')
       onCalendarModalClose()
     } catch (error) {
+      showError('Ошибка', 'Не удалось сохранить календарь')
     }
   }
   
@@ -422,45 +447,16 @@ const ProfilePage = () => {
                 {services.length > 0 ? (
                   <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
                     {services.map((service: Service) => (
-                      <Card key={service.id}>
-                        <CardBody>
-                          <VStack align="stretch" spacing={3}>
-                            <HStack justify="space-between">
-                              <Heading size="sm">{service.name}</Heading>
-                              <HStack>
-                                <IconButton
-                                  aria-label="Редактировать"
-                                  icon={<AiOutlineEdit />}
-                                  size="sm"
-                                  variant="ghost"
-                                  onClick={() => {
-                                    setEditingService(service)
-                                    onServiceModalOpen()
-                                  }}
-                                />
-                                <IconButton
-                                  aria-label="Удалить"
-                                  icon={<AiOutlineDelete />}
-                                  size="sm"
-                                  variant="ghost"
-                                  colorScheme="red"
-                                  onClick={() => handleDeleteService(service.id)}
-                                />
-                              </HStack>
-                            </HStack>
-                            <Badge colorScheme="blue">{service.category}</Badge>
-                            <Text fontSize="sm" noOfLines={2}>
-                              {service.description}
-                            </Text>
-                            <Text fontSize="lg" fontWeight="bold" color="pink.500">
-                              {service.priceMin.toLocaleString()} - {service.priceMax.toLocaleString()} ₽
-                            </Text>
-                            <Text fontSize="sm" color="gray.600">
-                              {service.unit} • {service.duration} мин
-                            </Text>
-                          </VStack>
-                        </CardBody>
-                      </Card>
+                      <ServiceCard
+                        key={service.id}
+                        service={service}
+                        showActions={true}
+                        onEdit={() => {
+                          setEditingService(service)
+                          onServiceModalOpen()
+                        }}
+                        onDelete={() => handleDeleteServiceClick(service.id)}
+                      />
                     ))}
                   </SimpleGrid>
                 ) : (
@@ -699,3 +695,4 @@ const ProfilePage = () => {
 }
 
 export default ProfilePage
+

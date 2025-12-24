@@ -1,28 +1,35 @@
 import React from 'react'
+import { Box, Spinner, VStack, Text } from '@chakra-ui/react'
 
-const Loader = () => {
+interface LoaderProps {
+  message?: string
+  size?: 'sm' | 'md' | 'lg' | 'xl'
+}
+
+const Loader = ({ message, size = 'lg' }: LoaderProps) => {
   return (
-    <div style={{
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      height: '100px'
-    }}>
-      <div style={{
-        width: '40px',
-        height: '40px',
-        border: '4px solid #f3f3f3',
-        borderTop: '4px solid #3498db',
-        borderRadius: '50%',
-        animation: 'spin 1s linear infinite'
-      }} />
-      <style jsx>{`
-        @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-      `}</style>
-    </div>
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      minH="100px"
+      py={8}
+    >
+      <VStack spacing={4}>
+        <Spinner
+          thickness="4px"
+          speed="0.65s"
+          emptyColor="gray.200"
+          color="pink.400"
+          size={size}
+        />
+        {message && (
+          <Text color="gray.600" fontSize="sm">
+            {message}
+          </Text>
+        )}
+      </VStack>
+    </Box>
   )
 }
 

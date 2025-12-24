@@ -22,117 +22,30 @@ import {
   IconButton,
   Tooltip
 } from '@chakra-ui/react'
-import { AiFillStar } from 'react-icons/ai'
-import { FaMapMarkerAlt, FaHeart, FaRegHeart, FaComments } from 'react-icons/fa'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useGetVendorsQuery, useGetFavoritesQuery, useAddFavoriteMutation, useRemoveFavoriteMutation } from '../__data__/api'
 import { URLs } from '../__data__/urls'
 import { useAppSelector } from '../__data__/store'
+import { useToast } from '../hooks/useToast'
+import { VendorCard } from '../components/ui'
 
 const cities = ['Все города', 'Москва', 'Санкт-Петербург', 'Екатеринбург', 'Новосибирск', 'Казань', 'Нижний Новгород']
 const categories = ['Все категории', 'Кейтеринг', 'Фото и видео', 'Декор', 'Развлечения', 'Площадки', 'Транспорт']
 
-const VendorCard = ({ vendor, isFavorite, onToggleFavorite }: { vendor: any; isFavorite: boolean; onToggleFavorite: () => void }) => {
+const CatalogVendorCard = ({ vendor, isFavorite, onToggleFavorite }: { vendor: any; isFavorite: boolean; onToggleFavorite: () => void }) => {
   const navigate = useNavigate()
-  const bg = useColorModeValue('white', 'gray.800')
-  const hoverBg = useColorModeValue('gray.50', 'gray.700')
   
-  const handleFavoriteClick = (e: React.MouseEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
-    onToggleFavorite()
-  }
-
-  const handleChatClick = (e: React.MouseEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
+  const handleChatClick = () => {
     navigate(URLs.messenger.makeChatUrl(vendor.id))
   }
   
   return (
-    <Box
-      borderWidth="1px"
-      borderRadius="lg"
-      overflow="hidden"
-      bg={bg}
-      _hover={{ transform: 'translateY(-4px)', boxShadow: 'lg', bg: hoverBg }}
-      transition="all 0.3s"
-      position="relative"
-    >
-      <Box
-        as={Link}
-        to={`${URLs.vendorProfile.url}?id=${vendor.id}`}
-        h="200px"
-        bg="gray.100"
-        position="relative"
-        display="block"
-      >
-        <Badge 
-          position="absolute" 
-          top={2} 
-          right={2} 
-          colorScheme={vendor.isOrganizer ? 'purple' : 'blue'}
-        >
-          {vendor.isOrganizer ? 'Организатор' : 'Подрядчик'}
-        </Badge>
-        <HStack position="absolute" top={2} left={2} spacing={1} zIndex={1}>
-          <Tooltip label="Написать сообщение">
-            <IconButton
-              aria-label="Написать сообщение"
-              icon={<FaComments />}
-              size="sm"
-              bg="white"
-              _hover={{ bg: 'gray.100' }}
-              onClick={handleChatClick}
-            />
-          </Tooltip>
-          <Tooltip label={isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}>
-            <IconButton
-              aria-label={isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}
-              icon={isFavorite ? <FaHeart color="red" /> : <FaRegHeart />}
-              size="sm"
-              bg="white"
-              _hover={{ bg: 'gray.100' }}
-              onClick={handleFavoriteClick}
-            />
-          </Tooltip>
-        </HStack>
-      </Box>
-      <Box p={4}>
-        <VStack align="stretch" spacing={3}>
-          <VStack align="start" spacing={1}>
-            <Heading size="md" as={Link} to={`${URLs.vendorProfile.url}?id=${vendor.id}`}>
-              {vendor.companyName}
-            </Heading>
-            <HStack fontSize="sm" color="gray.600">
-              <FaMapMarkerAlt />
-              <Text>{vendor.city}</Text>
-            </HStack>
-          </VStack>
-          
-          <HStack justify="space-between">
-            <HStack>
-              <AiFillStar color="#f6ad55" />
-              <Text fontWeight="bold">{vendor.rating}</Text>
-              <Text fontSize="sm" color="gray.600">({vendor.reviewsCount})</Text>
-            </HStack>
-            {vendor.contactPerson && (
-              <Text fontSize="sm" color="gray.600">{vendor.contactPerson}</Text>
-            )}
-          </HStack>
-          
-          <Button 
-            size="sm" 
-            colorScheme="pink" 
-            width="100%"
-            as={Link}
-            to={`${URLs.vendorProfile.url}?id=${vendor.id}`}
-          >
-            Посмотреть услуги
-          </Button>
-        </VStack>
-      </Box>
-    </Box>
+    <VendorCard
+      vendor={vendor}
+      isFavorite={isFavorite}
+      onToggleFavorite={onToggleFavorite}
+      onChatClick={handleChatClick}
+    />
   )
 }
 
@@ -155,22 +68,26 @@ const CatalogPage = () => {
   const { data: favorites = [] } = useGetFavoritesQuery(currentUserId || 0, { skip: !currentUserId })
   const [addFavorite] = useAddFavoriteMutation()
   const [removeFavorite] = useRemoveFavoriteMutation()
+  const { showError, showSuccess } = useToast()
   
   const favoriteIds = favorites.map((v: any) => v.id)
   
   const toggleFavorite = async (vendorId: number) => {
     if (!currentUserId) {
-      alert('Необходимо войти в систему для добавления в избранное')
+      showError('Требуется авторизация', 'Необходимо войти в систему для добавления в избранное')
       return
     }
     
     try {
       if (favoriteIds.includes(vendorId)) {
         await removeFavorite({ userId: currentUserId, vendorId }).unwrap()
+        showSuccess('Удалено из избранного')
       } else {
         await addFavorite({ userId: currentUserId, vendorId }).unwrap()
+        showSuccess('Добавлено в избранное')
       }
     } catch (error) {
+      showError('Ошибка', 'Не удалось обновить избранное')
     }
   }
 
@@ -308,7 +225,7 @@ const CatalogPage = () => {
               </Text>
               <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={4}>
                 {filtered.map(vendor => (
-                  <VendorCard 
+                  <CatalogVendorCard 
                     key={vendor.id} 
                     vendor={vendor}
                     isFavorite={favoriteIds.includes(vendor.id)}

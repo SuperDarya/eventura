@@ -9,15 +9,12 @@ import {
   VStack,
   HStack,
   Icon,
-  Stat,
-  StatLabel,
-  StatNumber,
-  StatHelpText,
   useColorModeValue
 } from '@chakra-ui/react'
 import { FaUsers, FaSearch, FaShieldAlt, FaHeadset, FaUtensils, FaMusic, FaCamera, FaPalette, FaBuilding, FaCar } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { URLs } from '../../__data__/urls'
+import { StatCard } from '../../components/ui'
 
 const features = [
   {
@@ -178,10 +175,7 @@ const HomePage = () => {
         <Container maxW="container.xl">
           <SimpleGrid columns={{ base: 2, md: 4 }} spacing={8}>
             {stats.map((stat, index) => (
-              <Stat key={index} textAlign="center">
-                <StatNumber fontSize="4xl" color="pink.400">{stat.number}</StatNumber>
-                <StatLabel fontSize="lg">{stat.label}</StatLabel>
-              </Stat>
+              <StatCard key={index} number={stat.number} label={stat.label} />
             ))}
           </SimpleGrid>
         </Container>

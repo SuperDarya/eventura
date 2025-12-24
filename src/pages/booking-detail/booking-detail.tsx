@@ -32,6 +32,7 @@ import { useGetBookingQuery, useGetBookingsQuery, useUpdateBookingMutation, useC
 import { Link } from 'react-router-dom'
 import { URLs } from '../../__data__/urls'
 import { useAppSelector, useAppDispatch } from '../../__data__/store'
+import { useToast } from '../../hooks/useToast'
 
 const BookingDetailPage = () => {
   const { id } = useParams<{ id: string }>()
@@ -51,6 +52,7 @@ const BookingDetailPage = () => {
   
   const { data: favorites = [] } = useGetFavoritesQuery(currentUser?.id, { skip: !currentUser?.id })
   const [updateBooking] = useUpdateBookingMutation()
+  const { showError, showSuccess } = useToast()
   
   const { isOpen: isAddModalOpen, onOpen: onAddModalOpen, onClose: onAddModalClose } = useDisclosure()
   const { isOpen: isDeleteModalOpen, onOpen: onDeleteModalOpen, onClose: onDeleteModalClose } = useDisclosure()
@@ -81,11 +83,12 @@ const BookingDetailPage = () => {
         }).unwrap()
         // Обновляем список бронирований
         refetchBookings()
+        showSuccess('Подрядчик удален', 'Подрядчик успешно удален из бронирования')
       }
       setVendorToDelete(null)
       onDeleteModalClose()
     } catch (error) {
-      alert('Ошибка при удалении подрядчика')
+      showError('Ошибка при удалении подрядчика', 'Попробуйте еще раз')
     }
   }
   
@@ -367,12 +370,12 @@ const AddVendorModal = ({
   
   const handleAddVendor = async (vendorId: number) => {
     if (!eventId || !bookingDate) {
-      alert('Ошибка: отсутствует информация о мероприятии')
+      showError('Ошибка', 'Отсутствует информация о мероприятии')
       return
     }
     
     if (!currentUser?.id) {
-      alert('Необходимо войти в систему для добавления подрядчика')
+      showError('Требуется авторизация', 'Необходимо войти в систему для добавления подрядчика')
       return
     }
     
@@ -392,10 +395,11 @@ const AddVendorModal = ({
         date: bookingDate
       }).unwrap()
       
+      showSuccess('Подрядчик добавлен', 'Подрядчик успешно добавлен в бронирование')
       onVendorAdded?.()
       onClose()
     } catch (error) {
-      alert('Ошибка при добавлении подрядчика')
+      showError('Ошибка при добавлении подрядчика', 'Попробуйте еще раз')
     }
   }
   

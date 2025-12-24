@@ -39,6 +39,7 @@ import { URLs } from '../../__data__/urls'
 import { AiFillStar } from 'react-icons/ai'
 import { useAppDispatch, useAppSelector } from '../../__data__/store'
 import { updateField, setFormData as setFormDataAction, clearForm } from '../../__data__/bookingFormSlice'
+import { useToast } from '../../hooks/useToast'
 
 const eventTypes = ['Свадьба', 'День рождения', 'Корпоратив', 'Гендер-пати', 'Выпускной', 'Юбилей', 'Детский праздник']
 const cities = ['Москва', 'Санкт-Петербург', 'Екатеринбург', 'Новосибирск', 'Казань', 'Нижний Новгород']
@@ -104,6 +105,7 @@ const BookingPage = () => {
   const [createEvent] = useCreateEventMutation()
   const [createBooking] = useCreateBookingMutation()
   const { data: favorites = [] } = useGetFavoritesQuery(currentUser?.id, { skip: !showFavorites || !currentUser?.id })
+  const { showError, showSuccess, showInfo } = useToast()
   
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [paymentData, setPaymentData] = useState<any>(null)
@@ -117,7 +119,7 @@ const BookingPage = () => {
   
   const handleAISearch = async () => {
     if (!formData.eventType || !formData.date || !formData.guestsCount || !formData.city) {
-      alert('Заполните все обязательные поля')
+      showError('Заполните все обязательные поля', 'Пожалуйста, заполните все поля, отмеченные звездочкой')
       return
     }
     
@@ -141,8 +143,9 @@ const BookingPage = () => {
       setAiResult(result)
       setActiveStep(2)
       setClarificationQuestion('')
+      showSuccess('Подбор завершен', `Найдено ${result.vendors?.length || 0} подрядчиков`)
       } catch (error) {
-        alert('Ошибка при поиске подрядчиков')
+        showError('Ошибка при поиске подрядчиков', 'Попробуйте еще раз или выберите подрядчиков вручную')
     }
   }
   
@@ -171,12 +174,12 @@ const BookingPage = () => {
   
   const handleBook = async () => {
     if (selectedVendors.length === 0) {
-      alert('Выберите хотя бы одного подрядчика')
+      showError('Выберите подрядчиков', 'Выберите хотя бы одного подрядчика для продолжения')
       return
     }
     
     if (!currentUser?.id) {
-      alert('Необходимо войти в систему для создания бронирования')
+      showError('Требуется авторизация', 'Необходимо войти в систему для создания бронирования')
       return
     }
     
@@ -236,18 +239,21 @@ const BookingPage = () => {
       
       // Перенаправляем на детальную страницу первого бронирования
       if (firstBookingId) {
-        navigate(URLs.bookingDetail.makeUrl(firstBookingId))
+        showSuccess('Бронирование создано', 'Переходим к деталям бронирования...')
+        setTimeout(() => {
+          navigate(URLs.bookingDetail.makeUrl(firstBookingId))
+        }, 1000)
       } else {
-        alert('Ошибка при создании бронирования')
+        showError('Ошибка при создании бронирования', 'Попробуйте еще раз')
       }
     } catch (error) {
-      alert('Ошибка при создании бронирования')
+      showError('Ошибка при создании бронирования', 'Попробуйте еще раз или обратитесь в поддержку')
     }
   }
   
   const handlePayment = () => {
     // TODO: Интеграция с платежной системой
-    alert('TODO: Интеграция с платежной системой. Бронирование сохранено!')
+    showInfo('Интеграция с платежной системой', 'Функция оплаты находится в разработке. Бронирование сохранено!')
     onClose()
     // Перенаправление на страницу профиля или успеха
   }
@@ -486,17 +492,18 @@ const BookingPage = () => {
                   >
                     Выбрать из избранных
                   </Button>
-                  <Button 
-                    colorScheme="blue" 
-                    as={Link}
-                    to={URLs.catalog.url}
-                    onClick={() => {
-                      // Сохраняем текущий прогресс при переходе в каталог
-                      dispatch(setFormDataAction({ ...formData, selectedVendors }))
-                    }}
-                  >
-                    Перейти в каталог
-                  </Button>
+                    <Button 
+                      colorScheme="pink" 
+                      variant="outline"
+                      as={Link}
+                      to={URLs.catalog.url}
+                      onClick={() => {
+                        // Сохраняем текущий прогресс при переходе в каталог
+                        dispatch(setFormDataAction({ ...formData, selectedVendors }))
+                      }}
+                    >
+                      Перейти в каталог
+                    </Button>
                 </HStack>
                 
                 {showFavorites && (

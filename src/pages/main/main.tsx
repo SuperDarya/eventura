@@ -15,7 +15,10 @@ import {
   Avatar,
   HStack,
   VStack,
-  Skeleton
+  Skeleton,
+  Select,
+  FormControl,
+  FormLabel
 } from '@chakra-ui/react'
 import useGenerate from '../hooks/useGenerate'
 import { AiFillStar } from 'react-icons/ai'
@@ -235,10 +238,10 @@ export const MainPage = () => {
 
           <Box>
             <Text mb={2}>Язык:</Text>
-            <select id="lang" name="lang" style={{ width: '100%', padding: '8px', borderRadius: '6px', border: '1px solid #E2E8F0' }}>
-              <option value="ru">Russian</option>
+            <Select id="lang" name="lang" placeholder="Выберите язык">
+              <option value="ru">Русский</option>
               <option value="en">English</option>
-            </select>
+            </Select>
           </Box>
 
           <Box>
@@ -248,11 +251,12 @@ export const MainPage = () => {
 
           <Button 
             type="submit" 
-            colorScheme="blue" 
+            colorScheme="pink" 
             size="lg"
             isLoading={isGenerating}
+            loadingText="Генерация..."
           >
-            Generate
+            Сгенерировать
           </Button>
         </Stack>
       </Box>
