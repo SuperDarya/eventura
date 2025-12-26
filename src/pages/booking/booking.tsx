@@ -588,24 +588,7 @@ const BookingPage = () => {
             
             {/* Приблизительная стоимость - только для ИИ */}
             {aiResult && aiResult.estimatedCosts && aiResult.estimatedCosts.length > 0 && (
-              <Card>
-                <CardBody>
-                  <Heading size="md" mb={4}>Приблизительная стоимость</Heading>
-                  <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
-                    {aiResult.estimatedCosts.map((cost: any, index: number) => (
-                      <Box key={index} p={3} bg="gray.50" borderRadius="md">
-                        <Text fontWeight="bold">{cost.category}</Text>
-                        <Text fontSize="xl" color="brand.500">
-                          {cost.estimatedPrice?.toLocaleString()} ₽
-                        </Text>
-                        {cost.notes && (
-                          <Text fontSize="sm" color="gray.600">{cost.notes}</Text>
-                        )}
-                      </Box>
-                    ))}
-                  </SimpleGrid>
-                </CardBody>
-              </Card>
+              <EstimatedCostsCard costs={aiResult.estimatedCosts} />
             )}
             
             {/* Выбранные подрядчики */}
@@ -707,6 +690,33 @@ const BookingPage = () => {
   )
 }
 
+const EstimatedCostsCard = ({ costs }: { costs: any[] }) => {
+  const costBg = useColorModeValue('gray.50', 'gray.700')
+  const costTextColor = useColorModeValue('gray.900', 'gray.100')
+  const costNotesColor = useColorModeValue('gray.600', 'gray.300')
+  
+  return (
+    <Card>
+      <CardBody>
+        <Heading size="md" mb={4}>Приблизительная стоимость</Heading>
+        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
+          {costs.map((cost: any, index: number) => (
+            <Box key={index} p={3} bg={costBg} borderRadius="md">
+              <Text fontWeight="bold" color={costTextColor}>{cost.category}</Text>
+              <Text fontSize="xl" color="brand.500">
+                {cost.estimatedPrice?.toLocaleString()} ₽
+              </Text>
+              {cost.notes && (
+                <Text fontSize="sm" color={costNotesColor}>{cost.notes}</Text>
+              )}
+            </Box>
+          ))}
+        </SimpleGrid>
+      </CardBody>
+    </Card>
+  )
+}
+
 const VendorSelectionCard = ({ 
   vendor, 
   isSelected, 
@@ -717,11 +727,14 @@ const VendorSelectionCard = ({
   onSelect: () => void
 }) => {
   const { data: vendorData, isLoading } = useGetVendorQuery(vendor.vendorId, { skip: !vendor.vendorId })
+  const borderColor = useColorModeValue('gray.200', 'gray.600')
+  const textColor = useColorModeValue('gray.900', 'gray.100')
+  const secondaryTextColor = useColorModeValue('gray.600', 'gray.300')
   
   return (
     <Card 
       borderWidth={isSelected ? '2px' : '1px'}
-      borderColor={isSelected ? 'brand.400' : 'gray.200'}
+      borderColor={isSelected ? 'brand.400' : borderColor}
       cursor="pointer"
       onClick={onSelect}
       _hover={{ boxShadow: 'lg' }}
@@ -732,7 +745,7 @@ const VendorSelectionCard = ({
         ) : (
           <VStack align="stretch" spacing={3}>
             <HStack justify="space-between">
-              <Heading size="sm">{vendorData?.companyName || `Подрядчик #${vendor.vendorId}`}</Heading>
+              <Heading size="sm" color={textColor}>{vendorData?.companyName || `Подрядчик #${vendor.vendorId}`}</Heading>
               <Badge colorScheme={isSelected ? 'brand' : 'gray'}>
                 {isSelected ? 'Выбран' : 'Не выбран'}
               </Badge>
@@ -740,13 +753,13 @@ const VendorSelectionCard = ({
             {vendorData && (
               <HStack>
                 <AiFillStar color="#f6ad55" />
-                <Text>{vendorData.rating}</Text>
-                <Text fontSize="sm" color="gray.600">
+                <Text color={textColor}>{vendorData.rating}</Text>
+                <Text fontSize="sm" color={secondaryTextColor}>
                   ({vendorData.reviewsCount} отзывов)
                 </Text>
               </HStack>
             )}
-            <Text fontSize="sm" color="gray.600">{vendor.reason}</Text>
+            <Text fontSize="sm" color={secondaryTextColor}>{vendor.reason}</Text>
             <Text fontWeight="bold" color="brand.500">
               {vendor.estimatedPrice?.toLocaleString()} ₽
             </Text>
@@ -766,10 +779,14 @@ const ManualVendorCard = ({
   isSelected: boolean
   onSelect: () => void
 }) => {
+  const borderColor = useColorModeValue('gray.200', 'gray.600')
+  const textColor = useColorModeValue('gray.900', 'gray.100')
+  const secondaryTextColor = useColorModeValue('gray.600', 'gray.300')
+  
   return (
     <Card 
       borderWidth={isSelected ? '2px' : '1px'}
-      borderColor={isSelected ? 'brand.400' : 'gray.200'}
+      borderColor={isSelected ? 'brand.400' : borderColor}
       cursor="pointer"
       onClick={onSelect}
       _hover={{ boxShadow: 'lg' }}
@@ -777,19 +794,19 @@ const ManualVendorCard = ({
       <CardBody>
         <VStack align="stretch" spacing={3}>
           <HStack justify="space-between">
-            <Heading size="sm">{vendor.companyName || `Подрядчик #${vendor.id}`}</Heading>
+            <Heading size="sm" color={textColor}>{vendor.companyName || `Подрядчик #${vendor.id}`}</Heading>
             <Badge colorScheme={isSelected ? 'brand' : 'gray'}>
               {isSelected ? 'Выбран' : 'Не выбран'}
             </Badge>
           </HStack>
           <HStack>
             <AiFillStar color="#f6ad55" />
-            <Text>{vendor.rating}</Text>
-            <Text fontSize="sm" color="gray.600">
+            <Text color={textColor}>{vendor.rating}</Text>
+            <Text fontSize="sm" color={secondaryTextColor}>
               ({vendor.reviewsCount} отзывов)
             </Text>
           </HStack>
-          <Text fontSize="sm" color="gray.600">{vendor.city}</Text>
+          <Text fontSize="sm" color={secondaryTextColor}>{vendor.city}</Text>
           {isSelected && (
             <Button size="sm" colorScheme="red" variant="outline" onClick={(e) => {
               e.stopPropagation()
