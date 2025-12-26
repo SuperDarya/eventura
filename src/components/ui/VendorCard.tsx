@@ -55,6 +55,7 @@ export const VendorCard = ({
 }: VendorCardProps) => {
   const bg = useColorModeValue('white', 'gray.800')
   const hoverBg = useColorModeValue('gray.50', 'gray.700')
+  const iconColor = useColorModeValue('#4A5568', '#E2E8F0')
   
   const imageIndex = (vendor.id - 1) % vendorImages.length
   const vendorImage = vendorImages[imageIndex]
@@ -116,9 +117,10 @@ export const VendorCard = ({
               <Tooltip label="Написать сообщение">
                 <IconButton
                   aria-label="Написать сообщение"
-                  icon={<FaComments />}
+                  icon={<FaComments color={iconColor} />}
                   size="sm"
                   bg="white"
+                  color={iconColor}
                   _hover={{ bg: 'gray.100', transform: 'scale(1.1)' }}
                   onClick={handleChatClick}
                 />
@@ -128,9 +130,10 @@ export const VendorCard = ({
               <Tooltip label={isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}>
                 <IconButton
                   aria-label={isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}
-                  icon={isFavorite ? <FaHeart color="red" /> : <FaRegHeart />}
+                  icon={isFavorite ? <FaHeart color="red" /> : <FaRegHeart color={iconColor} />}
                   size="sm"
                   bg="white"
+                  color={iconColor}
                   _hover={{ bg: 'gray.100', transform: 'scale(1.1)' }}
                   onClick={handleFavoriteClick}
                 />
