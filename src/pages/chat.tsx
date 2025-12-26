@@ -71,7 +71,8 @@ const ChatPage = () => {
         setSessionId(data.sessionId)
       }
       
-      setMessages(prev => [...prev, { role: 'assistant', content: data.message || 'Извините, произошла ошибка' }])
+      const aiMessage = data.message || 'Извините, произошла ошибка'
+      setMessages(prev => [...prev, { role: 'assistant', content: aiMessage }])
       
       if (data.bookingData && data.bookingData.shouldBook) {
         const bookingData: BookingData = data.bookingData
@@ -98,10 +99,11 @@ const ChatPage = () => {
           navigate(URLs.booking.url)
         }, 500)
       }
-    } catch (error) {
+    } catch (error: any) {
+      const errorMessage = error?.data?.message || error?.message || 'Произошла ошибка при обработке запроса'
       setMessages(prev => [...prev, { 
         role: 'assistant', 
-        content: 'Извините, произошла ошибка при обработке запроса. Попробуйте еще раз.' 
+        content: `Извините, ${errorMessage}. Попробуйте еще раз.` 
       }])
     }
   }
