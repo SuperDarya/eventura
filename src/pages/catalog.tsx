@@ -23,6 +23,7 @@ import {
   Tooltip
 } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
+import { FaHeart } from 'react-icons/fa'
 import { useGetVendorsQuery, useGetFavoritesQuery, useAddFavoriteMutation, useRemoveFavoriteMutation } from '../__data__/api'
 import { URLs } from '../__data__/urls'
 import { useAppSelector } from '../__data__/store'

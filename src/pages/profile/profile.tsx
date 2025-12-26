@@ -42,6 +42,7 @@ import {
   AlertDialogHeader,
   AlertDialogContent,
   AlertDialogOverlay,
+  Stack,
 } from '@chakra-ui/react'
 import { AiFillStar, AiOutlineEdit, AiOutlineDelete, AiOutlinePlus } from 'react-icons/ai'
 import { FaMapMarkerAlt, FaHeart, FaCalendar } from 'react-icons/fa'
