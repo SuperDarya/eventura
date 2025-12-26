@@ -22,9 +22,10 @@ import {
   VStack,
   Divider,
 } from '@chakra-ui/react'
-import { Link as RouterLink, useLocation } from 'react-router-dom'
+import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom'
 import { FaMoon, FaSun, FaBars, FaTimes } from 'react-icons/fa'
 import { URLs } from '../../__data__/urls'
+import { useAppSelector } from '../../__data__/store'
 
 const NavLink = ({ to, children }: { to: string; children: React.ReactNode }) => {
   const location = useLocation()
@@ -58,10 +59,21 @@ const NavLink = ({ to, children }: { to: string; children: React.ReactNode }) =>
 }
 
 export const Header = () => {
+  const navigate = useNavigate()
   const bg = useColorModeValue('white', 'gray.800')
   const borderColor = useColorModeValue('gray.200', 'gray.700')
   const { colorMode, toggleColorMode } = useColorMode()
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated)
+  const currentUser = useAppSelector(state => state.auth.user)
+
+  const handleChatClick = () => {
+    if (!isAuthenticated || !currentUser) {
+      navigate(URLs.auth.url)
+    } else {
+      navigate(URLs.chat.url)
+    }
+  }
 
   return (
     <Box
@@ -107,8 +119,7 @@ export const Header = () => {
             <NavLink to={URLs.messenger.url}>Сообщения</NavLink>
             <NavLink to={URLs.profile.url}>Профиль</NavLink>
             <Button
-              as={RouterLink}
-              to={URLs.chat.url}
+              onClick={handleChatClick}
               colorScheme="brand"
               size="sm"
               _hover={{ textDecoration: 'none' }}
@@ -167,11 +178,12 @@ export const Header = () => {
               </NavLink>
               <Divider />
               <Button
-                as={RouterLink}
-                to={URLs.chat.url}
+                onClick={() => {
+                  onClose()
+                  handleChatClick()
+                }}
                 colorScheme="brand"
                 width="100%"
-                onClick={onClose}
                 _hover={{ textDecoration: 'none' }}
               >
                 Чат с ИИ

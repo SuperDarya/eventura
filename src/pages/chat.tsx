@@ -14,7 +14,7 @@ import {
   Spinner,
   useColorModeValue
 } from '@chakra-ui/react'
-import { useAppDispatch } from '../__data__/store'
+import { useAppDispatch, useAppSelector } from '../__data__/store'
 import { setFormData } from '../__data__/bookingFormSlice'
 import { URLs } from '../__data__/urls'
 import { useAgentPromptMutation, BookingData } from '../__data__/api'
@@ -27,6 +27,8 @@ interface Message {
 const ChatPage = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
+  const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated)
+  const currentUser = useAppSelector(state => state.auth.user)
   const [agentPrompt, { isLoading: isAgentLoading }] = useAgentPromptMutation()
   const [messages, setMessages] = useState<Message[]>([
     { role: 'assistant', content: 'Здравствуйте! Я ИИ-консультант Eventura. Помогу вам с организацией мероприятия. Чем могу помочь?' }
@@ -37,6 +39,12 @@ const ChatPage = () => {
   
   const bgUser = useColorModeValue('blue.50', 'blue.900')
   const bgAssistant = useColorModeValue('gray.50', 'gray.800')
+  
+  useEffect(() => {
+    if (!isAuthenticated || !currentUser) {
+      navigate(URLs.auth.url)
+    }
+  }, [isAuthenticated, currentUser, navigate])
   
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -96,6 +104,10 @@ const ChatPage = () => {
         content: 'Извините, произошла ошибка при обработке запроса. Попробуйте еще раз.' 
       }])
     }
+  }
+
+  if (!isAuthenticated || !currentUser) {
+    return null
   }
   
   return (
