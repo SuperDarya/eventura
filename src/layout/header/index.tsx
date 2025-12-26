@@ -29,7 +29,7 @@ import { URLs } from '../../__data__/urls'
 const NavLink = ({ to, children }: { to: string; children: React.ReactNode }) => {
   const location = useLocation()
   const isActive = location.pathname === to
-  const activeColor = useColorModeValue('pink.500', 'pink.300')
+  const activeColor = useColorModeValue('brand.500', 'brand.300')
 
   return (
     <Link
@@ -38,7 +38,7 @@ const NavLink = ({ to, children }: { to: string; children: React.ReactNode }) =>
       fontWeight={isActive ? 'bold' : 'medium'}
       color={isActive ? activeColor : undefined}
       position="relative"
-      _hover={{ textDecoration: 'none', color: 'pink.400' }}
+      _hover={{ textDecoration: 'none', color: 'brand.400' }}
       _focus={{ boxShadow: 'none' }}
     >
       {children}
@@ -49,7 +49,7 @@ const NavLink = ({ to, children }: { to: string; children: React.ReactNode }) =>
           left="0"
           right="0"
           height="2px"
-          bg="pink.400"
+          bg="brand.400"
           borderRadius="full"
         />
       )}
@@ -92,7 +92,7 @@ export const Header = () => {
             <Text
               fontSize={{ base: 'xl', md: '2xl' }}
               fontWeight="bold"
-              bgGradient="linear(to-r, pink.400, pink.600)"
+              bgGradient="linear(to-r, brand.400, brand.600)"
               bgClip="text"
               cursor="pointer"
             >
@@ -109,7 +109,7 @@ export const Header = () => {
             <Button
               as={RouterLink}
               to={URLs.chat.url}
-              colorScheme="pink"
+              colorScheme="brand"
               size="sm"
               _hover={{ textDecoration: 'none' }}
             >
@@ -169,7 +169,7 @@ export const Header = () => {
               <Button
                 as={RouterLink}
                 to={URLs.chat.url}
-                colorScheme="pink"
+                colorScheme="brand"
                 width="100%"
                 onClick={onClose}
                 _hover={{ textDecoration: 'none' }}

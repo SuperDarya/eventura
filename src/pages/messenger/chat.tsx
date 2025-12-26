@@ -38,7 +38,7 @@ const ChatPage = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const bg = useColorModeValue('white', 'gray.800')
   const messageBg = useColorModeValue('gray.100', 'gray.700')
-  const myMessageBg = useColorModeValue('pink.100', 'pink.900')
+  const myMessageBg = useColorModeValue('brand.100', 'brand.900')
   const borderColor = useColorModeValue('gray.200', 'gray.700')
 
   const { data: messages = [], isLoading, refetch } = useGetMessagesQuery(
@@ -225,7 +225,7 @@ const ChatPage = () => {
           <IconButton
             aria-label="Отправить"
             icon={<FaPaperPlane />}
-            colorScheme="pink"
+            colorScheme="brand"
             onClick={handleSend}
             isDisabled={!messageText.trim()}
           />

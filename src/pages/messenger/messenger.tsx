@@ -16,7 +16,8 @@ import {
   Skeleton,
   SkeletonText,
   IconButton,
-  Tooltip
+  Tooltip,
+  Stack,
 } from '@chakra-ui/react'
 import { FaPlus, FaComments } from 'react-icons/fa'
 import { useGetChatsQuery, useGetFavoritesQuery } from '../../__data__/api'
@@ -64,18 +65,19 @@ const MessengerPage = () => {
 
   return (
     <Container maxW="container.lg" py={8}>
-      <HStack justify="space-between" mb={6}>
-        <Heading size="lg">Сообщения</Heading>
+      <Stack direction={{ base: 'column', md: 'row' }} justify="space-between" mb={6} spacing={4}>
+        <Heading size={{ base: 'md', md: 'lg' }}>Сообщения</Heading>
         <Tooltip label="Начать новый чат с избранным подрядчиком">
           <Button
             leftIcon={<FaPlus />}
-            colorScheme="pink"
+            colorScheme="brand"
             onClick={handleAddChat}
+            width={{ base: '100%', md: 'auto' }}
           >
             Новый чат
           </Button>
         </Tooltip>
-      </HStack>
+      </Stack>
 
       {chats.length === 0 ? (
         <Card bg={bg}>
@@ -90,7 +92,7 @@ const MessengerPage = () => {
               </Text>
               <Button
                 leftIcon={<FaPlus />}
-                colorScheme="pink"
+                colorScheme="brand"
                 onClick={handleAddChat}
               >
                 Перейти в каталог
@@ -142,7 +144,7 @@ const MessengerPage = () => {
                         {chat.lastMessage?.text || 'Нет сообщений'}
                       </Text>
                       {chat.unreadCount > 0 && (
-                        <Badge colorScheme="pink" borderRadius="full">
+                        <Badge colorScheme="brand" borderRadius="full">
                           {chat.unreadCount}
                         </Badge>
                       )}

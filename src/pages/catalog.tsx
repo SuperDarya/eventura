@@ -182,7 +182,7 @@ const CatalogPage = () => {
             </Select>
             <Button 
               onClick={() => setShowFavoritesOnly(!showFavoritesOnly)}
-              colorScheme={showFavoritesOnly ? 'pink' : 'gray'}
+              colorScheme={showFavoritesOnly ? 'brand' : 'gray'}
               variant={showFavoritesOnly ? 'solid' : 'outline'}
               size="sm"
               leftIcon={<FaHeart />}

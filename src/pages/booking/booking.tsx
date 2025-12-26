@@ -31,7 +31,7 @@ import {
   Progress,
   Radio,
   RadioGroup,
-  Stack
+  Stack,
 } from '@chakra-ui/react'
 import { useAiSearchMutation, useCreateEventMutation, useGetVendorQuery, useCreateBookingMutation, useGetFavoritesQuery, useGetVendorsQuery, useGetServicesQuery, api } from '../../__data__/api'
 import { Link, useNavigate } from 'react-router-dom'
@@ -263,15 +263,15 @@ const BookingPage = () => {
       <Heading size="lg" mb={8}>Планирование мероприятия</Heading>
       
       <Box mb={8}>
-        <Progress value={(activeStep / (steps.length - 1)) * 100} mb={4} colorScheme="pink" />
-        <HStack spacing={4} justify="center">
+        <Progress value={(activeStep / (steps.length - 1)) * 100} mb={4} colorScheme="brand" />
+        <Stack direction={{ base: 'column', md: 'row' }} spacing={4} justify="center" align="center">
           {steps.map((step, index) => (
             <VStack key={index} spacing={1}>
               <Box
                 w="40px"
                 h="40px"
                 borderRadius="full"
-                bg={index <= activeStep ? 'pink.400' : 'gray.200'}
+                bg={index <= activeStep ? 'brand.400' : 'gray.200'}
                 color={index <= activeStep ? 'white' : 'gray.600'}
                 display="flex"
                 alignItems="center"
@@ -285,7 +285,7 @@ const BookingPage = () => {
               </Text>
             </VStack>
           ))}
-        </HStack>
+        </Stack>
       </Box>
       
       {/* Уведомление о предзаполнении формы */}
@@ -326,7 +326,7 @@ const BookingPage = () => {
               />
             </FormControl>
             
-            <HStack>
+            <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
               <FormControl isRequired>
                 <FormLabel>Количество гостей</FormLabel>
                 <Input
@@ -346,7 +346,7 @@ const BookingPage = () => {
                   min={0}
                 />
               </FormControl>
-            </HStack>
+            </Stack>
             
             <FormControl isRequired>
               <FormLabel>Город</FormLabel>
@@ -375,7 +375,7 @@ const BookingPage = () => {
               <Text fontWeight="semibold" mb={4}>Как вы хотите выбрать подрядчиков?</Text>
               <RadioGroup value={selectionMode} onChange={(val: 'ai' | 'manual') => setSelectionMode(val)}>
                 <Stack direction="column" spacing={3} mb={6}>
-                  <Radio value="ai" colorScheme="pink">
+                  <Radio value="ai" colorScheme="brand">
                     <VStack align="start" spacing={1} ml={2}>
                       <Text fontWeight="medium">ИИ-подбор</Text>
                       <Text fontSize="sm" color="gray.600">
@@ -383,7 +383,7 @@ const BookingPage = () => {
                       </Text>
                     </VStack>
                   </Radio>
-                  <Radio value="manual" colorScheme="pink">
+                  <Radio value="manual" colorScheme="brand">
                     <VStack align="start" spacing={1} ml={2}>
                       <Text fontWeight="medium">Выбрать самостоятельно</Text>
                       <Text fontSize="sm" color="gray.600">
@@ -396,7 +396,7 @@ const BookingPage = () => {
             </Box>
             
             <Button 
-              colorScheme="pink" 
+              colorScheme="brand" 
               size="lg"
               onClick={() => {
                 dispatch(setFormDataAction(formData))
@@ -432,7 +432,7 @@ const BookingPage = () => {
                       onChange={(e) => setClarificationAnswer(e.target.value)}
                       rows={3}
                     />
-                    <HStack>
+                    <Stack direction={{ base: 'column', md: 'row' }} spacing={3}>
                       <Button onClick={handleAnswerClarification} colorScheme="blue">
                         Отправить ответ
                       </Button>
@@ -442,7 +442,7 @@ const BookingPage = () => {
                       }}>
                         Пропустить
                       </Button>
-                    </HStack>
+                    </Stack>
                   </>
                 ) : (
                   <>
@@ -454,7 +454,7 @@ const BookingPage = () => {
                       создаст концепцию мероприятия и оценит стоимость услуг.
                     </Text>
                     <Button 
-                      colorScheme="pink" 
+                      colorScheme="brand" 
                       size="lg"
                       onClick={handleAISearch}
                       isLoading={isSearching}
@@ -469,7 +469,7 @@ const BookingPage = () => {
                           <AlertIcon />
                           Подбор завершен! Найдено {aiResult.vendors?.length || 0} подрядчиков
                         </Alert>
-                        <Button onClick={() => setActiveStep(2)} colorScheme="pink">
+                        <Button onClick={() => setActiveStep(2)} colorScheme="brand">
                           Просмотреть результаты
                         </Button>
                       </Box>
@@ -484,16 +484,16 @@ const BookingPage = () => {
                   Выберите подрядчиков
                 </Text>
                 
-                <HStack spacing={4}>
+                <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
                   <Button 
-                    colorScheme="pink" 
+                    colorScheme="brand" 
                     variant={showFavorites ? "solid" : "outline"}
                     onClick={() => setShowFavorites(true)}
                   >
                     Выбрать из избранных
                   </Button>
                     <Button 
-                      colorScheme="pink" 
+                      colorScheme="brand" 
                       variant="outline"
                       as={Link}
                       to={URLs.catalog.url}
@@ -504,7 +504,7 @@ const BookingPage = () => {
                     >
                       Перейти в каталог
                     </Button>
-                </HStack>
+                </Stack>
                 
                 {showFavorites && (
                   <Box>
@@ -531,7 +531,7 @@ const BookingPage = () => {
                         </SimpleGrid>
                         {selectedVendors.length > 0 && (
                           <Button 
-                            colorScheme="pink" 
+                            colorScheme="brand" 
                             size="lg"
                             onClick={() => setActiveStep(2)}
                           >
@@ -590,7 +590,7 @@ const BookingPage = () => {
                     {aiResult.estimatedCosts.map((cost: any, index: number) => (
                       <Box key={index} p={3} bg="gray.50" borderRadius="md">
                         <Text fontWeight="bold">{cost.category}</Text>
-                        <Text fontSize="xl" color="pink.500">
+                        <Text fontSize="xl" color="brand.500">
                           {cost.estimatedPrice?.toLocaleString()} ₽
                         </Text>
                         {cost.notes && (
@@ -642,19 +642,19 @@ const BookingPage = () => {
               )}
             </Box>
             
-            <HStack>
+            <Stack direction={{ base: 'column', md: 'row' }} spacing={3}>
               <Button variant="outline" onClick={() => setActiveStep(1)}>
                 Назад
               </Button>
               <Button 
-                colorScheme="pink" 
+                colorScheme="brand" 
                 size="lg"
                 onClick={handleBook}
                 isDisabled={selectedVendors.length === 0}
               >
                 Забронировать ({selectedVendors.length})
               </Button>
-            </HStack>
+            </Stack>
           </VStack>
         </Box>
       )}
@@ -682,7 +682,7 @@ const BookingPage = () => {
                 <Divider />
                 <HStack justify="space-between" fontSize="xl" fontWeight="bold">
                   <Text>Итого:</Text>
-                  <Text color="pink.500">
+                  <Text color="brand.500">
                     {paymentData.totalPrice.toLocaleString()} ₽
                   </Text>
                 </HStack>
@@ -690,7 +690,7 @@ const BookingPage = () => {
                   <AlertIcon />
                   <Text>TODO: Здесь будет интеграция с платежной системой</Text>
                 </Alert>
-                <Button colorScheme="pink" onClick={handlePayment} width="100%">
+                <Button colorScheme="brand" onClick={handlePayment} width="100%">
                   Оплатить
                 </Button>
               </VStack>
@@ -716,7 +716,7 @@ const VendorSelectionCard = ({
   return (
     <Card 
       borderWidth={isSelected ? '2px' : '1px'}
-      borderColor={isSelected ? 'pink.400' : 'gray.200'}
+      borderColor={isSelected ? 'brand.400' : 'gray.200'}
       cursor="pointer"
       onClick={onSelect}
       _hover={{ boxShadow: 'lg' }}
@@ -728,7 +728,7 @@ const VendorSelectionCard = ({
           <VStack align="stretch" spacing={3}>
             <HStack justify="space-between">
               <Heading size="sm">{vendorData?.companyName || `Подрядчик #${vendor.vendorId}`}</Heading>
-              <Badge colorScheme={isSelected ? 'pink' : 'gray'}>
+              <Badge colorScheme={isSelected ? 'brand' : 'gray'}>
                 {isSelected ? 'Выбран' : 'Не выбран'}
               </Badge>
             </HStack>
@@ -742,7 +742,7 @@ const VendorSelectionCard = ({
               </HStack>
             )}
             <Text fontSize="sm" color="gray.600">{vendor.reason}</Text>
-            <Text fontWeight="bold" color="pink.500">
+            <Text fontWeight="bold" color="brand.500">
               {vendor.estimatedPrice?.toLocaleString()} ₽
             </Text>
           </VStack>
@@ -764,7 +764,7 @@ const ManualVendorCard = ({
   return (
     <Card 
       borderWidth={isSelected ? '2px' : '1px'}
-      borderColor={isSelected ? 'pink.400' : 'gray.200'}
+      borderColor={isSelected ? 'brand.400' : 'gray.200'}
       cursor="pointer"
       onClick={onSelect}
       _hover={{ boxShadow: 'lg' }}
@@ -773,7 +773,7 @@ const ManualVendorCard = ({
         <VStack align="stretch" spacing={3}>
           <HStack justify="space-between">
             <Heading size="sm">{vendor.companyName || `Подрядчик #${vendor.id}`}</Heading>
-            <Badge colorScheme={isSelected ? 'pink' : 'gray'}>
+            <Badge colorScheme={isSelected ? 'brand' : 'gray'}>
               {isSelected ? 'Выбран' : 'Не выбран'}
             </Badge>
           </HStack>

@@ -203,12 +203,12 @@ const ProfilePage = () => {
   
   return (
     <Container maxW="container.xl" py={8}>
-      <HStack justify="space-between" mb={8}>
-        <Heading size="lg">Личный кабинет</Heading>
-        <Button onClick={() => dispatch(logout())} variant="outline" size="sm">
+      <Stack direction={{ base: 'column', md: 'row' }} justify="space-between" mb={8} spacing={4}>
+        <Heading size={{ base: 'md', md: 'lg' }}>Личный кабинет</Heading>
+        <Button onClick={() => dispatch(logout())} variant="outline" size="sm" width={{ base: '100%', md: 'auto' }}>
           Выйти
         </Button>
-      </HStack>
+      </Stack>
       
       {isClient ? (
         <Tabs index={activeTab} onChange={setActiveTab}>
@@ -223,19 +223,20 @@ const ProfilePage = () => {
             {/* Мои мероприятия */}
             <TabPanel>
               <VStack spacing={4} align="stretch">
-                <HStack justify="space-between">
-                  <Text fontSize="lg" fontWeight="semibold">
+                <Stack direction={{ base: 'column', md: 'row' }} justify="space-between" spacing={3}>
+                  <Text fontSize={{ base: 'md', md: 'lg' }} fontWeight="semibold">
                     Мои мероприятия ({events.length})
                   </Text>
                   <Button 
                     as={Link} 
                     to={URLs.booking.url}
-                    colorScheme="pink"
+                    colorScheme="brand"
                     size="sm"
+                    width={{ base: '100%', md: 'auto' }}
                   >
                     Создать новое
                   </Button>
-                </HStack>
+                </Stack>
                 
                 {events.length > 0 ? (
                   <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
@@ -277,7 +278,7 @@ const ProfilePage = () => {
                     <Button 
                       as={Link} 
                       to={URLs.booking.url}
-                      colorScheme="pink"
+                      colorScheme="brand"
                     >
                       Создать мероприятие
                     </Button>
@@ -318,7 +319,7 @@ const ProfilePage = () => {
                             <Text fontSize="sm">
                               Подрядчик: #{booking.vendorId}
                             </Text>
-                            <Text fontSize="lg" fontWeight="bold" color="pink.500">
+                            <Text fontSize="lg" fontWeight="bold" color="brand.500">
                               {booking.totalPrice.toLocaleString()} ₽
                             </Text>
                           </VStack>
@@ -376,7 +377,7 @@ const ProfilePage = () => {
                               <IconButton
                                 aria-label="Удалить из избранного"
                                 icon={<FaHeart />}
-                                colorScheme="pink"
+                                colorScheme="brand"
                                 variant="ghost"
                                 onClick={() => handleRemoveFavorite(vendor.id)}
                               />
@@ -392,7 +393,7 @@ const ProfilePage = () => {
                     <Button 
                       as={Link} 
                       to={URLs.catalog.url}
-                      colorScheme="pink"
+                      colorScheme="brand"
                     >
                       Перейти в каталог
                     </Button>
@@ -427,8 +428,8 @@ const ProfilePage = () => {
             {/* Мои объявления */}
             <TabPanel>
               <VStack spacing={4} align="stretch">
-                <HStack justify="space-between">
-                  <Text fontSize="lg" fontWeight="semibold">
+                <Stack direction={{ base: 'column', md: 'row' }} justify="space-between" spacing={3}>
+                  <Text fontSize={{ base: 'md', md: 'lg' }} fontWeight="semibold">
                     Мои услуги ({services.length})
                   </Text>
                   <Button 
@@ -436,13 +437,14 @@ const ProfilePage = () => {
                       setEditingService(null)
                       onServiceModalOpen()
                     }}
-                    colorScheme="pink"
+                    colorScheme="brand"
                     size="sm"
                     leftIcon={<AiOutlinePlus />}
+                    width={{ base: '100%', md: 'auto' }}
                   >
                     Добавить услугу
                   </Button>
-                </HStack>
+                </Stack>
                 
                 {services.length > 0 ? (
                   <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
@@ -467,7 +469,7 @@ const ProfilePage = () => {
                         setEditingService(null)
                         onServiceModalOpen()
                       }}
-                      colorScheme="pink"
+                      colorScheme="brand"
                     >
                       Добавить первую услугу
                     </Button>
@@ -501,7 +503,7 @@ const ProfilePage = () => {
                             <Text fontSize="sm">
                               Клиент: #{booking.clientId}
                             </Text>
-                            <Text fontSize="lg" fontWeight="bold" color="pink.500">
+                            <Text fontSize="lg" fontWeight="bold" color="brand.500">
                               {booking.totalPrice.toLocaleString()} ₽
                             </Text>
                           </VStack>
@@ -526,7 +528,7 @@ const ProfilePage = () => {
                   </Text>
                   <Button 
                     onClick={onCalendarModalOpen}
-                    colorScheme="pink"
+                    colorScheme="brand"
                     size="sm"
                     leftIcon={<FaCalendar />}
                   >
@@ -627,7 +629,7 @@ const ProfilePage = () => {
               <Button variant="ghost" mr={3} onClick={onServiceModalClose}>
                 Отмена
               </Button>
-              <Button colorScheme="pink" type="submit">
+              <Button colorScheme="brand" type="submit">
                 {editingService ? 'Сохранить' : 'Создать'}
               </Button>
             </ModalFooter>
@@ -649,7 +651,7 @@ const ProfilePage = () => {
                   value={newDate}
                   onChange={(e) => setNewDate(e.target.value)}
                 />
-                <Button onClick={handleAddCalendarDate} colorScheme="pink">
+                <Button onClick={handleAddCalendarDate} colorScheme="brand">
                   Добавить
                 </Button>
               </HStack>
@@ -684,7 +686,7 @@ const ProfilePage = () => {
             <Button variant="ghost" mr={3} onClick={onCalendarModalClose}>
               Отмена
             </Button>
-            <Button colorScheme="pink" onClick={handleSaveCalendar}>
+            <Button colorScheme="brand" onClick={handleSaveCalendar}>
               Сохранить
             </Button>
           </ModalFooter>

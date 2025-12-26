@@ -73,7 +73,7 @@ export const ServiceCard = ({
             </Text>
           )}
           <HStack justify="space-between">
-            <Text fontSize="lg" fontWeight="bold" color="pink.500">
+            <Text fontSize="lg" fontWeight="bold" color="brand.400">
               {service.priceMin.toLocaleString()} - {service.priceMax.toLocaleString()} ₽
             </Text>
             {(service.unit || service.duration) && (

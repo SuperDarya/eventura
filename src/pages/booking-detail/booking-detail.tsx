@@ -116,12 +116,12 @@ const BookingDetailPage = () => {
   
   return (
     <Container maxW="container.xl" py={8}>
-      <HStack justify="space-between" mb={8}>
-        <Heading size="lg">Детали бронирования #{booking.id}</Heading>
-        <Button onClick={() => navigate(URLs.profile.url)} variant="outline">
+      <Stack direction={{ base: 'column', md: 'row' }} justify="space-between" mb={8} spacing={4}>
+        <Heading size={{ base: 'md', md: 'lg' }}>Детали бронирования #{booking.id}</Heading>
+        <Button onClick={() => navigate(URLs.profile.url)} variant="outline" width={{ base: '100%', md: 'auto' }}>
           Назад к профилю
         </Button>
-      </HStack>
+      </Stack>
       
       <VStack spacing={6} align="stretch">
         {/* Информация о мероприятии */}
@@ -173,17 +173,17 @@ const BookingDetailPage = () => {
         {/* Подрядчики */}
         <Card>
           <CardBody>
-            <HStack justify="space-between" mb={4}>
-              <Heading size="md">Подрядчики ({eventBookings.length})</Heading>
+            <Stack direction={{ base: 'column', md: 'row' }} justify="space-between" mb={4} spacing={3}>
+              <Heading size={{ base: 'sm', md: 'md' }}>Подрядчики ({eventBookings.length})</Heading>
               <Button
                 leftIcon={<FaPlus />}
-                colorScheme="pink"
+                colorScheme="brand"
                 size="sm"
                 onClick={onAddModalOpen}
               >
                 Добавить подрядчика
               </Button>
-            </HStack>
+            </Stack>
             
             {eventBookings.length > 0 ? (
               <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
@@ -300,7 +300,7 @@ const VendorInfoCard = ({ booking, onDelete }: { booking: any; onDelete: () => v
           )}
           <Box>
             <Text fontSize="sm" color="gray.600">Стоимость</Text>
-            <Text fontSize="xl" fontWeight="bold" color="pink.500">
+            <Text fontSize="xl" fontWeight="bold" color="brand.500">
               {booking.totalPrice.toLocaleString()} ₽
             </Text>
           </Box>
@@ -428,7 +428,7 @@ const AddVendorModal = ({
                       </HStack>
                       <Button
                         size="sm"
-                        colorScheme="pink"
+                        colorScheme="brand"
                         onClick={() => handleAddVendor(vendor.id)}
                       >
                         Добавить

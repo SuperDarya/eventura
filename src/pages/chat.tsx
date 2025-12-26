@@ -126,7 +126,7 @@ const ChatPage = () => {
                   bg={m.role === 'user' ? bgUser : bgAssistant} 
                   borderRadius="md" 
                   p={3} 
-                  maxW="80%"
+                  maxW={{ base: '90%', md: '80%' }}
                   wordBreak="break-word"
                 >
                   <Text whiteSpace="pre-wrap">{m.content}</Text>
@@ -150,7 +150,7 @@ const ChatPage = () => {
             <div ref={messagesEndRef} />
           </Stack>
         </Box>
-        <HStack>
+        <Stack direction={{ base: 'column', md: 'row' }} spacing={3}>
           <Input 
             value={text} 
             onChange={(e) => setText(e.target.value)} 
@@ -164,14 +164,15 @@ const ChatPage = () => {
             isDisabled={isAgentLoading}
           />
           <Button 
-            colorScheme="pink" 
+            colorScheme="brand" 
             onClick={send}
             isLoading={isAgentLoading}
             loadingText="Отправка..."
+            width={{ base: '100%', md: 'auto' }}
           >
             Отправить
           </Button>
-        </HStack>
+        </Stack>
       </VStack>
     </Container>
   )

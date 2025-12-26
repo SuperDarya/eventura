@@ -251,7 +251,7 @@ export const MainPage = () => {
 
           <Button 
             type="submit" 
-            colorScheme="pink" 
+            colorScheme="brand" 
             size="lg"
             isLoading={isGenerating}
             loadingText="Генерация..."

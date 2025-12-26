@@ -20,7 +20,7 @@ const Loader = ({ message, size = 'lg' }: LoaderProps) => {
           thickness="4px"
           speed="0.65s"
           emptyColor="gray.200"
-          color="pink.400"
+          color="brand.400"
           size={size}
         />
         {message && (

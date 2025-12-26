@@ -31,7 +31,8 @@ import {
   IconButton,
   Tooltip,
   Alert,
-  AlertIcon
+  AlertIcon,
+  Stack,
 } from '@chakra-ui/react'
 import { AiFillStar } from 'react-icons/ai'
 import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaHeart, FaRegHeart, FaComments } from 'react-icons/fa'
@@ -109,12 +110,12 @@ const VendorProfilePage = () => {
     <Container maxW="container.xl" py={8}>
       {/* Header */}
       <Box mb={8}>
-        <HStack spacing={6} mb={4} justify="space-between">
+        <Stack direction={{ base: 'column', md: 'row' }} spacing={6} mb={4} justify="space-between">
           <HStack spacing={6}>
-            <Avatar size="xl" name={vendor.companyName} />
+            <Avatar size={{ base: 'lg', md: 'xl' }} name={vendor.companyName} />
             <VStack align="start" spacing={2}>
-              <Heading size="lg">{vendor.companyName}</Heading>
-              <HStack>
+              <Heading size={{ base: 'md', md: 'lg' }}>{vendor.companyName}</Heading>
+              <Stack direction={{ base: 'column', sm: 'row' }} spacing={2}>
                 <Badge colorScheme={vendor.isOrganizer ? 'purple' : 'blue'}>
                   {vendor.isOrganizer ? 'Организатор' : 'Подрядчик'}
                 </Badge>
@@ -123,32 +124,32 @@ const VendorProfilePage = () => {
                   <Text fontWeight="bold">{vendor.rating}</Text>
                   <Text fontSize="sm" color="gray.600">({vendor.reviewsCount} отзывов)</Text>
                 </HStack>
-              </HStack>
+              </Stack>
             </VStack>
           </HStack>
-          <HStack spacing={2}>
+          <Stack direction={{ base: 'row', md: 'row' }} spacing={2}>
             <Tooltip label="Написать сообщение">
               <IconButton
                 aria-label="Написать сообщение"
                 icon={<FaComments />}
-                colorScheme="pink"
+                colorScheme="brand"
                 onClick={handleChatClick}
               />
             </Tooltip>
             <Tooltip label={isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}>
               <Button
                 leftIcon={isFavorite ? <FaHeart /> : <FaRegHeart />}
-                colorScheme={isFavorite ? 'pink' : 'gray'}
+                colorScheme={isFavorite ? 'brand' : 'gray'}
                 variant={isFavorite ? 'solid' : 'outline'}
                 onClick={toggleFavorite}
               >
                 {isFavorite ? 'В избранном' : 'В избранное'}
               </Button>
             </Tooltip>
-          </HStack>
-        </HStack>
+          </Stack>
+        </Stack>
         
-        <HStack spacing={4} flexWrap="wrap">
+        <Stack direction={{ base: 'column', sm: 'row' }} spacing={4} flexWrap="wrap">
           <HStack>
             <FaMapMarkerAlt />
             <Text>{vendor.city}</Text>
@@ -161,7 +162,7 @@ const VendorProfilePage = () => {
             <FaEnvelope />
             <Text fontSize="sm">{vendor.email}</Text>
           </HStack>
-        </HStack>
+        </Stack>
       </Box>
       
       <Tabs>

@@ -126,7 +126,7 @@ export const VendorCard = ({
               size="md"
               as={Link}
               to={`${URLs.vendorProfile.url}?id=${vendor.id}`}
-              _hover={{ color: 'pink.400' }}
+              _hover={{ color: 'brand.400' }}
             >
               {vendor.companyName}
             </Heading>
@@ -159,7 +159,7 @@ export const VendorCard = ({
 
           <Button
             size="sm"
-            colorScheme="pink"
+            colorScheme="brand"
             width="100%"
             as={Link}
             to={`${URLs.vendorProfile.url}?id=${vendor.id}`}

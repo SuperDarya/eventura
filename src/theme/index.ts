@@ -9,44 +9,68 @@ const theme = extendTheme({
   config,
   colors: {
     brand: {
-      50: '#fce7f3',
-      100: '#fbcfe5',
-      200: '#f9a8d4',
-      300: '#f472b6',
-      400: '#ec4899',
-      500: '#db2777', // Основной брендовый цвет
-      600: '#be185d',
-      700: '#9f1239',
-      800: '#831843',
-      900: '#500724',
+      50: '#e6f7f8',
+      100: '#b3e8eb',
+      200: '#80d9de',
+      300: '#4dcad1',
+      400: '#62BBC1', // Tropical Teal - основной брендовый цвет
+      500: '#62BBC1',
+      600: '#4e969b',
+      700: '#3a7175',
+      800: '#264c4f',
+      900: '#122729',
     },
     primary: {
-      50: '#fce7f3',
-      100: '#fbcfe5',
-      200: '#f9a8d4',
-      300: '#f472b6',
-      400: '#ec4899',
-      500: '#db2777',
-      600: '#be185d',
-      700: '#9f1239',
-      800: '#831843',
-      900: '#500724',
+      50: '#e6f7f8',
+      100: '#b3e8eb',
+      200: '#80d9de',
+      300: '#4dcad1',
+      400: '#62BBC1', // Tropical Teal
+      500: '#62BBC1',
+      600: '#4e969b',
+      700: '#3a7175',
+      800: '#264c4f',
+      900: '#122729',
+    },
+    dark: {
+      50: '#f5f5f5',
+      100: '#e0e0e0',
+      200: '#bdbdbd',
+      300: '#9e9e9e',
+      400: '#757575',
+      500: '#30332E', // Charcoal Brown
+      600: '#30332E',
+      700: '#212421',
+      800: '#010400', // Black
+      900: '#010400',
+    },
+    light: {
+      50: '#FFFBFC', // Snow
+      100: '#FFFBFC',
+      200: '#f5f5f5',
+      300: '#e0e0e0',
+      400: '#bdbdbd',
+      500: '#9e9e9e',
+      600: '#757575',
+      700: '#616161',
+      800: '#424242',
+      900: '#212121',
     },
   },
   fonts: {
-    heading: `'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`,
-    body: `'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`,
+    heading: `'Angst', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`,
+    body: `'Angst', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`,
   },
   components: {
     Button: {
       defaultProps: {
-        colorScheme: 'pink',
+        colorScheme: 'brand',
       },
       baseStyle: {
         fontWeight: '600',
         borderRadius: 'lg',
         _focus: {
-          boxShadow: '0 0 0 3px rgba(236, 72, 153, 0.3)',
+          boxShadow: '0 0 0 3px rgba(98, 187, 193, 0.3)',
         },
       },
       sizes: {
@@ -59,35 +83,35 @@ const theme = extendTheme({
     },
     Input: {
       defaultProps: {
-        focusBorderColor: 'pink.400',
+        focusBorderColor: 'brand.400',
       },
       baseStyle: {
         field: {
           _focus: {
-            boxShadow: '0 0 0 1px var(--chakra-colors-pink-400)',
+            boxShadow: '0 0 0 1px var(--chakra-colors-brand-400)',
           },
         },
       },
     },
     Select: {
       defaultProps: {
-        focusBorderColor: 'pink.400',
+        focusBorderColor: 'brand.400',
       },
       baseStyle: {
         field: {
           _focus: {
-            boxShadow: '0 0 0 1px var(--chakra-colors-pink-400)',
+            boxShadow: '0 0 0 1px var(--chakra-colors-brand-400)',
           },
         },
       },
     },
     Textarea: {
       defaultProps: {
-        focusBorderColor: 'pink.400',
+        focusBorderColor: 'brand.400',
       },
       baseStyle: {
         _focus: {
-          boxShadow: '0 0 0 1px var(--chakra-colors-pink-400)',
+          boxShadow: '0 0 0 1px var(--chakra-colors-brand-400)',
         },
       },
     },
@@ -112,10 +136,10 @@ const theme = extendTheme({
       baseStyle: {
         _hover: {
           textDecoration: 'none',
-          color: 'pink.400',
+          color: 'brand.400',
         },
         _focus: {
-          boxShadow: '0 0 0 3px rgba(236, 72, 153, 0.3)',
+          boxShadow: '0 0 0 3px rgba(98, 187, 193, 0.3)',
           borderRadius: 'sm',
         },
       },
@@ -125,8 +149,8 @@ const theme = extendTheme({
     global: (props: any) => ({
       body: {
         fontFamily: 'body',
-        color: props.colorMode === 'dark' ? 'gray.100' : 'gray.900',
-        bg: props.colorMode === 'dark' ? 'gray.900' : 'white',
+        color: props.colorMode === 'dark' ? 'light.50' : 'dark.800',
+        bg: props.colorMode === 'dark' ? 'dark.800' : 'light.50',
         lineHeight: '1.6',
         WebkitFontSmoothing: 'antialiased',
         MozOsxFontSmoothing: 'grayscale',
@@ -141,7 +165,7 @@ const theme = extendTheme({
   },
   shadows: {
     soft: '0 2px 20px rgba(0, 0, 0, 0.08)',
-    glow: '0 0 20px rgba(236, 72, 153, 0.3)',
+    glow: '0 0 20px rgba(98, 187, 193, 0.3)',
   },
 })
 

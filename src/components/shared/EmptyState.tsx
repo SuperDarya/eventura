@@ -42,7 +42,7 @@ export const EmptyState = ({
           </Text>
         )}
         {actionLabel && onAction && (
-          <Button colorScheme="pink" onClick={onAction} mt={2}>
+          <Button colorScheme="brand" onClick={onAction} mt={2}>
             {actionLabel}
           </Button>
         )}

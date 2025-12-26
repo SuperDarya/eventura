@@ -124,7 +124,7 @@ const AuthPage = () => {
 
                   <Button
                     type="submit"
-                    colorScheme="pink"
+                    colorScheme="brand"
                     width="full"
                     isLoading={isLoggingIn}
                     loadingText="Вход..."
@@ -190,7 +190,7 @@ const AuthPage = () => {
 
                   <Button
                     type="submit"
-                    colorScheme="pink"
+                    colorScheme="brand"
                     width="full"
                     isLoading={isRegistering}
                     loadingText="Регистрация..."

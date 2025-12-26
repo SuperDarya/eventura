@@ -1,5 +1,7 @@
 require('dotenv').config()
 const { Router } = require('express')
+const path = require('path')
+const express = require('express')
 
 const { agentRouter } = require('./agent')
 
@@ -29,5 +31,8 @@ router.use('/eventura/bookings', bookingsRouter)
 router.use('/eventura/ai-search', aiSearchRouter)
 router.use('/eventura/favorites', favoritesRouter)
 router.use('/eventura/messages', messagesRouter)
+
+// Статика для изображений
+router.use('/images', express.static(path.join(__dirname, '../images')))
 
 module.exports = router;

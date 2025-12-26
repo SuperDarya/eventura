@@ -8,7 +8,7 @@ interface StatCardProps {
   color?: string
 }
 
-export const StatCard = ({ number, label, helpText, color = 'pink.400' }: StatCardProps) => {
+export const StatCard = ({ number, label, helpText, color = 'brand.400' }: StatCardProps) => {
   return (
     <Stat textAlign="center" p={4} borderRadius="lg" bg="white" boxShadow="sm">
       <StatNumber fontSize="4xl" color={color}>
