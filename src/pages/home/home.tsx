@@ -19,8 +19,7 @@ import { Link } from 'react-router-dom'
 import { URLs } from '../../__data__/urls'
 import { StatCard } from '../../components/ui'
 
-// Путь к изображению через API
-const heroImage = '/api/images/i.webp'
+import heroImage from '../../images/i.webp'
 
 const features = [
   {
