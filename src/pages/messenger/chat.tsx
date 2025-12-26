@@ -32,7 +32,14 @@ const ChatPage = () => {
   const otherUserId = parseInt(userId || '0')
   
   const currentUser = useAppSelector(state => state.auth.user)
+  const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated)
   const currentUserId = currentUser?.id
+
+  useEffect(() => {
+    if (!isAuthenticated || !currentUser) {
+      navigate(URLs.auth.url)
+    }
+  }, [isAuthenticated, currentUser, navigate])
 
   const [messageText, setMessageText] = useState('')
   const messagesEndRef = useRef<HTMLDivElement>(null)
@@ -89,6 +96,10 @@ const ChatPage = () => {
       e.preventDefault()
       handleSend()
     }
+  }
+
+  if (!isAuthenticated || !currentUser) {
+    return null
   }
 
   if (!otherUserId) {

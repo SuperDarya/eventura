@@ -31,17 +31,25 @@ const MessengerPage = () => {
   const borderColor = useColorModeValue('gray.200', 'gray.700')
   
   const currentUser = useAppSelector(state => state.auth.user)
+  const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated)
   const currentUserId = currentUser?.id
+
+  useEffect(() => {
+    if (!isAuthenticated || !currentUser) {
+      navigate(URLs.auth.url)
+    }
+  }, [isAuthenticated, currentUser, navigate])
 
   const { data: chats = [], isLoading: isLoadingChats, refetch } = useGetChatsQuery(currentUserId || 0, { skip: !currentUserId })
   const { data: favorites = [] } = useGetFavoritesQuery(currentUserId || 0, { skip: !currentUserId })
 
   useEffect(() => {
+    if (!currentUserId) return
     const interval = setInterval(() => {
       refetch()
     }, 5000)
     return () => clearInterval(interval)
-  }, [refetch])
+  }, [refetch, currentUserId])
 
   const handleAddChat = () => {
     navigate(URLs.catalog.url)
@@ -49,6 +57,10 @@ const MessengerPage = () => {
 
   const handleChatClick = (otherUserId: number) => {
     navigate(URLs.messenger.makeChatUrl(otherUserId))
+  }
+
+  if (!isAuthenticated || !currentUser) {
+    return null
   }
 
   if (isLoadingChats) {
