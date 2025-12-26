@@ -13,11 +13,18 @@ import {
   IconButton,
   Tooltip,
   useColorModeValue,
+  Image,
 } from '@chakra-ui/react'
 import { AiFillStar } from 'react-icons/ai'
 import { FaMapMarkerAlt, FaHeart, FaRegHeart, FaComments } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { URLs } from '../../__data__/urls'
+import image1 from '../../images/1.png'
+import image2 from '../../images/2.png'
+import image3 from '../../images/3.png'
+import image4 from '../../images/4.png'
+import image5 from '../../images/5.png'
+import image6 from '../../images/6.png'
 
 interface VendorCardProps {
   vendor: {
@@ -36,6 +43,8 @@ interface VendorCardProps {
   variant?: 'default' | 'compact'
 }
 
+const vendorImages = [image1, image2, image3, image4, image5, image6]
+
 export const VendorCard = ({
   vendor,
   isFavorite = false,
@@ -46,6 +55,9 @@ export const VendorCard = ({
 }: VendorCardProps) => {
   const bg = useColorModeValue('white', 'gray.800')
   const hoverBg = useColorModeValue('gray.50', 'gray.700')
+  
+  const imageIndex = (vendor.id - 1) % vendorImages.length
+  const vendorImage = vendorImages[imageIndex]
 
   const handleFavoriteClick = (e: React.MouseEvent) => {
     e.preventDefault()
@@ -74,11 +86,19 @@ export const VendorCard = ({
         as={Link}
         to={`${URLs.vendorProfile.url}?id=${vendor.id}`}
         h={variant === 'compact' ? '150px' : '200px'}
-        bg="gray.100"
         position="relative"
         display="block"
+        overflow="hidden"
         _hover={{ textDecoration: 'none' }}
       >
+        <Image
+          src={vendorImage}
+          alt={vendor.companyName}
+          w="100%"
+          h="100%"
+          objectFit="cover"
+          fallback={<Box bg="gray.100" w="100%" h="100%" />}
+        />
         <Badge
           position="absolute"
           top={2}
