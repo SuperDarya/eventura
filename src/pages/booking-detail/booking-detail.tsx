@@ -24,7 +24,8 @@ import {
   ModalCloseButton,
   ModalFooter,
   useDisclosure,
-  useColorModeValue
+  useColorModeValue,
+  Stack,
 } from '@chakra-ui/react'
 import { AiFillStar } from 'react-icons/ai'
 import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaTrash, FaPlus } from 'react-icons/fa'
