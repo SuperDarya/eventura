@@ -100,6 +100,7 @@ const BookingPage = () => {
   // Для ручного выбора
   const [showFavorites, setShowFavorites] = useState(false)
   const currentUser = useAppSelector(state => state.auth.user)
+  const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated)
   
   const [aiSearch, { isLoading: isSearching }] = useAiSearchMutation()
   const [createEvent] = useCreateEventMutation()
@@ -178,8 +179,8 @@ const BookingPage = () => {
       return
     }
     
-    if (!currentUser?.id) {
-      showError('Требуется авторизация', 'Необходимо войти в систему для создания бронирования')
+    if (!isAuthenticated || !currentUser?.id) {
+      navigate(URLs.auth.url)
       return
     }
     
@@ -399,6 +400,10 @@ const BookingPage = () => {
               colorScheme="brand" 
               size="lg"
               onClick={() => {
+                if (!isAuthenticated || !currentUser) {
+                  navigate(URLs.auth.url)
+                  return
+                }
                 dispatch(setFormDataAction(formData))
                 setActiveStep(1)
               }}
